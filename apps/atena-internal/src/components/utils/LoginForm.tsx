@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import "./LoginForm.css"
-import logo from "../../../public/assets/images/logo_webhelp.svg";
+import logo from "../../assets/images/logo_webhelp.svg";
 import { ILogin } from "../../types/ILogin";
 
 export default function LoginForm() {
@@ -52,18 +52,23 @@ export default function LoginForm() {
           </div>
           <div className="container form__input">
             <form onSubmit={handleSubmit}>
-              <label>Login</label>
-              <div className="input__email">
-                <input type="text" name='user' onChange={handleValueChange} />
-                <select name="email_type" id="email_type" onChange={handleValueChange}>
-                  <option value="@webhelp.com">@webhelp.com</option>
-                  <option value="@gruposervices.com">@gruposervices.com</option>
-                  <option value="@concentrix.com">@concentrix.com</option>
-                </select>
-              </div>
-              <label>Senha</label>
-              <input type="password" name='password' placeholder="" onChange={handleValueChange} />
-              <button type='submit'>Entrar</button>
+              <fieldset>
+                  <label htmlFor="user">Login</label>
+                <fieldset className="input__email">
+                  <input type="text" name='user' id='user' onChange={handleValueChange} />
+                  <select name="email_type" id="email_type" onChange={handleValueChange}>
+                    <option value="@webhelp.com">@webhelp.com</option>
+                    <option value="@gruposervices.com">@gruposervices.com</option>
+                    <option value="@concentrix.com">@concentrix.com</option>
+                  </select>
+                </fieldset>
+
+                <fieldset>
+                  <label htmlFor="password">Senha</label>
+                  <input type="password" name='password' id='password' placeholder="" onChange={handleValueChange} />
+                </fieldset>
+                <button type='submit'>Entrar</button>
+              </fieldset>
             </form>
           </div>
         </div>
