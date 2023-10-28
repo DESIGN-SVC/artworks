@@ -1,0 +1,155 @@
+.container-modal {
+  /* display: none;    precisa ser display-flex caso acionem ele. */
+  display: flex;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  justify-content: center; 
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.parabens__close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.parabens__close button {
+  background-color: #003D5A;
+  border: none;   
+  padding: 0.625rem 0.875rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.40);
+  letter-spacing: 0.263rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.parabens{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+.parabens__content { 
+  width: 100%;
+  
+  align-self: center; 
+}
+
+
+.parabens__header {
+  background-color: #003D5A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 11.688rem;
+  padding: 1.5rem 1.875rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dotted-arrow, .circle, .parabens-arrows {
+  /* display: none; */
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.dotted-arrow {
+  transform: rotate(-48.031deg);
+  filter: grayscale(100%) brightness(1000%);
+  position: absolute;
+  left: 15px;
+  top: 0px;
+  width: 100px;
+}
+
+.dotted-arrow img {
+  width: 100px;
+}
+
+.circle {
+  position: absolute;
+  right: 0;
+  top: 0px;
+}
+
+.parabens-arrows {
+  position: absolute;
+  right: -0px;
+  bottom: -8px;
+}
+
+.parabens-arrows img {
+  width: 100px;
+}
+
+
+.parabens__text {
+  background-color: #FFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+
+.parabens__text h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ffff;
+  background-color: #00BED2;
+  padding: 0.563rem 0.75rem;
+}
+
+.parabens__text h2 {
+  font-size: 1.125rem;
+  /* font-weight: 400; */
+  color: #003D5A;
+}
+
+.parabens__text h3 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #003D5A;
+  line-height: 1.375rem;
+}
+
+.parabens__text h6 {
+  color: #003D5A;
+  font-weight: 400;
+}
+
+@media (min-width: 1280px) {
+  .parabens__content {
+    display: flex;
+    flex-direction:row-reverse;
+
+  }
+  .parabens__header {
+    height: auto;
+    width: 40%;
+    padding: 3.75rem 7.875rem;
+  }
+
+  .parabens__text {
+    width: 60%;
+    padding: 3.75rem 7.875rem;
+  }
+
+  .parabens__close {
+    order : 1
+  }
+
+
+}
