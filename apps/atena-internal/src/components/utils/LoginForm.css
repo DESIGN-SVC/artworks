@@ -1,4 +1,4 @@
-.form { 
+.form {
   width: 100%;
   height: 100%;
   background: #032839;
@@ -7,21 +7,24 @@
   justify-content: center;
 }
 
-.form__content {
+.form-content {
   padding: 1.875rem;
   background: white;
   width: 100%;
   max-width: 37.5rem;
   height: 100%;
-  max-height: 48rem;
+  max-height: 40.625rem;
   border-radius: 0.625rem;
 }
 
-.form__content span, .form__content label {
+.form-content p,
+.form-content label,
+.form-content input,
+.form-content select {
   color: #5F6D72;
 }
 
-.form__header {
+.form-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -29,77 +32,80 @@
   margin-bottom: 1.875rem;
 }
 
-.form__header__text {
+.header-text {
   display: flex;
   flex-direction: column;
 }
 
-.form__header__text span:nth-child(1) {
+.header-text p:nth-child(1) {
   font-size: 1.875rem;
   font-weight: 600;
   color: #004650;
 }
 
-.form__header__text span:nth-child(2) {
+.header-text p:nth-child(2) {
   font-size: 1rem;
-  line-height:1.625rem;
+  line-height: 1.625rem;
 }
 
-.form__input form { 
+.form-input form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background: white;
 }
 
-.form__input fieldset {
+.form-input fieldset {
   border: none;
   padding: 0;
   margin: 0;
   width: 100%;
 }
 
-.form__input label {
+.form-input label {
   margin-bottom: 0.625rem;
 }
 
-.form__input input {
+.form-input input {
   width: 100%;
   height: 3.125rem;
-  border: 0.063rem solid  #DBE0E9;
+  border: 0.063rem solid #DBE0E9;
   padding-left: 0.625rem;
   margin-bottom: 1.25rem;
 }
 
-.form__input select, .form__input option {
+.form-input select,
+.form-input option {
   width: 100%;
   height: 3.125rem;
   border: 0.063rem solid #CAD1D7;
-  background:  #FFF;
+  background: #FFF;
   padding-left: 0.625rem;
   margin-bottom: 1.25rem;
   color: #5F6D72;
 }
 
-.form__input input:focus, .form__input select:focus {
+.form-input input:focus,
+.form-input select:focus {
   outline: none;
   transition: 0.5s;
   border: 0.063rem solid #1e2c48;
 }
 
-.form__input button {
+.form-input button {
   padding: 0.875rem 1.25rem;
   background-color: initial;
   border: initial;
   border-radius: 0.625rem;
   background: #003D5A;
   width: 100%;
-  font-size:1.25rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: #fff;
+  cursor: pointer;
 }
 
-.input__email {
+.input-email {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -112,17 +118,22 @@
     align-items: center
   }
 
-  .form__content {
+  .form-content {
     padding: 2.5rem 4.375rem;
     height: 100%;
   }
 
-  .form__input input, .form__input select {
+  .form-input input,
+  .form-input select {
     width: 100%;
   }
 
-  .form__input form button {
-    max-width: 70%;
+  .form-input form button {
+    max-width: 55%;
+  }
+
+  .form-input fieldset {
+    width: auto;
   }
 
 }

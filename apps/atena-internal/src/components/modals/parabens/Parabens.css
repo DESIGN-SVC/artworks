@@ -1,34 +1,22 @@
 .container-modal {
-  /* display: none;    precisa ser display-flex caso acionem ele. */
   display: flex;
   position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  justify-content: center; 
-  align-items: center;
+  left: 0;
+  top: 0;
   margin: 0;
   padding: 0;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.parabens__close {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.parabens__close button {
-  background-color: #003D5A;
-  border: none;   
-  padding: 0.625rem 0.875rem;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.40);
-  letter-spacing: 0.263rem;
-  font-size: 0.875rem;
-  font-weight: 600;
+.parabens-content {
+  width: 100%;
+  max-width: 24rem;
 }
 
 .parabens{
@@ -36,16 +24,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;  
-}
-
-.parabens__content { 
   width: 100%;
-  
-  align-self: center; 
 }
 
-
-.parabens__header {
+.parabens-header {
   background-color: #003D5A;
   display: flex;
   flex-direction: column;
@@ -57,44 +39,32 @@
   overflow: hidden;
 }
 
-.dotted-arrow, .circle, .parabens-arrows {
-  /* display: none; */
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
-.dotted-arrow {
-  transform: rotate(-48.031deg);
-  filter: grayscale(100%) brightness(1000%);
-  position: absolute;
-  left: 15px;
-  top: 0px;
-  width: 100px;
-}
-
 .dotted-arrow img {
-  width: 100px;
+  filter: grayscale(100%) brightness(1000%);
+  transform: rotate(-48.031deg);
+  position: absolute;
+  left: -2rem;
+  top: 1.563rem;
+  width: 6.25rem;
 }
 
 .circle {
   position: absolute;
   right: 0;
-  top: 0px;
+  top: 0;
 }
 
 .parabens-arrows {
   position: absolute;
-  right: -0px;
-  bottom: -8px;
+  right: 0;
+  bottom: -0.938rem;
 }
 
 .parabens-arrows img {
-  width: 100px;
+  width: 6.25rem;
 }
 
-
-.parabens__text {
+.parabens-text {
   background-color: #FFFF;
   display: flex;
   flex-direction: column;
@@ -103,8 +73,7 @@
   padding: 1.25rem;
 }
 
-
-.parabens__text h1 {
+.parabens-text h1 {
   font-size: 1.875rem;
   font-weight: 700;
   color: #ffff;
@@ -112,44 +81,75 @@
   padding: 0.563rem 0.75rem;
 }
 
-.parabens__text h2 {
+.parabens-text h2 {
   font-size: 1.125rem;
-  /* font-weight: 400; */
   color: #003D5A;
 }
 
-.parabens__text h3 {
+.parabens-text h3 {
   font-size: 0.875rem;
   font-weight: 400;
   color: #003D5A;
   line-height: 1.375rem;
 }
 
-.parabens__text h6 {
+.parabens-text h6 {
   color: #003D5A;
   font-weight: 400;
 }
 
 @media (min-width: 1280px) {
-  .parabens__content {
+  .parabens-content {
+    max-width: 43.75rem;
     display: flex;
-    flex-direction:row-reverse;
-
+    flex-direction:column;
   }
-  .parabens__header {
+
+  .parabens-body {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .parabens-header {
+    padding: 0 9.375rem;
     height: auto;
-    width: 40%;
-    padding: 3.75rem 7.875rem;
+    width: 30%;
   }
 
-  .parabens__text {
-    width: 60%;
-    padding: 3.75rem 7.875rem;
+  .parabens-text {
+    width: 70%;
+    padding: 3.125rem;
   }
 
-  .parabens__close {
-    order : 1
+  .parabens-text h1 {
+    font-size: 2.813rem;
+    padding: 0.313rem 1.25rem;
   }
 
+  .parabens-text h2 {
+    font-size: 1.375rem;
+  }
 
+  .parabens-text h3 {
+    font-size: 1rem;
+  }
+
+  .parabens-text h6 {
+    font-size: 0.625rem;
+  }
+
+  .dotted-arrow img {
+    left: -3.125rem;
+    top: 3.125rem;
+    width: 8.75rem;
+  }
+
+  .circle img {
+    width: 6.25rem;
+  }
+
+  .parabens-arrows img {
+    width: 10rem;
+    bottom: -0.688rem;
+  }
 }

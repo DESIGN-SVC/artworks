@@ -1,2 +1,2 @@
-import { Parabens } from './parabens/Parabens';
-import { Dados } from './dados/Dados';
+export { ParabensModal } from './parabens/Parabens';
+export { DadosModal } from './dados/Dados';

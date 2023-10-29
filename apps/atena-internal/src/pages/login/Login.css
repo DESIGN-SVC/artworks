@@ -8,7 +8,7 @@
   background: linear-gradient(180deg, #003D5A 0%, #031f2c 100%);
 }
 
-.login__header {
+.login-header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,7 +25,7 @@
   margin-bottom: 2.5rem;
 }
 
-.login__text {
+.login-text {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,18 +34,19 @@
   font-weight: 600;
 }
 
-.login__text h1, .login__text span {
+.login-text h1,
+.login-text span {
   color: #fff;
   font-size: 1.5rem;
   text-align: center;
 }
 
-.login__text span {
+.login-text span {
   background-color: #00BED2;
   color: #003D5A;
   font-size: 1.875rem;
   padding-left: 1rem;
-  padding-right: 1rem; 
+  padding-right: 1rem;
   line-height: 3.75rem;
 }
 
@@ -55,53 +56,54 @@
   bottom: -0.563rem;
 }
 
-.arrows img{
+.arrows img {
   width: 5rem;
   height: auto;
 }
 
-.login__form .login__bg {
+.login__bg {
   position: relative;
 }
 
-.login__subfooter, .colored-w {
+.login-subfooter,
+.colored-w {
   display: none;
 }
 
 
 /* Desktop */
 @media (min-width: 1280px) {
-  
+
   .login {
     flex-direction: row;
     height: 100vh;
   }
-  
-  .login__header {
+
+  .login-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     position: relative;
     width: 100%;
     height: 100%;
     padding: 3.75rem 7.875rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
   }
 
-  .login__text {
-    width: 100%;
-    font-weight: 600;
+  .login-text {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+    font-weight: 600;
   }
 
-  .login__text h1, .login__text span {
+  .login-text h1,
+  .login-text span {
     text-align: left;
     font-size: 2.5rem;
-    
   }
 
-  .login__text span {
+  .login-text span {
     font-size: 3rem;
     line-height: 5.625rem;
   }
@@ -109,7 +111,7 @@
   .login__bg {
     position: absolute;
     top: 0;
-    bottom:0;
+    bottom: 0;
     right: 0;
   }
 
@@ -156,19 +158,18 @@
     display: block;
   }
 
-  .login__subfooter {
+  .login-subfooter {
     display: flex;
     flex-direction: column;
   }
 
-  .login__subfooter h5 {
+  .login-subfooter h5 {
     font-size: 0.625rem;
     font-weight: 400;
-    margin-bottom: 0.625rem;
     color: #ffff;
   }
 
-  .login__subfooter b {
+  .login-subfooter b {
     color: #ffff;
   }
 

@@ -1,0 +1,162 @@
+.container-modal {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dados-content {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.dados {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.dados-header {
+  background-color: #ffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 11.688rem;
+  padding: 1.5rem 1.875rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dados-colored-w,
+.dados-sparks {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  top: 0;
+}
+
+.dados-colored-w img:nth-child(1) {
+  position: absolute;
+  top: 0.375rem;
+  right: -0.313rem;
+  width: 3.75rem;
+}
+
+.dados-colored-w img:nth-child(2) {
+  filter: grayscale(100%) brightness(1%);
+  position: absolute;
+  top: 2.813rem;
+  right: 0.938rem;
+  width: 3.75rem;
+}
+
+.dados-sparks img {
+  width: 6.25rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.dados-text {
+  background-color: #003D5A;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.dados-text h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ffff;
+  background-color: #CC3262;
+  padding: 0.563rem 0.75rem;
+}
+
+.dados-text h2 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffff;
+}
+
+.dados-text h3:nth-child(3) {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #ffff;
+  line-height: 1.375rem;
+}
+
+.dados-text a {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #00BED2;
+  line-height: 1.375rem;
+}
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .dados-content {
+    max-width: 43.75rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dados-body {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .dados-header {
+    padding: 0 9.375rem;
+    height: auto;
+    width: 30%;
+  }
+
+  .dados-text {
+    width: 70%;
+    padding: 3.125rem;
+  }
+
+  .dados-text h1 {
+    font-size: 2.813rem;
+    padding: 0.313rem 1.25rem;
+  }
+
+  .dados-text h2 {
+    font-size: 1.125rem;
+  }
+
+  .dados-text h3, .dados-text a {
+    font-size: 1rem !important;
+  }
+
+  .dados-colored-w img:nth-child(1) {
+    width: 5.625rem;
+    top: 0.875rem;
+  }
+
+  .dados-colored-w img:nth-child(2) {
+    width: 5rem;
+    top: 4.375rem;
+    right: 2.188rem;
+  }
+
+  .dados-sparks img {
+    width: 10rem;
+  }
+}
