@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { ButtonClose } from "../ui/ButtonClose";
 
@@ -10,11 +10,13 @@ import blueW from "../../../assets/images/blue_w.svg";
 import './Dados.css';
 export function DadosModal() {
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="container-modal" id="modal-dados">
+    <div className="modal" id="modal-dados" ref={modalRef}>
       <div className="dados">
-        <main className="dados-content">
-          <ButtonClose modalId="modal-dados" />
+        <section className="dados-content">
+          <ButtonClose modalRef={modalRef} />
           <div className="dados-body">
             <section className="dados-header">
               <div className="dados-bg">
@@ -46,7 +48,7 @@ export function DadosModal() {
               </a>
             </section>
           </div>
-        </main>
+        </section>
       </div>
     </div>
 

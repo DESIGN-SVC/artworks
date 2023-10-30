@@ -9,7 +9,20 @@
   color: black;
 }
 
-/* Desktop */
-@media (min-width: 480px) {
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 100vh;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+
+/* Desktop */
+@media (min-width: 1280px) {
+  .container {
+    height: 100vh;
+    flex-direction: row;
+  }
 }

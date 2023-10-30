@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { ButtonClose } from "../ui/ButtonClose";
 
@@ -10,11 +10,13 @@ import circle from "../../../assets/images/circle.svg";
 import './Parabens.css';
 export function ParabensModal() {
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="container-modal" id="modal-parabens">
+    <div className="modal" id="modal-parabens" ref={modalRef}>
       <div className="parabens">
-        <main className="parabens-content">
-          <ButtonClose modalId="modal-parabens" />
+        <section className="parabens-content">
+          <ButtonClose modalRef={modalRef} />
           <div className="parabens-body">
             <section className="parabens-header">
               <div className="parabens-bg">
@@ -51,7 +53,7 @@ export function ParabensModal() {
               </h6>
             </section>
           </div>
-        </main>
+        </section>
       </div>
     </div>
 

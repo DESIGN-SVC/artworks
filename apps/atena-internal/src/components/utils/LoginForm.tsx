@@ -41,37 +41,34 @@ export default function LoginForm() {
 
   return (
 
-    <div className="container form">
-      <main className="form-content">
+    <section className="form">
+      <div className="form-content">
         <section className="form-header">
           <img src={logo} alt="Logo Concentrix + Webhelp" />
           <div className="header-text">
-            <p>Login</p>
-            <p>Insira seus dados de acesso para prosseguir.</p>
+            <h2>Login</h2>
+            <h2>Insira seus dados de acesso para prosseguir.</h2>
           </div>
         </section>
-        <section className="container form-input">
+        <section className="form-input">
           <form onSubmit={handleSubmit}>
-            <fieldset>
-              <label htmlFor="user">Login</label>
-              <fieldset className="input-email">
-                <input type="text" name='user' id='user' onChange={handleValueChange} />
-                <select name="email_type" id="email_type" onChange={handleValueChange}>
-                  <option value="@webhelp.com">@webhelp.com</option>
-                  <option value="@gruposervices.com">@gruposervices.com</option>
-                  <option value="@concentrix.com">@concentrix.com</option>
-                </select>
-              </fieldset>
-
-              <fieldset>
-                <label htmlFor="password">Senha</label>
-                <input type="password" name='password' id='password' placeholder="" onChange={handleValueChange} />
-              </fieldset>
-              <button type='submit'>Entrar</button>
+            <label htmlFor="user">Login</label>
+            <fieldset className="input-email">
+              <input type="text" name='user' id='user' onChange={handleValueChange} />
+              <select name="email_type" id="email_type" onChange={handleValueChange}>
+                <option value="@webhelp.com">@webhelp.com</option>
+                <option value="@gruposervices.com">@gruposervices.com</option>
+                <option value="@concentrix.com">@concentrix.com</option>
+              </select>
             </fieldset>
+            <fieldset>
+              <label htmlFor="password">Senha</label>
+              <input type="password" name='password' id='password' placeholder="" onChange={handleValueChange} />
+            </fieldset>
+            <button type='submit'>Entrar</button>
           </form>
         </section>
-      </main>
-    </div>
+      </div>
+    </section>
   )
 }

@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import './ButtonClose.css';
 
 interface ButtonCloseProps {
-  modalId: string;
+  modalRef: React.RefObject<HTMLDivElement>;
 }
 
-export function ButtonClose({modalId}: ButtonCloseProps) {
-
+export function ButtonClose({modalRef}: ButtonCloseProps) {
+  
   function handleStateModal() {
-    const modal = document.getElementById(modalId);
-    modal?.style.setProperty('display', 'none');
+    if (modalRef.current) {
+      modalRef.current.style.display = 'none';
+    }
   }
 
   return (
