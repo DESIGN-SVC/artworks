@@ -1,0 +1,158 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #003D5A 0%, #031f2c 100%);
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 15.625rem;
+  padding: 1.875rem 0.938rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo {
+  margin-bottom: 2.5rem;
+}
+
+.login-header h1 {
+  text-align: center;
+  width: 100%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+  color: #fff;
+  
+}
+
+.login-header span {
+  background-color: #00BED2;
+  color: #003D5A;
+  font-size: 1.875rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  line-height: 3.75rem;
+}
+
+.arrows {
+  position: absolute;
+  right: 0;
+  bottom: -0.563rem;
+}
+
+.arrows img {
+  width: 5rem;
+  height: auto;
+}
+
+.login-bg {
+  position: absolute;
+  right: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.login-subfooter,
+.colored-w {
+  display: none;
+}
+
+
+/* Desktop */
+@media (min-width: 1280px) {
+
+  .login {
+    flex-direction: row;
+  }
+
+  .login-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 3.75rem 7.875rem;
+  }
+
+  .login-header h1,
+  .login-header span {
+    text-align: left;
+    font-size: 2.5rem;
+  }
+
+  .login-header span {
+    font-size: 3rem;
+    line-height: 5.625rem;
+  }
+
+  .colored-w {
+    position: absolute;
+    top: 43px;
+    right: 0;
+  }
+
+  .colored-w img {
+    width: 9.125rem;
+    height: auto;
+  }
+
+  .colored-w img:nth-child(1) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    filter: grayscale(100%) brightness(1000%);
+  }
+
+  .colored-w img:nth-child(2) {
+    position: absolute;
+    width: 5rem;
+    top: 2.5rem;
+    right: 0;
+  }
+
+  .arrows {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+
+  .arrows img {
+    position: absolute;
+    bottom: 7.063rem;
+    right: 0;
+    width: 12rem;
+    height: auto;
+  }
+
+  .colored-w {
+    display: block;
+  }
+
+  .login-subfooter {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-subfooter h5 {
+    font-size: 0.625rem;
+    font-weight: 400;
+    color: #ffff;
+  }
+
+  .login-subfooter b {
+    color: #ffff;
+  }
+
+
+
+
+
+}

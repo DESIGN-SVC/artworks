@@ -1,0 +1,155 @@
+.container-modal {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.parabens-content {
+  width: 100%;
+  max-width: 24rem;
+}
+
+.parabens{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+  width: 100%;
+}
+
+.parabens-header {
+  background-color: #003D5A;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 11.688rem;
+  padding: 1.5rem 1.875rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.dotted-arrow img {
+  filter: grayscale(100%) brightness(1000%);
+  transform: rotate(-48.031deg);
+  position: absolute;
+  left: -2rem;
+  top: 1.563rem;
+  width: 6.25rem;
+}
+
+.circle {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.parabens-arrows {
+  position: absolute;
+  right: 0;
+  bottom: -0.938rem;
+}
+
+.parabens-arrows img {
+  width: 6.25rem;
+}
+
+.parabens-text {
+  background-color: #FFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.parabens-text h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ffff;
+  background-color: #00BED2;
+  padding: 0.563rem 0.75rem;
+}
+
+.parabens-text h2 {
+  font-size: 1.125rem;
+  color: #003D5A;
+}
+
+.parabens-text h3 {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #003D5A;
+  line-height: 1.375rem;
+}
+
+.parabens-text h6 {
+  color: #003D5A;
+  font-weight: 400;
+}
+
+@media (min-width: 1280px) {
+  .parabens-content {
+    max-width: 43.75rem;
+    display: flex;
+    flex-direction:column;
+  }
+
+  .parabens-body {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .parabens-header {
+    padding: 0 9.375rem;
+    height: auto;
+    width: 30%;
+  }
+
+  .parabens-text {
+    width: 70%;
+    padding: 3.125rem;
+  }
+
+  .parabens-text h1 {
+    font-size: 2.813rem;
+    padding: 0.313rem 1.25rem;
+  }
+
+  .parabens-text h2 {
+    font-size: 1.375rem;
+  }
+
+  .parabens-text h3 {
+    font-size: 1rem;
+  }
+
+  .parabens-text h6 {
+    font-size: 0.625rem;
+  }
+
+  .dotted-arrow img {
+    left: -3.125rem;
+    top: 3.125rem;
+    width: 8.75rem;
+  }
+
+  .circle img {
+    width: 6.25rem;
+  }
+
+  .parabens-arrows img {
+    width: 10rem;
+    bottom: -0.688rem;
+  }
+}
