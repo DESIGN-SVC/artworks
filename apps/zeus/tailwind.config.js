@@ -8,12 +8,11 @@ export default {
   theme: {
     extend: {},
     colors: {
-      'white': {
-        '100': '#FFFFFF',
-      },
-      'black': {
-        '100': '#000000',
-      },
+      'white': '#FFFFFF',
+      'black': '#000000',
+      'inerit': 'inherit',
+      'current': 'currentColor',
+      'transparent': 'transparent',
       'blue': {
         '300': '#63F3FD',
         '350': '#00D6E3',
@@ -38,9 +37,6 @@ export default {
         '900': '#373B42',
         '950': '#22252A',
       },
-      'transparent': {
-        
-      }
     },
     fontFamily: {
       'trenda': ['Trenda Light', 'sans-serif'],
