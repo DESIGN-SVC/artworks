@@ -1,5 +1,5 @@
-import { Attribute } from "../../components/attribute/Attribute";
-import { Check } from "../../icons";
+import { cx } from "cva";
+import { Attribute } from "../../components/Attribute";
 
 export const HomePage = () => {
 
@@ -9,11 +9,9 @@ export const HomePage = () => {
       item: [
         {
           text: "Olá, mundo!",
-          icon: <Check />,
         },
         {
           text: "Bem vindo ao Zeus!",
-          icon: <Check />,
         }
       ],
     },
@@ -22,28 +20,27 @@ export const HomePage = () => {
       item: [
         {
           text: "Sotaque nordestino",
-          icon: <Check />,
         },
         {
           text: "Muito bom",
-          icon: <Check />,
         }
       ],
     },
   ];
 
-
   return (
-    <>
-      <h1 className="text-9xl w-full text-center text-blue-350 font-trenda">
-        Hello World
-      </h1>
-      <div className="flex flex-row gap-[0.625rem]" >
-        {arr.map((item, index) => (
+    <div
+      className={cx([
+        "flex flex-row flex-wrap",
+        "gap-2.5 w-full",
+      ])}
+    >
+      {
+        arr.map((item, index) => (
           <Attribute {...item} index={index} />
-        ))}
-      </div >
-    </>
+        ))
+      }
+    </div >
   )
 }
 
