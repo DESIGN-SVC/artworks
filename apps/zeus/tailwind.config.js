@@ -39,7 +39,8 @@ export default {
       },
     },
     fontFamily: {
-      'trenda': ['Trenda Light', 'sans-serif'],
+      'sans': ['Trenda Regular', 'sans-serif'],
+      'trenda': ['Trenda Regular', 'sans-serif'],
       'zen-dots': ['Zen Dots', 'sans-serif'],
     },
     plugins: [],
