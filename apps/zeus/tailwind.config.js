@@ -43,11 +43,6 @@ export default {
       'trenda': ['Trenda Regular', 'sans-serif'],
       'zen-dots': ['Zen Dots', 'sans-serif'],
     },
-    screens: {
-      'sm': '0px',
-      'md': '768px',
-      'lg': '1024px',
-    },
     plugins: [],
   }
 }
