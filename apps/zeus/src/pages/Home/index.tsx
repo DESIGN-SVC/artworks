@@ -2,31 +2,6 @@ import { cx } from "cva";
 import { AudioPlayer } from "../../components";
 
 export const HomePage = () => {
-  const arr = [
-    {
-      title: "Frases",
-      item: [
-        {
-          text: "Olá, mundo!",
-        },
-        {
-          text: "Bem vindo ao Zeus!",
-        },
-      ],
-    },
-    {
-      title: "Características",
-      item: [
-        {
-          text: "Sotaque nordestino",
-        },
-        {
-          text: "Muito bom",
-        },
-      ],
-    },
-  ];
-
   return (
     <div
       className={cx([
