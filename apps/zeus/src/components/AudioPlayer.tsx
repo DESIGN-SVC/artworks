@@ -56,14 +56,14 @@ export const AudioPlayer = ({ AudioSrc }: AudioPlayerProps) => {
   });
 
   return (
-    <div className="w-fit h-fit ">
+    <div className="w-full h-fit">
       <audio className="hidden" ref={audioRef}>
         <source src={AudioSrc} type="audio/mpeg" />
       </audio>
       <div
         className={cx([
           "flex flex-row justify-center",
-          "w-[15rem] md:w-[18rem] lg:w-[21.625rem]",
+          "min-w-[15rem] w-full",
           "bg-cool-gray-50 rounded-[2.5rem] gap-2.5 p-3 pr-5",
         ])}
       >
