@@ -1,8 +1,7 @@
 import { cx } from "cva";
-import { Attribute } from "../../components/Attribute";
+import { AudioPlayer } from "../../components";
 
 export const HomePage = () => {
-
   const arr = [
     {
       title: "Frases",
@@ -12,7 +11,7 @@ export const HomePage = () => {
         },
         {
           text: "Bem vindo ao Zeus!",
-        }
+        },
       ],
     },
     {
@@ -23,7 +22,7 @@ export const HomePage = () => {
         },
         {
           text: "Muito bom",
-        }
+        },
       ],
     },
   ];
@@ -31,17 +30,13 @@ export const HomePage = () => {
   return (
     <div
       className={cx([
-        "flex flex-row flex-wrap",
+        "flex flex-row bg-[#000] h-screen flex-wrap",
         "gap-2.5 w-full",
       ])}
     >
-      {
-        arr.map((item, index) => (
-          <Attribute {...item} index={index} />
-        ))
-      }
-    </div >
-  )
-}
+      <AudioPlayer AudioSrc="https://65381g.ha.azioncdn.net/f/1/a/6/audiosonline-audios-online-demo-volnei-b07fd250.mp3" />
+    </div>
+  );
+};
 
 export default HomePage;
