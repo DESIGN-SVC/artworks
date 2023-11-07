@@ -1,47 +1,100 @@
 import { cx } from "cva";
-import { Attribute } from "../../components/Attribute";
+import { BoxInfo } from "../../components";
+import { PersonaAdriano } from "../../icons";
 
 export const HomePage = () => {
-
-  const arr = [
+  const personas = [
     {
-      title: "Frases",
-      item: [
+      name: "Adriano",
+      functions: "Locutor esportivo",
+      attributes: [
         {
-          text: "Olá, mundo!",
+          title: "Frases",
+          item: [
+            {
+              text: "Até mais!",
+            },
+          ],
         },
         {
-          text: "Bem vindo ao Zeus!",
-        }
-      ],
-    },
-    {
-      title: "Características",
-      item: [
-        {
-          text: "Sotaque nordestino",
+          title: "Especialidade",
+          item: [
+            {
+              text: "Cobranças",
+            },
+          ],
         },
         {
-          text: "Muito bom",
-        }
+          title: "Atendimento",
+          item: [
+            {
+              text: "Diversos públicos",
+            },
+          ],
+        },
+        {
+          title: "Características vocais",
+          item: [
+            {
+              text: "Timbre maduro",
+            },
+          ],
+        },
       ],
+      img: <PersonaAdriano />,
     },
+    {
+      name: "Adriano",
+      functions: "Locutor esportivo",
+      attributes: [
+        {
+          title: "Frases",
+          item: [
+            {
+              text: "Até mais!",
+            },
+          ],
+        },
+        {
+          title: "Especialidade",
+          item: [
+            {
+              text: "Cobranças",
+            },
+          ],
+        },
+        {
+          title: "Atendimento",
+          item: [
+            {
+              text: "Diversos públicos",
+            },
+          ],
+        },
+        {
+          title: "Características vocais",
+          item: [
+            {
+              text: "Timbre maduro",
+            },
+          ],
+        },
+      ],
+      img: <PersonaAdriano />,
+    }
   ];
+
 
   return (
     <div
       className={cx([
-        "flex flex-row flex-wrap",
-        "gap-2.5 w-full",
+        "flex flex-col",
+        "gap-2.5 w-screen min-h-screen h-full p-8 bg-gray-150",
       ])}
     >
-      {
-        arr.map((item, index) => (
-          <Attribute {...item} index={index} />
-        ))
-      }
-    </div >
-  )
-}
+      <BoxInfo personas={personas} />
+    </div>
+  );
+};
 
 export default HomePage;

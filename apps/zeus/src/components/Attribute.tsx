@@ -1,7 +1,7 @@
 import { cx } from "cva";
 import { Check } from "../icons";
 
-interface AtributteProps {
+export interface AtributteProps {
   title: string;
   item: AttributeItemProps[];
   index?: number;
@@ -26,7 +26,7 @@ export const Attribute = ({ title, item, ...props }: AtributteProps) => (
     <h4 className="text-xs font-bold">
       {title}
     </h4>
-    <div className="flex flex-row gap-1.5">
+    <div className="flex flex-wrap justify-left gap-1.5">
       {
         item.map((item, index) => (
           <div
