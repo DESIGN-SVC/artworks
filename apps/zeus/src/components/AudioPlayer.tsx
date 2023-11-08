@@ -4,10 +4,10 @@ import * as Progress from "@radix-ui/react-progress";
 import { cx } from "cva";
 
 interface AudioPlayerProps {
-  AudioSrc: string;
+  audioSrc: string;
 }
 
-export const AudioPlayer = ({ AudioSrc }: AudioPlayerProps) => {
+export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playAudio, setPlayAudio] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -53,12 +53,13 @@ export const AudioPlayer = ({ AudioSrc }: AudioPlayerProps) => {
       const total = audioRef.current.duration;
       setProgress((currentTime / total) * 100);
     }
-  });
+  }, [currentTime]);
 
   return (
     <div className="w-full h-fit">
       <audio className="hidden" ref={audioRef}>
-        <source src={AudioSrc} type="audio/mpeg" />
+        <track  src={audioSrc} kind="captions" />
+        <source src={audioSrc} type="audio/mp3" />
       </audio>
       <div
         className={cx([

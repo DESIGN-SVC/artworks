@@ -10,7 +10,7 @@ export const HomePage = () => {
       ])}
     >
       <div className="w-[31.25rem] bg-white flex flex-col p-5 justify">
-        <AudioPlayer AudioSrc="https://65381g.ha.azioncdn.net/f/1/a/6/audiosonline-audios-online-demo-volnei-b07fd250.mp3" />
+        <AudioPlayer audioSrc="https://storage.googleapis.com/gs-design-zetflix-static-website/audio-1.mp3" />
       </div>
     </div>
   );
