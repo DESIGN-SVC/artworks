@@ -1,12 +1,12 @@
 import { cx } from "cva";
 import { BoxInfo } from "../../components";
-import { PersonaAdriano } from "../../icons";
+import { PersonaAdriano, PersonaBeca } from "../../icons";
 
 export const HomePage = () => {
   const personas = [
     {
-      name: "Adriano",
-      functions: "Locutor esportivo",
+      name: "ADRIANO",
+      functions: "LOCUTOR ESPORTIVO",
       attributes: [
         {
           title: "Frases",
@@ -44,17 +44,9 @@ export const HomePage = () => {
       img: <PersonaAdriano />,
     },
     {
-      name: "Adriano",
-      functions: "Locutor esportivo",
+      name: "BECA",
+      functions: "NUTRICIONISTA",
       attributes: [
-        {
-          title: "Frases",
-          item: [
-            {
-              text: "Até mais!",
-            },
-          ],
-        },
         {
           title: "Especialidade",
           item: [
@@ -75,24 +67,30 @@ export const HomePage = () => {
           title: "Características vocais",
           item: [
             {
-              text: "Timbre maduro",
+              text: "Timbre jovem",
             },
           ],
         },
       ],
-      img: <PersonaAdriano />,
+      img: <PersonaBeca />,
     }
   ];
 
-
+  console.log(personas);
   return (
     <div
       className={cx([
         "flex flex-col",
-        "gap-2.5 w-screen min-h-screen h-full p-8 bg-gray-150",
+        "gap-2.5 w-screen min-h-screen h-full p-8 bg-gray-50",
+        "lg: py-[100px] px-[90px]"
       ])}
     >
-      <BoxInfo personas={personas} />
+      {
+      personas.map((persona, index) => (
+        <BoxInfo {...persona} index={index} />
+      ))
+      }
+
     </div>
   );
 };
