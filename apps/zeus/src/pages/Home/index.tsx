@@ -1,47 +1,19 @@
 import { cx } from "cva";
-import { Attribute } from "../../components/Attribute";
+import { AudioPlayer } from "../../components";
 
 export const HomePage = () => {
-
-  const arr = [
-    {
-      title: "Frases",
-      item: [
-        {
-          text: "Olá, mundo!",
-        },
-        {
-          text: "Bem vindo ao Zeus!",
-        }
-      ],
-    },
-    {
-      title: "Características",
-      item: [
-        {
-          text: "Sotaque nordestino",
-        },
-        {
-          text: "Muito bom",
-        }
-      ],
-    },
-  ];
-
   return (
     <div
       className={cx([
-        "flex flex-row flex-wrap",
+        "flex flex-row bg-[#000] h-screen flex-wrap",
         "gap-2.5 w-full",
       ])}
     >
-      {
-        arr.map((item, index) => (
-          <Attribute {...item} index={index} />
-        ))
-      }
-    </div >
-  )
-}
+      <div className="w-[31.25rem] bg-white flex flex-col p-5 justify">
+        <AudioPlayer audioSrc="https://storage.googleapis.com/gs-design-zetflix-static-website/audio-1.mp3" />
+      </div>
+    </div>
+  );
+};
 
 export default HomePage;
