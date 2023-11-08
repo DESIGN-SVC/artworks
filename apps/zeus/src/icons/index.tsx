@@ -17,3 +17,4 @@ export {
 } from "./personas";
 export { Play } from "./play";
 export { Pause } from "./pause";
+export { Speaker } from "./speaker";
