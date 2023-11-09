@@ -1,5 +1,4 @@
 export { Check } from "./check";
-export { BrazilFlag } from "./brazilFlag";
 export {
   PersonaAdriano,
   PersonaBeca,
@@ -16,3 +15,5 @@ export {
   PersonaMilena,
   PersonaRodrigo,
 } from "./personas";
+export { Play } from "./play";
+export { Pause } from "./pause";
