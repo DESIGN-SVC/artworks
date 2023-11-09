@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Play, Pause } from "../icons";
-import * as Progress from "@radix-ui/react-progress";
 import { cx } from "cva";
-import { VolumeMixer } from ".";
+import { ProgressBar, VolumeMixer } from ".";
 
 interface AudioPlayerProps {
   audioSrc: string;
@@ -64,10 +63,7 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
-      2,
-      "0"
-    )}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -123,20 +119,9 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
             className="w-full h-3 bg-gray-200 rounded-[0.625rem] self-center justify-end"
             onClick={handleClick}
           >
-            <Progress.Root
-              className="relative overflow-hidden bg-gray-200 rounded-full w-full h-full cursor-pointer"
-              value={progress}
-            >
-              <Progress.Indicator
-                className="bg-blue-300 w-full h-full"
-                style={{
-                  transition: "transform 300ms cubic-bezier(0.65, 0, 0.35, 1)",
-                  transform: `translateX(-${100 - progress}%)`,
-                }}
-              />
-            </Progress.Root>
+            <ProgressBar marker={progress} />
           </div>
-          <div className="flex justify-between text-[14px]">
+          <div className="flex justify-between text-sm text-gray-500">
             <div className="">{handleTime(currentTime)}</div>
             <div className="">{handleTime(duration)}</div>
           </div>
