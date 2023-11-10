@@ -68,7 +68,7 @@ body {
 
 }
 
-.term h3, .term h4 {
+.term h3, .term p {
   font-size: 1.125rem;
   font-weight: 400;
   line-height: 1.75rem;
@@ -91,6 +91,12 @@ body {
 .term button {
   max-width: 21.875rem;
   cursor: pointer;
+}
+
+.term-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 
