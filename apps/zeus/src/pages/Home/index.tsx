@@ -9,7 +9,7 @@ export const HomePage = () => {
         "gap-2.5 w-full",
       ])}
     >
-      <div className="w-[31.25rem] bg-white flex flex-col p-5 justify">
+      <div className="bg-white flex flex-col p-5 w-full">
         <AudioPlayer audioSrc="https://storage.googleapis.com/gs-design-zetflix-static-website/audio-1.mp3" />
       </div>
     </div>
