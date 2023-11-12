@@ -1,0 +1,129 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat';
+}
+
+#modal-term {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.term {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background-color: white;
+  max-height: 90%;
+  max-width: 22.375rem;
+  overflow-y: auto;
+  margin: 1rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.term img {
+  border: none;
+  background-color: #76E1DD;
+  border-radius: 624.938rem;
+  padding: 0.875rem;
+  align-self: center;
+}
+
+.term h1 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+
+.term h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.75rem; 
+
+}
+
+.term h3, .term p {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+}
+
+.term button {
+  font-family: 'Montserrat';
+  color: #fff;
+  background-color: #0099A7;
+  min-width: 6.25rem;
+  align-self: center;
+  border: initial;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 100%;
+  padding: 1.25rem;
+  margin-top: 3.125rem;
+}
+
+.term button {
+  max-width: 21.875rem;
+  cursor: pointer;
+}
+
+.term-text {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+
+@media (min-width: 768px) {
+  .term {
+    max-width: 65.375rem;
+    margin: 7.313rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-bottom: 2.813rem;
+    padding-top: 2.813rem;
+  }
+
+  .term::-webkit-scrollbar {
+    background: transparent;
+    border-radius: 1rem;
+    width: 0.625rem;
+  }
+
+  .term::-webkit-scrollbar-thumb {
+    background: #C1C1C1;
+    border-radius: 1rem;
+  }
+
+  .term h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+  }
+}
