@@ -29,12 +29,12 @@ export const LoginForm = () => {
       });
 
       if (response.ok) {
-        // Fazer algo
+        // Fazer axlo
       } else {
-        // Fazer algo
+        // Fazer axlo
       }
     } catch (error) {
-      // Fazer algo c o erro
+      // Fazer axlo c o erro
     }
   };
 
@@ -49,7 +49,7 @@ export const LoginForm = () => {
         "flex flex-col flex-grow w-full h-full",
         "bg-blue-900 relative p-5",
         "justify-center items-center",
-        "lg:p-10 lg:bg-cool-blue-600",
+        "xl:p-10 xl:min-w-[10.063rem] xl:bg-cool-blue-600",
       ])}
     >
       <div
@@ -57,12 +57,12 @@ export const LoginForm = () => {
           "flex flex-col w-full h-full",
           "max-w-[22.813rem]",
           "bg-white gap-5 p-[1.875rem] rounded-[0.625rem]",
-          "lg:max-w-[37.5rem] lg:max-h-[43.75rem] lg:p-[4.375rem]",
+          "xl:max-w-[37.5rem] xl:max-h-[43.75rem] xl:p-[4.375rem] xl:self-start",
         ])}
       >
         <WebhelpConcentrixLogo />
         <div className="flex flex-col gap-2">
-          <h2 className="text-blue-950 font-semibold text-3xl lg:pt-[1.875rem]">
+          <h2 className="text-blue-950 font-semibold text-3xl xl:pt-[1.875rem]">
             Login
           </h2>
           <h3 className="text-cool-gray-600">
@@ -82,7 +82,7 @@ export const LoginForm = () => {
               className={cx([
                 "w-full h-[3.125rem] p-2.5",
                 "border-cool-gray-200 border",
-                "lg:w-fit lg:min-w-[20rem]",
+                "xl:w-fit xl:min-w-[20rem]",
               ])}
               type="text"
               name="user"
@@ -99,7 +99,7 @@ export const LoginForm = () => {
               className={cx([
                 "w-full h-[3.125rem] p-2.5",
                 "border-cool-gray-200 border",
-                "lg:w-fit lg:min-w-[20rem]",
+                "xl:w-fit xl:min-w-[20rem]",
               ])}
               type="password"
               name="password"
@@ -112,8 +112,8 @@ export const LoginForm = () => {
               "w-full py-3.5 px-5",
               "bg-blue-1000 rounded-[0.625rem]",
               "hover:bg-blue-300 transition duration-300 ease-in-out",
-              "text-lg font-medium text-white cursor-pointer",
-              "lg:w-[14.063rem]",
+              "text-1.125rem font-medium text-white cursor-pointer",
+              "xl:w-[14.063rem]",
             ])}
             type="submit"
           >
