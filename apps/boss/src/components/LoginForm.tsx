@@ -82,7 +82,7 @@ export const LoginForm = () => {
 
             <input
               className={cx([
-                "w-full h-[3.125rem] p-2.5",
+                "w-full h-[3.125rem] p-4",
                 "border-cool-gray-200 border rounded",
                 "hover:border-cool-gray-600 transition duration-500 ease-in-out",
                 "focus:border-blue-500 focus:border-2 focus:outline-none",
@@ -104,12 +104,11 @@ export const LoginForm = () => {
 
             <input
               className={cx([
-                "w-full h-[3.125rem] p-2.5",
+                "w-full h-[3.125rem] p-4",
                 "border-cool-gray-200 border rounded",
                 "hover:border-cool-gray-600 transition duration-500 ease-in-out",
                 "focus:border-blue-500 focus:border-2 focus:outline-none",
                 "disabled:bg-gray-200 disabled:text-gray-200",
-                "xl:w-full",
               ])}
               type="text"
               name="email"
@@ -125,7 +124,7 @@ export const LoginForm = () => {
             </label>
             <input
               className={cx([
-                "w-full h-[3.125rem] p-2.5",
+                "w-full h-[3.125rem] p-4",
                 "border-cool-gray-200 border rounded",
                 "hover:border-cool-gray-600 transition duration-500 ease-in-out",
                 "focus:border-blue-500 focus:border-2 focus:outline-none",

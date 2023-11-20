@@ -38,10 +38,10 @@ export const Login = () => {
 
         <div
           className={cx([
-            "flex flex-col w-full items-center",
+            "flex flex-col w-full items-center gap-10",
             "xl:h-full xl:items-start",
             "xl:justify-start xl:self-end",
-            "xl:max-w-[37.5rem] xl:max-h-[43.75rem] ",
+            "xl:max-w-[37.5rem] xl:max-h-[43.75rem] xl:gap-0",
           ])}
         >
           <BossLogo className="w-[8.813rem] xl:h-fit xl:w-[15.188rem] xl:py-20" />
