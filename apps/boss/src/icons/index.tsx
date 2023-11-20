@@ -1,3 +1,4 @@
-export { Background } from "./background";
-export { WebhelpConcentrixLogo } from "./webhelp-concentrix-logo";
+export { WebhelpConcentrixLogo } from "./webhelpConcentrixLogo";
 export { BossLogo } from "./bossLogo";
+export { TransparentB } from "./transparentB";
+export { FilledB } from "./filledB";
