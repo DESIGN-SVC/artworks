@@ -1,49 +1,7 @@
-import React, { useState } from "react";
 import { cx } from "cva";
 import { WebhelpConcentrixLogo } from "../icons";
 
-interface ILogin {
-  cpf: string;
-  email: string;
-  password: string;
-}
-
 export const LoginForm = () => {
-  const [formData, setFormData] = useState<ILogin>({
-    cpf: "",
-    password: "",
-    email: "",
-  });
-
-  const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleLogin = async () => {
-    try {
-      const response = await fetch("URL", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        // Fazer algo
-      } else {
-        // Fazer algo
-      }
-    } catch (error) {
-      // Fazer algo c o erro
-    }
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    handleLogin();
-  };
 
   return (
     <section
@@ -73,7 +31,6 @@ export const LoginForm = () => {
         </div>
         <form
           className="flex flex-col gap-5 text-cool-gray-600"
-          onSubmit={handleSubmit}
         >
           <fieldset className="flex flex-col gap-2">
             <label className="text-sm disabled:text-gray-200" htmlFor="cpf">
@@ -93,7 +50,6 @@ export const LoginForm = () => {
               name="cpf"
               id="cpf"
               placeholder="000.000.000-00"
-              onChange={handleValueChange}
             />
           </fieldset>
 
@@ -113,8 +69,7 @@ export const LoginForm = () => {
               type="text"
               name="email"
               id="email"
-              placeholder="exemplo@email.com"
-              onChange={handleValueChange}
+              placeholder="exemplo@email.com"      
             />
           </fieldset>
 
@@ -129,13 +84,12 @@ export const LoginForm = () => {
                 "hover:border-cool-gray-600 transition duration-500 ease-in-out",
                 "focus:border-blue-500 focus:border-2 focus:outline-none",
                 "disabled:bg-gray-200 disabled:text-gray-200",
-                "xl:w-full",
+                "xl:w-full placeholder:translate-y-[0.25rem] placeholder:text-lg",
               ])}
               type="password"
               name="password"
               id="password"
               placeholder="**********"
-              onChange={handleValueChange}
             />
           </fieldset>
           <button
