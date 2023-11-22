@@ -11,7 +11,7 @@ export const ProgressBar = ({ marker }: ProgressBarProps) => {
       value={marker}
     >
       <Progress.Indicator
-        className="bg-blue-300 w-full h-full"
+        className="bg-blue-400 w-full h-full"
         style={{
           transition: "transform 300ms cubic-bezier(0.65, 0, 0.35, 1)",
           transform: `translateX(-${100 - marker}%)`,

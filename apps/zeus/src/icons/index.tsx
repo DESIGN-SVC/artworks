@@ -2,6 +2,7 @@ export { Check } from "./check";
 export {
   PersonaAdriano,
   PersonaBeca,
+  PersonaCarlos,
   PersonaDebora,
   PersonaDiego,
   PersonaDouglas,
@@ -17,4 +18,7 @@ export {
 } from "./personas";
 export { Play } from "./play";
 export { Pause } from "./pause";
-export { Speaker } from "./speaker";
+export { SpeakerHigh } from "./speakerHigh";
+export { SpeakerLow } from "./speakerLow";
+export { BrazilFlag } from "./brazilFlag";
+export { SpanishFlag } from "./spanishFlag";

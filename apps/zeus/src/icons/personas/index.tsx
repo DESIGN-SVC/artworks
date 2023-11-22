@@ -1,5 +1,6 @@
 export { PersonaAdriano } from './Adriano';
 export { PersonaBeca } from './Beca';
+export { PersonaCarlos } from './Carlos';
 export { PersonaDebora } from './Debora';
 export { PersonaDiego } from './Diego';
 export { PersonaDouglas } from './Douglas';

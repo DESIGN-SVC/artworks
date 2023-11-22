@@ -40,12 +40,12 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
     }
   };
 
-  const handleIcon = () => {
+  const handleSetIcon = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
-        return <Play className="w-[1.063rem]" />;
+        return <Play className="w-7" />;
       } else {
-        return <Pause className="w-[1.063rem]" />;
+        return <Pause className="w-7" />;
       }
     }
   };
@@ -103,25 +103,29 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
       </audio>
       <div
         className={cx([
-          "flex flex-row justify-center",
-          "min-w-[15rem] w-full",
-          "bg-cool-gray-50 rounded-[2.5rem] gap-2.5 p-3 pr-5",
+          "flex flex-row justify-center w-full",
+          "bg-cool-gray-100 rounded-[0.625rem]",
+          "gap-5 py-2.5 px-5",
         ])}
       >
-        <button type="button" onClick={handlePausePLay}>
-          {handleIcon()}
+        <button
+          type="button"
+          onClick={handlePausePLay}
+          className="pt-[0.563rem]"
+        >
+          {handleSetIcon()}
         </button>
         <div className="flex flex-col w-full">
           <div className="flex self-end max-w-fit">
             <VolumeMixer audioRef={audioRef} />
           </div>
           <div
-            className="w-full h-3 bg-gray-200 rounded-[0.625rem] self-center justify-end"
+            className="w-full h-1.5 bg-gray-200 rounded-[0.625rem] self-center justify-end"
             onClick={handleClick}
           >
             <ProgressBar marker={progress} />
           </div>
-          <div className="flex justify-between text-sm text-gray-500">
+          <div className="flex justify-between text-[0.625rem] text-gray-500 font-montserrat">
             <div className="">{handleTime(currentTime)}</div>
             <div className="">{handleTime(duration)}</div>
           </div>
