@@ -18,3 +18,6 @@ export {
 export { Play } from "./play";
 export { Pause } from "./pause";
 export { Speaker } from "./speaker";
+export { Mouse } from "./mouse";
+export { ConcentrixWebhelpLogo } from "./concentrixWebhelpLogo";
+export { Robot } from "./robot";
