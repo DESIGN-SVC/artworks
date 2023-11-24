@@ -4,9 +4,14 @@ import { RouterProvider } from "react-router-dom";
 
 import { router } from "./router";
 import "./styles.css";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root") as HTMLElement).render(
-  <StrictMode>
-    <RouterProvider router={router} fallbackElement={<p>Carregando...</p>} />
-  </StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <StrictMode>
+      <RouterProvider router={router} fallbackElement={<p>Carregando...</p>} />
+    </StrictMode>
+  </QueryClientProvider>
 );

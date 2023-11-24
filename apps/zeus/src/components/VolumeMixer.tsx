@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SpeakerHigh, SpeakerLow } from "../icons";
 import { cx } from "cva";
 import { ProgressBar } from ".";
+import {
+  SpeakerSimpleHigh,
+  SpeakerSimpleLow,
+  SpeakerSimpleSlash,
+} from "phosphor-react";
 
 interface VolumeMixerProps {
   audioRef: React.RefObject<HTMLAudioElement>;
@@ -9,8 +13,14 @@ interface VolumeMixerProps {
 
 export const VolumeMixer = ({ audioRef }: VolumeMixerProps) => {
   const volumeMixerRef = useRef<HTMLDivElement>(null);
-  const [volume, setVolume] = useState<number>(21);
-  const [currentVolume, setCurrentVolume] = useState<number>(21);
+  const [volume, setVolume] = useState<number>(100);
+  const [currentVolume, setCurrentVolume] = useState<number>(100);
+
+  const handleVolumeChange = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume / 100;
+    }
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (audioRef.current) {
@@ -38,20 +48,18 @@ export const VolumeMixer = ({ audioRef }: VolumeMixerProps) => {
 
   const handleSetIcon = () => {
     if (audioRef.current) {
-      if (volume >= 0 && volume <= 20) {
-        return <SpeakerLow className="w-4" />;
+      if (volume === 0) {
+        return <SpeakerSimpleSlash size={16} color="#628295" weight="fill" />;
+      } else if (volume > 0 && volume <= 35) {
+        return <SpeakerSimpleLow size={16} color="#628295" weight="fill" />;
       } else {
-        return <SpeakerHigh className="w-4" />;
+        return <SpeakerSimpleHigh size={16} color="#628295" weight="fill" />;
       }
     }
   };
 
   useEffect(() => {
-    const handleVolumeChange = () => {
-      if (audioRef.current) {
-        audioRef.current.volume = volume / 100;
-      }
-    };
+    handleVolumeChange();
     if (audioRef.current) {
       audioRef.current.addEventListener("volumechange", handleVolumeChange);
     }
@@ -64,7 +72,7 @@ export const VolumeMixer = ({ audioRef }: VolumeMixerProps) => {
         );
       }
     };
-  }, [volume, audioRef, currentVolume]);
+  }, [volume, audioRef, handleVolumeChange]);
 
   return (
     <div className="w-full h-fit" ref={volumeMixerRef}>
@@ -76,6 +84,7 @@ export const VolumeMixer = ({ audioRef }: VolumeMixerProps) => {
         ])}
       >
         <button onClick={handleMuteVolume}>{handleSetIcon()}</button>
+
         <div
           className="w-full h-1 bg-gray-200 rounded-[0.625rem] self-center"
           onClick={handleClick}
