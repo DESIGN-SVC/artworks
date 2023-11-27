@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Play, Pause } from "../icons";
+
 import { cx } from "cva";
 import { ProgressBar, VolumeMixer } from ".";
+import { Pause, Play } from "phosphor-react";
 
 interface AudioPlayerProps {
   audioSrc: string;
@@ -13,6 +14,26 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
+
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (audioRef.current) {
+      const progressBar = e.currentTarget;
+      const progressBarRect = progressBar.getBoundingClientRect();
+      const clickX = e.clientX - progressBarRect.left;
+      const progressBarWidth = progressBar.clientWidth;
+      const newProgress = (clickX / progressBarWidth) * 100;
+
+      if (newProgress >= 0 && newProgress <= 100) {
+        setProgress(newProgress);
+        const newTime = (newProgress / 100) * audioRef.current.duration;
+        audioRef.current.currentTime = newTime;
+        if (!playAudio) {
+          audioRef.current.play();
+          setPlayAudio(true);
+        }
+      }
+    }
+  };
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
@@ -40,90 +61,72 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
     }
   };
 
-  const handleIcon = () => {
+  const handleSetIcon = () => {
     if (audioRef.current) {
       if (audioRef.current.paused) {
-        return <Play className="w-[1.063rem]" />;
+        return <Play size={28} color="#628295" weight="fill" />;
       } else {
-        return <Pause className="w-[1.063rem]" />;
+        return <Pause size={28} color="#628295" weight="fill" />;
       }
     }
   };
 
-  const handleTime = (time: number) => {
+  const handleDuration = () => {
     if (audioRef.current) {
-      if (Number.isNaN(time)) {
-        return "00:00";
-      } else {
-        return formatTime(time);
-      }
+      setDuration(audioRef.current.duration);
     }
   };
 
-  const formatTime = (time: number) => {
+  const handleTimeConversion = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (audioRef.current) {
-      const progressBar = e.currentTarget;
-      const progressBarRect = progressBar.getBoundingClientRect();
-      const clickX = e.clientX - progressBarRect.left;
-      const progressBarWidth = progressBar.clientWidth;
-      const newProgress = (clickX / progressBarWidth) * 100;
-
-      if (newProgress >= 0 && newProgress <= 100) {
-        setProgress(newProgress);
-        const newTime = (newProgress / 100) * audioRef.current.duration;
-        audioRef.current.currentTime = newTime;
-        if (!playAudio) {
-          audioRef.current.play();
-          setPlayAudio(true);
-        }
-      }
-    }
-  };
-
   useEffect(() => {
     if (audioRef.current) {
+      audioRef.current.addEventListener("loadedmetadata", handleDuration);
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
       audioRef.current.addEventListener("ended", handleAudioEnded);
-      setDuration(audioRef.current.duration);
       setProgress((currentTime / duration) * 100);
     }
   }, [currentTime, duration]);
 
   return (
-    <div className="w-full">
+    <div className="order-3 md:w-full lg:mt-auto lg:pb-20 w-full">
       <audio className="hidden" ref={audioRef}>
         <track src={audioSrc} kind="captions" />
         <source src={audioSrc} type="audio/mp3" />
       </audio>
       <div
         className={cx([
-          "flex flex-row justify-center",
-          "min-w-[15rem] w-full",
-          "bg-cool-gray-50 rounded-[2.5rem] gap-2.5 p-3 pr-5",
+          "flex flex-row justify-center w-full",
+          "bg-cool-gray-100 rounded-[0.625rem]",
+          "gap-5 py-2.5 px-5",
         ])}
       >
-        <button type="button" onClick={handlePausePLay}>
-          {handleIcon()}
+        <button
+          type="button"
+          onClick={handlePausePLay}
+          className="pt-[0.563rem]"
+        >
+          {handleSetIcon()}
         </button>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full gap-2.5">
           <div className="flex self-end max-w-fit">
             <VolumeMixer audioRef={audioRef} />
           </div>
           <div
-            className="w-full h-3 bg-gray-200 rounded-[0.625rem] self-center justify-end"
+            className="w-full h-1.5 bg-gray-200 rounded-[0.625rem] self-center justify-end"
             onClick={handleClick}
           >
             <ProgressBar marker={progress} />
           </div>
-          <div className="flex justify-between text-sm text-gray-500">
-            <div className="">{handleTime(currentTime)}</div>
-            <div className="">{handleTime(duration)}</div>
+          <div className="flex justify-between text-[0.625rem] text-gray-500 font-montserrat">
+            <div className="select-none">
+              {handleTimeConversion(currentTime)}
+            </div>
+            <div className="select-none">{handleTimeConversion(duration)}</div>
           </div>
         </div>
       </div>

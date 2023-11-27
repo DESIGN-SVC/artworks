@@ -1,4 +1,5 @@
-export {Attribute} from "./Attribute";
-export {AudioPlayer} from "./AudioPlayer";
-export {VolumeMixer} from "./VolumeMixer";
-export {ProgressBar} from "./ProgressBar";
+export { Attribute } from "./BoxInfoPersona/Attribute";
+export { AudioPlayer } from "./AudioPlayer";
+export { VolumeMixer } from "./VolumeMixer";
+export { ProgressBar } from "./ProgressBar";
+export { BoxInfoPersona, type BoxInfoPersonaProps } from "./BoxInfoPersona/BoxInfoPersona";

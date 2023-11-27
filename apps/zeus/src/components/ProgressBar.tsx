@@ -1,22 +1,22 @@
-import * as Progress from "@radix-ui/react-progress";
+import * as Slider from "@radix-ui/react-slider";
 
 interface ProgressBarProps {
   marker: number;
 }
 
 export const ProgressBar = ({ marker }: ProgressBarProps) => {
+
   return (
-    <Progress.Root
-      className="relative overflow-hidden bg-gray-200 rounded-full w-full h-full cursor-pointer"
-      value={marker}
+    <Slider.Root
+      className="relative flex items-center select-none touch-none w-full h-full"
+      min={0}
+      max={100}
+      step={1}
+      defaultValue={[marker]}
     >
-      <Progress.Indicator
-        className="bg-blue-300 w-full h-full"
-        style={{
-          transition: "transform 300ms cubic-bezier(0.65, 0, 0.35, 1)",
-          transform: `translateX(-${100 - marker}%)`,
-        }}
-      />
-    </Progress.Root>
+      <Slider.Track className="bg-gray-200 relative grow rounded-full h-full cursor-pointer">
+        <Slider.Range className={`absolute bg-blue-400 rounded-full h-full ${marker === 0 ? 'bg-transparent' : ''}`} />
+      </Slider.Track>
+    </Slider.Root>
   );
 };

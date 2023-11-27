@@ -1,18 +1,29 @@
+import React from "react";
 import { cx } from "cva";
-import { AudioPlayer } from "../../components";
+import { BoxInfoPersona, type BoxInfoPersonaProps } from "../../components";
+import { usePersonasQuery } from "../../hooks";
 
 export const HomePage = () => {
+  const { data, isLoading, isError } = usePersonasQuery();
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+  if (isError) {
+    return <div>Erro ao carregar personas</div>;
+  }
+
   return (
-    <div
+    <main
       className={cx([
-        "flex flex-row bg-[#000] h-screen flex-wrap",
-        "gap-2.5 w-full",
+        "flex flex-col",
+        "gap-2.5 w-full min-w-screen min-h-screen h-full bg-gray-300",
       ])}
     >
-      <div className="bg-white flex flex-col p-5 w-full">
-        <AudioPlayer audioSrc="https://storage.googleapis.com/gs-design-zetflix-static-website/audio-1.mp3" />
-      </div>
-    </div>
+      {data.map((persona: BoxInfoPersonaProps) => (
+        <BoxInfoPersona {...persona} />
+      ))}
+    </main>
   );
 };
 
