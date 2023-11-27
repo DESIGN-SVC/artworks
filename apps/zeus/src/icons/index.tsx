@@ -21,3 +21,4 @@ export { Speaker } from "./speaker";
 export { Mouse } from "./mouse";
 export { ConcentrixWebhelpLogo } from "./concentrixWebhelpLogo";
 export { Robot } from "./robot";
+export { CirclePlay } from "./circlePlay";
