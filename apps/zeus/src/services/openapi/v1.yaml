@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Zeus API
+  version: 1.0.0
+  description: API para obter informações de personas
+
+paths:
+  /personas:
+    get:
+      summary: Obtém informações das personas
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              example:
+                personas:
+                  - name: ADRIANO
+                    role: LOCUTOR ESPORTIVO
+                    newPersona: true
+                    nationality:
+                      language: Brasil
+                      flag:
+                        src: src/assets/brazil-flag.png
+                        alt: Brazil Flag
+                    attributes:
+                      - title: Idade
+                        item:
+                          - text: Value
+                      - title: Especialidade
+                        item:
+                          - text: Cobranças
+                    img:
+                      src: src/assets/personas/adriano-1x.png
+                      srcSet: src/assets/personas/adriano-1x.png 1x, src/assets/personas/adriano-2x.png 2x
+                      alt: Persona Adriano
+                    audioSrc: https://storage.googleapis.com/gs-design-zetflix-static-website/audio-1.mp3

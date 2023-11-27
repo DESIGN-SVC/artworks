@@ -1,17 +1,18 @@
+import React from "react";
 import { cx } from "cva";
-import { BoxInfoPersona } from "../../components";
-import { usePersonas } from "../../hooks";
-import { BoxInfoPersonaProps } from "src/components/BoxInfoPersona/BoxInfoPersona";
+import { BoxInfoPersona, type BoxInfoPersonaProps } from "../../components";
+import { usePersonasQuery } from "../../hooks";
 
 export const HomePage = () => {
-  const { data, isLoading, isError } = usePersonas();
+  const { data, isLoading, isError } = usePersonasQuery();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Carregando...</div>;
   }
   if (isError) {
-    return <div>Error</div>;
+    return <div>Erro ao carregar personas</div>;
   }
+
   return (
     <main
       className={cx([

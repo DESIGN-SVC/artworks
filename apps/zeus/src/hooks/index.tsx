@@ -1,1 +1,1 @@
-export { usePersonas } from './usePersonas';
+export { usePersonasQuery } from './usePersonasQuery';
