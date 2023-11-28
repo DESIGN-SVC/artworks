@@ -1,13 +1,30 @@
+import React from "react";
 import { cx } from "cva";
+import { BoxInfoPersona, type BoxInfoPersonaProps } from "../../components";
+import { usePersonasQuery } from "../../hooks";
 import { Home } from "../../components";
 
 export const HomePage = () => {
+  const { data, isLoading, isError } = usePersonasQuery();
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+  if (isError) {
+    return <div>Erro ao carregar personas</div>;
+  }
+
   return (
-    <div
-      className={cx(["flex flex-row bg-[#000] h-screen flex-wrap", "w-full"])}
+    <main
+      className={cx([
+        "flex flex-col",
+        "gap-2.5 w-full min-w-screen min-h-screen h-full bg-gray-300",
+      ])}
     >
-      <Home />
-    </div>
+      {data.map((persona: BoxInfoPersonaProps) => (
+        <BoxInfoPersona {...persona} />
+      ))}
+    </main>
   );
 };
 
