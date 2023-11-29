@@ -6,3 +6,4 @@ export { Introduction } from "./Introduction/Introduction";
 export { VideoButton } from "./Introduction/VideoButton";
 export { PresentationVideo } from "./Introduction/PresentationVideo";
 export { BoxInfoPersona, type BoxInfoPersonaProps } from "./BoxInfoPersona/BoxInfoPersona";
+export { Footer } from "./Footer";

@@ -1,4 +1,5 @@
 export { Persona } from "./persona";
+export { ConcentrixWebhelpLogo } from "./concentrixWebhelpLogo";
 
 export { Mouse } from "./mouse";
 export { ConcentrixWebhelpLogo } from "./concentrixWebhelpLogo";
