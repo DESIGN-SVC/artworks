@@ -12,7 +12,7 @@ export const Introduction = () => {
         "bg-gradient-to-r from-blue-900 to-blue-1100",
         "lg:grid lg:grid-cols-2 lg:auto-rows-auto lg:gap-0 lg:items-baseline",
         "lg:relative lg:px-28 lg:grid-col-gap-5 lg:row-gap-[1.875rem]",
-        "xl:px-[240px]",
+        "xl:px-60",
       ])}
     >
       <ConcentrixWebhelpLogo
