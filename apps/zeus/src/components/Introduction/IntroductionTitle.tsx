@@ -2,7 +2,7 @@ import { cx } from "cva";
 
 export const IntroductionTitle = () => {
   return (
-    <header className="flex flex-col gap-5 font-zen-dots lg:order-2 lg:mt-24">
+    <header className="flex flex-col gap-5 font-zen-dots lg:order-2 lg:mt-[4.25rem]">
       <h1 className="flex flex-row gap-2.5 items-center text-blue-500 text-xl">
         ZEUS
         <span
