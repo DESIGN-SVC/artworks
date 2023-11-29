@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slider": "^1.1.2",
     "cva": "npm:class-variance-authority@^0.6.1",
     "openapi-fetch": "^0.8.2",

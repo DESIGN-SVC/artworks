@@ -10,12 +10,17 @@ export default {
       inerit: "inherit",
       current: "currentColor",
       transparent: "transparent",
+      overlay: "rgba(0, 0, 0, 0.20)",
       blue: {
+        100: "#00D6E3",
         300: "#63F3FD",
-        350: "#00D6E3",
+        350: "#009FC2",
         400: "#1CE2F4",
         500: "#00BED2",
+        800: "#063746",
+        900: "#0D3356",
         950: "#004650",
+        1100: "#011324",
       },
       "cool-gray": {
         50: "#F6F8F9",
@@ -44,8 +49,8 @@ export default {
     fontFamily: {
       sans: ["Trenda", "sans-serif"],
       trenda: ["Trenda", "sans-serif"],
-      "zen-dots": ["Zen Dots", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
+      "zen-dots": ["Zen Dots", "sans-serif"],
     },
     plugins: [],
   },

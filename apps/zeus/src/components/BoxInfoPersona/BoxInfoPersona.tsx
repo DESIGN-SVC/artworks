@@ -1,7 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
-import { AudioPlayer } from "../";
+import { AudioPlayer, ImagePersona, InformationPersona } from ".";
 import { cx } from "cva";
-import { ImagePersona, InformationPersona } from ".";
 
 export interface BoxInfoPersonaProps extends ComponentPropsWithoutRef<"section"> {
   name: string;
