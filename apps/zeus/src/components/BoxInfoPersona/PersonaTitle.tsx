@@ -17,7 +17,7 @@ export const Title = ({
   ...props
 }: TitleProps) => (
   <div className="flex flex-col lg:pt-20 gap-1" {...props}>
-    <div className="flex flex-row  gap-2.5">
+    <div className="flex flex-row flex-wrap gap-2.5">
       <h1 className="text-blue-400 font-zen-dots leading-none text-[2.125rem] xl:text-[3.125rem]">
         {name}
       </h1>

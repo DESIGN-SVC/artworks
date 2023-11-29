@@ -1,8 +1,10 @@
-import React from "react";
 import { cx } from "cva";
-import { BoxInfoPersona, type BoxInfoPersonaProps } from "../../components";
+import {
+  BoxInfoPersona,
+  Introduction,
+  type BoxInfoPersonaProps,
+} from "../../components";
 import { usePersonasQuery } from "../../hooks";
-import { Home } from "../../components";
 
 export const HomePage = () => {
   const { data, isLoading, isError } = usePersonasQuery();
@@ -15,16 +17,19 @@ export const HomePage = () => {
   }
 
   return (
-    <main
-      className={cx([
-        "flex flex-col",
-        "gap-2.5 w-full min-w-screen min-h-screen h-full bg-gray-300",
-      ])}
-    >
-      {data.map((persona: BoxInfoPersonaProps) => (
-        <BoxInfoPersona {...persona} />
-      ))}
-    </main>
+    <>
+      <Introduction />
+      <div
+        className={cx([
+          "flex flex-col",
+          "gap-2.5 w-full min-w-screen min-h-screen h-full bg-gray-300",
+        ])}
+      >
+        {data.map((persona: BoxInfoPersonaProps) => (
+          <BoxInfoPersona {...persona} />
+        ))}
+      </div>
+    </>
   );
 };
 

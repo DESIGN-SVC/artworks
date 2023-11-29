@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cx } from "cva";
-import { ProgressBar } from ".";
+import { ProgressBar } from "..";
 import {
   SpeakerSimpleHigh,
   SpeakerSimpleLow,

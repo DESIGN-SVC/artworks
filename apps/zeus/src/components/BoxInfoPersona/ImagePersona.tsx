@@ -18,7 +18,7 @@ export const ImagePersona = ({
       "order-2 w-full mt-auto",
       "md:w-auto md:self-center",
       "lg:order-1 lg:relative",
-      "lg:row-span-2 lg:col-span-1 lg:h-full",
+      "lg:row-span-2 lg:h-full",
       "lg:bottom-0 lg:pt-20",
     ])}
     src={src}

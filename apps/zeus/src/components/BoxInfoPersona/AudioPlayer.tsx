@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { cx } from "cva";
-import { ProgressBar, VolumeMixer } from ".";
+import { ProgressBar, VolumeMixer } from "..";
 import { Pause, Play } from "phosphor-react";
 
 interface AudioPlayerProps {
