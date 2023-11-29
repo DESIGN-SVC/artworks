@@ -1,9 +1,7 @@
-import {  Footer } from "../../components";
-
 export const HomePage = () => {
 
   return (
-    <Footer />
+    <p>Inicio</p>
   );
 };
 
