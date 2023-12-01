@@ -18,7 +18,6 @@ createRoot(document.getElementById("root") as HTMLElement).render(
           fallbackElement={<p>Carregando...</p>}
         />
       </StrictMode>
-    </QueryClientProvider>
-    <Footer />
+    </QueryClientProvider>    
   </>
 );
