@@ -1,5 +1,5 @@
 import { cx } from "cva";
-import { IntroductionTitle, VideoButton } from ".";
+import { IntroductionTitle } from ".";
 import { ConcentrixWebhelpLogo, Robot } from "../../icons";
 import { MouseSimple } from "phosphor-react";
 

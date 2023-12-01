@@ -10,7 +10,7 @@ export default {
       inerit: "inherit",
       current: "currentColor",
       transparent: "transparent",
-      overlay: "rgba(0, 0, 0, 0.20)",
+
       blue: {
         100: "#00D6E3",
         300: "#63F3FD",
