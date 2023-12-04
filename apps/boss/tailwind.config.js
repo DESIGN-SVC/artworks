@@ -13,10 +13,15 @@ export default {
       "transparent-black": "rgba(0, 0, 0, 0.20)",
       blue: {
         500: "#1267FE",
-        600: "#0e52cb",
-        700: "#0b42a2",
+        600: "#0E52CB",
+        700: "#0B42A2",
         900: "#143D58",
         1000: "#012442",
+      },
+      "spicy-blue": {
+        400: "#00C1D5",
+        500: "#009AAA",
+        600: "#007B88",
       },
       green: {
         950: "#004650",
@@ -28,11 +33,13 @@ export default {
       gray: {
         100: "#DBE0E9",
         300: "#5F6D72",
-        600: "#AEB3BB"
+        600: "#AEB3BB",
       },
     },
     fontFamily: {
       sans: ["Montserrat", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
+      sora: ["Sora", "sans-serif"],
     },
     plugins: [],
   },

@@ -1,5 +1,5 @@
 import { cx } from "cva";
-import { BossLogo, FilledB, TransparentB } from "../../icons";
+import { FilledB, TransparentB } from "../../icons";
 import { LoginForm } from "../../components";
 
 export const Login = () => {
@@ -24,14 +24,14 @@ export const Login = () => {
             className={cx([
               "hidden",
               "xl:block xl:absolute xl:top-0 xl:right-0",
-              "xl:h-[50%] xl:w-auto"
+              "xl:h-[50%] xl:w-auto",
             ])}
           />
           <TransparentB
             className={cx([
               "hidden",
               "xl:block xl:absolute xl:bottom-0 xl:right-0",
-              "xl:h-[48%] xl:w-auto xl:mt-[0.688rem]"
+              "xl:h-[48%] xl:w-auto xl:mt-[0.688rem]",
             ])}
           />
         </div>
@@ -44,11 +44,17 @@ export const Login = () => {
             "xl:max-w-[37.5rem] xl:max-h-[43.75rem] xl:gap-0",
           ])}
         >
-          <BossLogo className="w-[8.813rem] xl:h-fit xl:w-[15.188rem] xl:py-20" />
-
-          <h1
+          <div className="flex flex-col">
+            <h1 className="text-[4.625rem] text-white font-poppins italic font-bold leading-none pt-2 xl:pt-20 ">
+              BOSS
+            </h1>
+            <h2 className="text-sm text-white font-sora font-bold xl:pb-20 ">
+              Back office services system
+            </h2>
+          </div>
+          <h3
             className={cx([
-              "relative text-center leading-tight",
+              "text-center leading-tight",
               "text-[1.5rem] text-white",
               "xl:text-[2.125rem] xl:text-left xl:pb-20",
             ])}
@@ -56,11 +62,13 @@ export const Login = () => {
             Seja <br className="hidden xl:block" />
             bem-vindo (a)
             <br />
-            <span className="font-bold text-3xl xl:text-[2.5rem]">ao Boss.</span>
-          </h1>
-          <h5 className={cx(["hidden xl:block", "text-white text-[0.625rem]"])}>
+            <span className="font-bold text-3xl xl:text-[2.5rem]">
+              ao Boss.
+            </span>
+          </h3>
+          <h5 className="hidden xl:block text-white text-[0.625rem]">
             Plataforma desenvolvida <br />
-            pela <b>Webhelp + Concentrix</b>
+            pela <b>Concentrix + Webhelp</b>
           </h5>
         </div>
       </section>
