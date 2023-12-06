@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+@layer utilities {
+  [data-animation="up"] {
+    animation: up 1.2s;
+  }
+  [data-animation="up-2"].animation {
+    animation: up 1.4s;
+  }
+  [data-animation="up-3"].animation {
+    animation: up 1.6s;
+  }
+  [data-animation].animation {
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+  }
+  [data-animation] {
+    opacity: 0;
+    transition: all 1.2s ease;
+  }
+  @keyframes up {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 5px);
+    }
+    50% {
+      opacity: 0;
+      transform: translate3d(0, 50px, 5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0px, 0px, 0px);
+    }
+  }
+}
