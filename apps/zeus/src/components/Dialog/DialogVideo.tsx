@@ -58,7 +58,7 @@ export const Content = ({ ...props }: Dialog.DialogContentTypeProps) => {
   );
 };
 
-export const Trigger = ({ ...props }: Dialog.DialogTriggerProps) => (
+export const Trigger = ({ className,...props }: Dialog.DialogTriggerProps) => (
   <Dialog.Trigger asChild>
     <button
       className={cx([
@@ -66,6 +66,7 @@ export const Trigger = ({ ...props }: Dialog.DialogTriggerProps) => (
         "text-lg text-cool-gray-950 font-medium rounded-full",
         "absolute bottom-0 mb-10 py-2.5 pl-6 pr-2.5 ",
         "lg:static lg:order-4 lg:my-[3.75rem]",
+        className
       ])}
       {...props}
     >
