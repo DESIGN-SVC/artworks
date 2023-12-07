@@ -6,9 +6,10 @@ import { Pause, Play } from "phosphor-react";
 
 interface AudioPlayerProps {
   audioSrc: string;
+  index: number;
 }
 
-export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
+export const AudioPlayer = ({ audioSrc, index }: AudioPlayerProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playAudio, setPlayAudio] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -80,20 +81,47 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
   const handleTimeConversion = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY; //qnty que foi rolado desde o topo
+      const newIndex = Math.floor(scrollTop / window.innerHeight); //tamanho total da tela
+
+      if (newIndex !== currentIndex) {
+        setCurrentIndex(newIndex);
+      }
+    };
     if (audioRef.current) {
+      window.addEventListener("scroll", handleScroll);
       audioRef.current.addEventListener("loadedmetadata", handleDuration);
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
       audioRef.current.addEventListener("ended", handleAudioEnded);
       setProgress((currentTime / duration) * 100);
     }
-  }, [currentTime, duration]);
+    return () => {
+      if (audioRef.current) {
+        window.removeEventListener("scroll", handleScroll);
+        audioRef.current.removeEventListener("loadedmetadata", handleDuration);
+        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+        audioRef.current.removeEventListener("ended", handleAudioEnded);
+      }
+    };
+  }, [currentTime, duration, currentIndex]);
 
   return (
-    <div className="order-3 md:w-full lg:mt-auto lg:pb-20 w-full">
+    <div className={cx([
+      "order-3 md:w-full lg:mt-auto lg:pb-20 w-full",
+      (index === currentIndex  ? "animate-video-up" : "")
+    ]) 
+    }
+    >
       <audio className="hidden" ref={audioRef}>
         <track src={audioSrc} kind="captions" />
         <source src={audioSrc} type="audio/mp3" />

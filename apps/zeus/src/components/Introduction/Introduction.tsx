@@ -7,7 +7,7 @@ export const Introduction = () => {
   return (
     <section
       className={cx([
-        "flex flex-col items-center relative",
+        "fixed top-0 flex flex-col items-center relative",
         "w-full min-h-screen px-[1.875rem] gap-[1.875rem]",
         "bg-gradient-to-r from-blue-900 to-blue-1100",
         "lg:grid lg:grid-cols-2 lg:auto-rows-auto lg:gap-0 lg:items-baseline",

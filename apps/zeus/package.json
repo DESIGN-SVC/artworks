@@ -12,6 +12,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slider": "^1.1.2",
+    "@react-spring/web": "^9.7.3",
     "cva": "npm:class-variance-authority@^0.6.1",
     "openapi-fetch": "^0.8.2",
     "phosphor-react": "^1.4.1",

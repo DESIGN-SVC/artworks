@@ -7,7 +7,7 @@ import {
 export function RootLayout() {
 
   return (
-    <div className="flex min-h-screen-d flex-col h-full">
+    <div className="flex min-h-screen-d flex-col h-full scroll-smooth">
       <Suspense fallback={<p>Carregando...</p>} />
       <Outlet />
       <ScrollRestoration />
