@@ -11,7 +11,7 @@ export class RolesRepository {
   constructor() {
     this.roles = []
   }
-  create({ name }: CreateRoleDTO) {
+  create({ name }: CreateRoleDTO): Role {
     const role = new Role()
 
     Object.assign(role, {
