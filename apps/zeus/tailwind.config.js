@@ -53,29 +53,24 @@ export default {
       "zen-dots": ["Zen Dots", "sans-serif"],
     },
     keyframes: {
+      persona: {
+        "0%": { transform: "scale(0.6) translate(0, 170px)" },
+        "65%": { transform: "scale(1.1) translate(0, 0)" },
+        "100%": { transform: "scale(1) translate(0, 0)" },
+      },
       "text-up": {
-        "0%": { transform: "translateY(6%)" },
+        "0%": { transform: "translateY(-14%)" },
         "100%": { transform: "translateY(0)" },
       },
       "video-up": {
         "0%": { transform: "translateY(15%)" },
         "100%": { transform: "translateY(0)" },
       },
-      blowing: {
-        "0%": { transform: "scale(0.6) translate(0, 150px)" },
-        "50%": { transform: "scale(1.1) translate(0, 0px)" },
-        "100%": { transform: "scale(1) translate(0, 0)" },
-      },
-      "icon-up-right": {
-        "0%": { transform: "translate(0, 0)" },
-        50: { transform: "translate(50%, -50%)" },
-        "100%": { transform: "translate(50%, -50%)" },
-      },
     },
     animation: {
+      persona: "persona 1s ease-in-out",
       "text-up": "text-up 1s ease-in-out",
       "video-up": "video-up 1.5s ease-in-out",
-      blowing: "blowing 1s ease-in-out",
     },
 
     plugins: [],

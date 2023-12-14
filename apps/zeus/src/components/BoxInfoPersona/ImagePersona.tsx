@@ -45,7 +45,7 @@ export const ImagePersona = ({
         alt={alt}
         className={cx([
           "lg:h-full relative z-20",
-          index === currentIndex ? "animate-blowing" : "",
+          index === currentIndex ? "animate-persona" : "",
         ])}
         {...props}
       />
