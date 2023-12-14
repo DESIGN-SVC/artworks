@@ -1,0 +1,55 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Zeus",
+    "description": "Zeus Back-end documentation with all specifications",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Moisés Alex",
+      "url": "https://github.com/moises-macedo"
+    }
+  },
+  "paths": {
+    "/roles": {
+      "post": {
+        "tags": [
+          "Roles"
+        ],
+        "summary": "Create a role",
+        "description": "Create a new role",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Role created"
+          },
+          "400": {
+            "description": "Role already exists"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Roles"],
+        "summary": "Get all roles",
+        "description": "Get all roles",
+        "responses": {
+          "200": {
+            "description": "List of roles successfully returned"
+          }
+        }
+      }
+    }
+  }
+ }
