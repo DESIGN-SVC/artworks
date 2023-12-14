@@ -3,14 +3,36 @@ export default {
   purge: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        up: {
+          "0%": { opacity: 0, transform: "translate3d(0, 50px, 5px)" },
+          "50%": { opacity: 0, transform: "translate3d(0, 50px, 5px)" },
+          "100%": { opacity: 1, transform: "translate3d(0, 0px, 0px)" },
+        },
+        fade: {
+          from:{
+            opacity: "0",
+          },
+          to:{
+            opacity: "1",
+          }
+        },
+      },
+      animation: {
+        "animation-up": "up 1.2s",
+        "animation-up2": "up 1.4s",
+        "animation-up3": "up 1.6s",
+        fade: 'fade 1.4s ease',
+      },
+    },
     colors: {
       white: "#FFFFFF",
       black: "#000000",
       inerit: "inherit",
       current: "currentColor",
       transparent: "transparent",
-      overlay: "rgba(0, 0, 0, 0.20)",
+
       blue: {
         100: "#00D6E3",
         300: "#63F3FD",

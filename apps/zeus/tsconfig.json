@@ -22,11 +22,18 @@
 
     "baseUrl": "./",
     "paths": {
-      "~/*": ["src/*/index.ts"],
-      "~/assets/*": ["src/assets/*"]
+      "~/*": ["src/*"],
+      "~/hooks/*": ["src/hooks/*"],
+      "~/assets/*": ["src/assets/*"],
+      "~/components/*": ["src/components/*"],
+      "~/icons/*": ["src/icons/*"],
+      "~/pages/*": ["src/pages/*"],
+      "~/services/*": ["src/services/*"],
+      "~/types/*": ["src/types/*"],
+      "~/utils/*": ["src/utils/*"],
+
     }
   },
-
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
