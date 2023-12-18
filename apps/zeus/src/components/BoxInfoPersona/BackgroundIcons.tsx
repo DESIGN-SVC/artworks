@@ -31,8 +31,8 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
           //scroll up
           setCurrentScrolltop(currentScrolltop + 10);
           
-          firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : -(currentScrolltop * 0.05) }px, ${currentScrolltop * 0.3}px, 0px`;
-          secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : currentScrolltop * 0.05}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
+          firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop * 0.3}px, 0px`;
+          secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
           
           if (currentIndex !== index) {setCurrentScrolltop(0);}
         }
