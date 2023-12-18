@@ -147,7 +147,7 @@ export const Description = () => {
           <li
             className={cx([
               "flex flex-row align-left gap-2.5",
-              "inline-flex flex-col",
+              "inline-flex flex-col relative z-20",
               "bg-cool-gray-100 rounded-[0.3125rem]",
               "w-fit h-fit gap-[0.3125rem] py-[0.5625rem] px-[0.8125rem]",
             ])}
