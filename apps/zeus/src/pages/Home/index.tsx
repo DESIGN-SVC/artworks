@@ -1,17 +1,32 @@
 import { cx } from "cva";
 import { MouseSimple } from "phosphor-react";
 import { ModalVideo } from "~/components";
+import { usePersonasQuery } from "~/hooks";
 import { ConcentrixWebhelpLogo, Robot } from "~/icons";
+import { BoxInfoPersona } from "~/components";
 
 export const HomePage = () => {
+  const { data, isLoading, isError } = usePersonasQuery();
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+  if (isError) {
+    return <div>Erro ao carregar personas</div>;
+  }
+
   return (
-    <div className="flex-1">
+    <main className="flex-1">
       <Hero />
       <ModalVideo.Root>
         <ModalVideo.Trigger />
         <ModalVideo.Content />
       </ModalVideo.Root>
-    </div>
+      <BoxInfoPersona.Root personas={data}>
+        <BoxInfoPersona.Description />
+        <BoxInfoPersona.Images />
+        <BoxInfoPersona.AudioPlayer />
+      </BoxInfoPersona.Root>
+    </main>
   );
 };
 

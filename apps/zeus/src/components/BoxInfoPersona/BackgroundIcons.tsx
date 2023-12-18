@@ -19,6 +19,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
       if (firstImgRef.current && secondImgRef.current) {
         
         if (lastScroll < currentScroll) {
+          //scroll down
           setCurrentScrolltop(currentScrolltop - 10);
 
           firstImgRef.current.style.transform = `translate3d(${currentScrolltop * 0.05}px, ${currentScrolltop * 0.3}px, 0px)`;
@@ -27,6 +28,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
           if (currentIndex !== index) {setCurrentScrolltop(0);}
 
         } else if (lastScroll > currentScroll) {
+          //scroll up
           setCurrentScrolltop(currentScrolltop + 10);
           
           firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : -(currentScrolltop * 0.05) }px, ${currentScrolltop * 0.3}px, 0px`;
