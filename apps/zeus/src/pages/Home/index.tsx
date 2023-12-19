@@ -1,7 +1,6 @@
 import { cx } from "cva";
 import { MouseSimple } from "phosphor-react";
-import { cx } from "cva";
-import { MouseSimple } from "phosphor-react";
+
 import { ModalVideo } from "~/components";
 import { ConcentrixWebhelpLogo, Robot } from "~/icons";
 
