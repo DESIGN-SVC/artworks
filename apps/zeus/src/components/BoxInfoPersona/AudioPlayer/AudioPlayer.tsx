@@ -88,11 +88,15 @@ export const AudioPlayer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
-      currentIndex % personas.length === 0 && currentIndex !== 0
-        ? setPersonaIndex(personas.length - 1)
-        : setPersonaIndex(currentIndex % personas.length);
-    };
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
+      setPersonaIndex(
+        currentIndex <= 0
+          ? 0
+          : currentIndex % personas.length === 0
+            ? personas.length - 1
+            : currentIndex % personas.length
+      );
+    }
     if (audioRef.current) {
       window.addEventListener("scroll", handleScroll);
       audioRef.current.addEventListener("loadedmetadata", handleDuration);

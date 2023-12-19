@@ -84,10 +84,14 @@ export const Description = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
-      currentIndex % personas.length === 0 && currentIndex !== 0
-        ? setPersonaIndex(personas.length - 1)
-        : setPersonaIndex(currentIndex % personas.length);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
+      setPersonaIndex(
+        currentIndex <= 0
+          ? 0
+          : currentIndex % personas.length === 0
+            ? personas.length - 1
+            : currentIndex % personas.length
+      );
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -95,12 +99,13 @@ export const Description = () => {
     };
   }, [currentIndex, personas.length]);
 
-
   return (
     <header
       className={cx([
-        "order-1 flex flex-col lg:order-2 relative z-20",
-        personaIndex === currentIndex ? "animate-text-up" : "",
+        "flex flex-col lg:order-2 relative z-20",
+        personaIndex === currentIndex
+          ? "animate-text-down md:animate-text-down-md"
+          : "",
       ])}
     >
       <div className="flex flex-col lg:pt-20 gap-1">
@@ -176,22 +181,24 @@ export const Images = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
-      currentIndex % personas.length === 0 && currentIndex !== 0
-        ? setPersonaIndex(personas.length - 1)
-        : setPersonaIndex(currentIndex % personas.length);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
+      setPersonaIndex(
+        currentIndex <= 0
+          ? 0
+          : currentIndex % personas.length === 0
+            ? personas.length - 1
+            : currentIndex % personas.length
+      );
     };
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [currentIndex, personas.length]);
-
-
   return (
     <div
       className={cx([
-        "order-2 mt-auto h-full relative",
+        "mt-auto h-full relative",
         "md:w-auto self-center",
         "lg:order-1 lg:pt-20",
         "lg:row-span-2",

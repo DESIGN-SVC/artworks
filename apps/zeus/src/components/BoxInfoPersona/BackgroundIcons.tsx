@@ -42,7 +42,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     const handleScroll = () => {
       setLastScroll(currentScroll);
       setCurrentScroll(window.scrollY);
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight)-1);
       setScrollEffects();
     };
 

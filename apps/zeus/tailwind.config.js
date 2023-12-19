@@ -23,8 +23,12 @@ export default {
           "65%": { transform: "scale(1.1) translate(0, 0)" },
           "100%": { transform: "scale(1) translate(0, 0)" },
         },
-        "text-up": {
+        "text-down-md": {
           "0%": { transform: "translateY(-14%)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        "text-down": {
+          "0%": { transform: "translateY(-8%)" },
           "100%": { transform: "translateY(0)" },
         },
         "audio-up": {
@@ -37,7 +41,8 @@ export default {
         "animation-up2": "up 1.4s",
         "animation-up3": "up 1.6s",
         fade: "fade 1.4s ease",
-        "text-up": "text-up 1s ease-in-out",
+        "text-down": "text-down 1s ease-in-out",
+        "text-down-md": "text-down-md 1s ease-in-out",
         "audio-up": "audio-up 1.5s ease-in-out",
         persona: "persona 1s ease-in-out",
       },
