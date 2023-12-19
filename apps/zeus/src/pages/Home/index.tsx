@@ -1,9 +1,12 @@
 import { cx } from "cva";
 import { MouseSimple } from "phosphor-react";
+import { cx } from "cva";
+import { MouseSimple } from "phosphor-react";
 import { ModalVideo } from "~/components";
 import { ConcentrixWebhelpLogo, Robot } from "~/icons";
 
 export const HomePage = () => {
+  console.log("Home Page"); // teste de deploy vercel
   return (
     <div className="flex-1">
       <Hero
