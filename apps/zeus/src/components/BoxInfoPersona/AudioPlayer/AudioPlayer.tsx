@@ -1,20 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { cx } from "cva";
-import { ProgressBar, VolumeMixer } from "..";
+import { ProgressBar } from "../..";
+import { VolumeMixer } from ".";
 import { Pause, Play } from "phosphor-react";
+import { usePersonasContext } from "~/hooks";
 
-interface AudioPlayerProps {
-  audioSrc: string;
-}
-
-export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
+export const AudioPlayer = () => {
+  const personas = usePersonasContext();
+  const [personaIndex, setPersonaIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playAudio, setPlayAudio] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (audioRef.current) {
       const progressBar = e.currentTarget;
@@ -80,23 +78,52 @@ export const AudioPlayer = ({ audioSrc }: AudioPlayerProps) => {
   const handleTimeConversion = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2,"0")}`;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+      2,
+      "0"
+    )}`;
   };
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
+    const handleScroll = () => {
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
+      setPersonaIndex(
+        currentIndex <= 0
+          ? 0
+          : currentIndex % personas.length === 0
+            ? personas.length - 1
+            : currentIndex % personas.length
+      );
+    }
     if (audioRef.current) {
+      window.addEventListener("scroll", handleScroll);
       audioRef.current.addEventListener("loadedmetadata", handleDuration);
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
       audioRef.current.addEventListener("ended", handleAudioEnded);
       setProgress((currentTime / duration) * 100);
     }
-  }, [currentTime, duration]);
+    return () => {
+      if (audioRef.current) {
+        window.removeEventListener("scroll", handleScroll);
+        audioRef.current.removeEventListener("loadedmetadata", handleDuration);
+        audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+        audioRef.current.removeEventListener("ended", handleAudioEnded);
+      }
+    };
+  }, [currentTime, duration, currentIndex, personas.length]);
 
   return (
-    <div className="order-3 md:w-full lg:mt-auto lg:pb-20 w-full">
+    <div
+      className={cx([
+        "order-3 md:w-full lg:mt-auto lg:pb-20 w-full relative z-30",
+        personaIndex === currentIndex ? "animate-audioUp" : "",
+      ])}
+    >
       <audio className="hidden" ref={audioRef}>
-        <track src={audioSrc} kind="captions" />
-        <source src={audioSrc} type="audio/mp3" />
+        <track src={personas[personaIndex].audioSrc} kind="captions" />
+        <source src={personas[personaIndex].audioSrc} type="audio/mp3" />
       </audio>
       <div
         className={cx([

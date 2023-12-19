@@ -174,7 +174,24 @@ export default {
             transform: 'scaleY(1)',
             'transform-origin': "0% 100%",
         }
-      }
+      },
+      persona: {
+        "0%": { transform: "scale(0.6) translate(0, 170px)" },
+        "65%": { transform: "scale(1.1) translate(0, 0)" },
+        "100%": { transform: "scale(1) translate(0, 0)" },
+      },
+      "textDownMd": {
+        "0%": { transform: "translateY(-14%)" },
+        "100%": { transform: "translateY(0)" },
+      },
+      "textDown": {
+        "0%": { transform: "translateY(-8%)" },
+        "100%": { transform: "translateY(0)" },
+      },
+      "audioUp": {
+        "0%": { transform: "translateY(15%)" },
+        "100%": { transform: "translateY(0)" },
+      },
     },
     animation: {
       fade: "fade 1.3s ease",
@@ -186,6 +203,10 @@ export default {
       SwingInForwardBottom: "SwingInForwardBottom 2s ease 0s 1 normal forwards",
       scaleInForwardBottom: "scaleInForwardBottom 2s ease 0s 1 normal forwards",
       scaleInForwardVerticalBottom: "scaleInForwardVerticalBottom 2s ease 0s 1 normal forwards",
+      persona: "persona 1s ease-in-out",
+      "textDown": "textDown 1s ease-in-out",
+      "textDownMd": "textDownMd 1s ease-in-out",
+      "audioUp": "audioUp 1.5s ease-in-out",
     },
   },
   colors: {
