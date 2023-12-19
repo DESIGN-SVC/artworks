@@ -104,7 +104,7 @@ export const Description = () => {
       className={cx([
         "flex flex-col lg:order-2 relative z-20",
         personaIndex === currentIndex
-          ? "animate-text-down md:animate-text-down-md"
+          ? "animate-textDown md:animate-textDownMd"
           : "",
       ])}
     >

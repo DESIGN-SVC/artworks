@@ -25,12 +25,12 @@ export const Content = ({ ...props }: Dialog.DialogContentTypeProps) => {
 
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="bg-black/20 fixed inset-0 backdrop-blur-sm	" />
+      <Dialog.Overlay className="bg-black/20 fixed inset-0 backdrop-blur-sm	data-[state=open]:animate-fade" />
       <Dialog.Content
-        className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] min-w-screen"
+        className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] min-w-screen "
         {...props}
       >
-        <div className="relative flex flex-col w-max max-w-[90vw]">
+        <div className="relative flex flex-col w-max max-w-[90vw] animate-bounceInForward">
           <video
             className="rounded-[1.938rem] max-h-[38.25rem] h-fit w-fit"
             controls={isPlaying ? true : false}

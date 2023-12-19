@@ -118,7 +118,7 @@ export const AudioPlayer = () => {
     <div
       className={cx([
         "order-3 md:w-full lg:mt-auto lg:pb-20 w-full relative z-30",
-        personaIndex === currentIndex ? "animate-audio-up" : "",
+        personaIndex === currentIndex ? "animate-audioUp" : "",
       ])}
     >
       <audio className="hidden" ref={audioRef}>
