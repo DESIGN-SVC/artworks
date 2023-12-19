@@ -84,31 +84,22 @@ export const Description = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const newIndex = Math.floor(scrollTop / window.innerHeight);
-
-      if (newIndex !== currentIndex) {
-        setCurrentIndex(newIndex);
-      }
-      const personaSetIndex = () => {
-        if (currentIndex % personas.length === 0 && currentIndex !== 0) {
-          return personas.length - 1;
-        }
-        return currentIndex % personas.length;
-      };
-      setPersonaIndex(personaSetIndex);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
+      currentIndex % personas.length === 0 && currentIndex !== 0
+        ? setPersonaIndex(personas.length - 1)
+        : setPersonaIndex(currentIndex % personas.length);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [currentIndex, personas.length]);
 
+
   return (
     <header
       className={cx([
-        "order-1 flex flex-col lg:order-2",
+        "order-1 flex flex-col lg:order-2 relative z-20",
         personaIndex === currentIndex ? "animate-text-up" : "",
       ])}
     >
@@ -147,7 +138,7 @@ export const Description = () => {
           <li
             className={cx([
               "flex flex-row align-left gap-2.5",
-              "inline-flex flex-col relative z-20",
+              "inline-flex flex-col",
               "bg-cool-gray-100 rounded-[0.3125rem]",
               "w-fit h-fit gap-[0.3125rem] py-[0.5625rem] px-[0.8125rem]",
             ])}
@@ -185,34 +176,25 @@ export const Images = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const newIndex = Math.floor(scrollTop / window.innerHeight);
-
-      if (newIndex !== currentIndex) {
-        setCurrentIndex(newIndex);
-      }
-      const personaSetIndex = () => {
-        if (currentIndex % personas.length === 0 && currentIndex !== 0) {
-          return personas.length - 1;
-        }
-        return currentIndex % personas.length;
-      };
-      setPersonaIndex(personaSetIndex);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
+      currentIndex % personas.length === 0 && currentIndex !== 0
+        ? setPersonaIndex(personas.length - 1)
+        : setPersonaIndex(currentIndex % personas.length);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [currentIndex, personas.length]);
 
+
   return (
     <div
       className={cx([
-        "order-2 mt-auto",
-        "md:w-auto md:self-center",
+        "order-2 mt-auto h-full relative",
+        "md:w-auto self-center",
         "lg:order-1 lg:pt-20",
-        "lg:row-span-2 h-full relative",
+        "lg:row-span-2",
       ])}
     >
       <img

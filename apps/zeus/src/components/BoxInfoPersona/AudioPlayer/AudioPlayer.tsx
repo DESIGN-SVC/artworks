@@ -88,18 +88,10 @@ export const AudioPlayer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY; //qnty que foi rolado desde o topo
-      const newIndex = Math.floor(scrollTop / window.innerHeight); //tamanho total da tela
-      if (newIndex !== currentIndex) {
-        setCurrentIndex(newIndex);
-      }
-      const personaSetIndex = () => {
-        if (currentIndex % personas.length === 0 && currentIndex !== 0) {
-          return personas.length - 1;
-        }
-        return currentIndex % personas.length;
-      };
-      setPersonaIndex(personaSetIndex);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
+      currentIndex % personas.length === 0 && currentIndex !== 0
+        ? setPersonaIndex(personas.length - 1)
+        : setPersonaIndex(currentIndex % personas.length);
     };
     if (audioRef.current) {
       window.addEventListener("scroll", handleScroll);
@@ -121,7 +113,7 @@ export const AudioPlayer = () => {
   return (
     <div
       className={cx([
-        "order-3 md:w-full lg:mt-auto lg:pb-20 w-full",
+        "order-3 md:w-full lg:mt-auto lg:pb-20 w-full relative z-30",
         personaIndex === currentIndex ? "animate-audio-up" : "",
       ])}
     >

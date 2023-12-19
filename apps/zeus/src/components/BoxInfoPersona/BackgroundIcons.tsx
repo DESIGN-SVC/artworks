@@ -25,7 +25,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
           firstImgRef.current.style.transform = `translate3d(${currentScrolltop * 0.05}px, ${currentScrolltop * 0.3}px, 0px)`;
           secondImgRef.current.style.transform = `translate3d(0px, ${currentScrolltop * 0.3}px, 0px)`;
 
-          if (currentIndex !== index) {setCurrentScrolltop(0);}
+          currentIndex !== index && setCurrentScrolltop(0);
 
         } else if (lastScroll > currentScroll) {
           //scroll up
@@ -34,7 +34,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
           firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop * 0.3}px, 0px`;
           secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
           
-          if (currentIndex !== index) {setCurrentScrolltop(0);}
+          currentIndex !== index && setCurrentScrolltop(0);
         }
       }
     };
