@@ -51,21 +51,21 @@ export const Root = ({ personas, children }: RootProps) => {
       >
         <article
           className={cx([
-            "flex min-h-screen self-center transition-all duration-1000 ease-in-out ",
-            "sticky top-0",
+            "flex min-h-screen self-center",
+            "sticky top-0 transition-all duration-1000 ease-in-out",
           ])}
         >
           <div
             className={cx([
               "bg-white rounded-[1.25rem] origin-center",
-              "flex flex-col self-center w-full overflow-hidden",
+              "flex flex-col overflow-hidden self-center",
               "lg:grid lg:grid-cols-2 lg:col-gap-[3.125rem] lg:items-baseline",
               "md:gap-x-[3.125rem] md:items-left",
               "m-2.5 md:mx-[1.875rem] md:my-5 xl:mx-[6.25rem] xl:my-10",
               "p-[1.875rem] md:px-[3.75rem] lg:py-0 xl:px-20",
-              "md:w-[37.5rem] lg:w-[60.25rem] xl:w-[67.5rem]",
+              "w-[21.438rem] md:w-[37.5rem] lg:w-[60.25rem] xl:w-[67.5rem]",
               "max-w-[25.625rem] md:max-w-[37.5rem] lg:max-w-[60.25rem] xl:max-w-[67.5rem]",
-              "h-[calc(100vh-1.25rem)] lg:h-[calc(100vh-2.5rem)] xl:h-[calc(100vh-5rem)]",
+              "h-[calc(100vh-1.25rem)] md:h-[calc(100vh-2.5rem)] xl:h-[calc(100vh-5rem)]",
               "max-h-[49.938rem] lg:max-h-[37.188rem]",
             ])}
           >
@@ -109,13 +109,14 @@ export const Description = () => {
       ])}
     >
       <div className="flex flex-col lg:pt-20 gap-1">
-        <div className="flex flex-row flex-wrap gap-2.5">
-          <h1 className="text-blue-400 font-zen-dots leading-none text-[2.125rem] xl:text-[3.125rem]">
+        <div className="flex flex-row gap-2.5">
+          <h1 className="max-ml:text-[2rem] text-blue-400 font-zen-dots leading-none text-[2.125rem] xl:text-[3.125rem]">
             {personas[personaIndex].name}
           </h1>
           {personas[personaIndex].newPersona && (
             <h4
               className={cx([
+                "max-ml:text-xs",
                 "font-montserrat h-fit font-bold text-sm",
                 "bg-blue-400 px-3.5 py-2 rounded-[0.625rem]",
                 "text-white self-center",
@@ -198,21 +199,25 @@ export const Images = () => {
   return (
     <div
       className={cx([
-        "mt-auto h-full relative",
-        "md:w-auto self-center",
+        "mt-auto h-auto relative self-center",
+        "md:w-auto lg:h-full",
         "lg:order-1 lg:pt-20",
         "lg:row-span-2",
       ])}
     >
-      <img
-        src={personas[personaIndex].img.src}
-        srcSet={personas[personaIndex].img.srcSet}
-        alt={personas[personaIndex].img.alt}
-        className={cx([
-          "h-full relative z-20",
-          personaIndex === currentIndex ? "animate-persona" : "",
-        ])}
-      />
+      {personas.map(({ img }, index) => (
+        <img
+          src={img.src}
+          srcSet={img.srcSet}
+          alt={img.alt}
+          className={cx([
+            "max-md:w-auto max-ml:h-[290px]",
+            "relative z-20 lg:h-full",
+            index === personaIndex ? "animate-persona" : "hidden",
+          ])}
+          key={index}
+        />
+      ))}
       <BackgroundIcons index={personaIndex} />
     </div>
   );

@@ -623,7 +623,7 @@ export const HomePage = () => {
 
   console.log("Home Page"); // teste de deploy vercel
   return (
-    <main className="flex-1">
+    <div className="flex-1">
       <Hero
         children={
           <ModalVideo.Root>
@@ -637,7 +637,7 @@ export const HomePage = () => {
         <BoxInfoPersona.Images />
         <BoxInfoPersona.AudioPlayer />
       </BoxInfoPersona.Root>
-    </main>
+    </div>
   );
 };
 
