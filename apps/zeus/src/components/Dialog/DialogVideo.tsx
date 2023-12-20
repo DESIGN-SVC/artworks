@@ -30,7 +30,7 @@ export const Content = ({ ...props }: Dialog.DialogContentTypeProps) => {
         className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] min-w-screen "
         {...props}
       >
-        <div className="relative flex flex-col w-max max-w-[90vw] animate-bounceInForward">
+        <div className="relative flex flex-col w-max max-w-[90vw] animate-fade">
           <video
             className="rounded-[1.938rem] max-h-[38.25rem] h-fit w-fit"
             controls={isPlaying ? true : false}

@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef, useEffect, useState } from "react";
-import { ZBlue, ZWhite, ZeusBlue, ZeusWhite } from "../../icons";
+import { ZBlue, ZWhite, ZeusBlue, ZeusWhite } from "~/icons";
 import React from "react";
 
 interface BackgroundIconsProps extends ComponentPropsWithRef<"div"> {
@@ -7,34 +7,23 @@ interface BackgroundIconsProps extends ComponentPropsWithRef<"div"> {
 }
 
 export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
-  const firstImgRef = React.useRef<HTMLImageElement>(null);
-  const secondImgRef = React.useRef<HTMLImageElement>(null);
+  const [firstImgRef, secondImgRef] = [React.useRef<HTMLImageElement>(null), React.useRef<HTMLImageElement>(null)];
   const [lastScroll, setLastScroll] = useState(0);
   const [currentScroll, setCurrentScroll] = useState(0);
-  const [currentScrolltop, setCurrentScrolltop] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const setScrollEffects = () => {
       if (firstImgRef.current && secondImgRef.current) {
-        
         if (lastScroll < currentScroll) {
           //scroll down
-          setCurrentScrolltop(currentScrolltop - 10);
-
-          firstImgRef.current.style.transform = `translate3d(${currentScrolltop * 0.05}px, ${currentScrolltop * 0.3}px, 0px)`;
-          secondImgRef.current.style.transform = `translate3d(0px, ${currentScrolltop * 0.3}px, 0px)`;
-
-          currentIndex !== index && setCurrentScrolltop(0);
-
-        } else if (lastScroll > currentScroll) {
+          firstImgRef.current.style.transform = `translate3d(0px, -60px, 0px)`;
+          secondImgRef.current.style.transform = `translate3d(0px, -100px, 0px)`;
+        }
+        if (lastScroll > currentScroll) {
           //scroll up
-          setCurrentScrolltop(currentScrolltop + 10);
-          
-          firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop * 0.3}px, 0px`;
-          secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
-          
-          currentIndex !== index && setCurrentScrolltop(0);
+          firstImgRef.current.style.transform = `translate3d(0px, 0px, 0px)`;
+          secondImgRef.current.style.transform = `translate3d(0px, 0px, 0px)`;
         }
       }
     };
@@ -42,7 +31,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     const handleScroll = () => {
       setLastScroll(currentScroll);
       setCurrentScroll(window.scrollY);
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight)-1);
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
       setScrollEffects();
     };
 
@@ -51,7 +40,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [currentIndex, currentScroll, currentScrolltop, index, lastScroll]);
+  }, [currentIndex, currentScroll, firstImgRef, index, lastScroll, secondImgRef]);
 
   return index % 2 == 0 ? (
     <div
@@ -60,11 +49,11 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     >
       <ZBlue
         imgRef={firstImgRef}
-        className="z-0 absolute w-1/3 bottom-1/2 left-0 transform transition duration-200 ease-in-out"
+        className="z-0 absolute w-1/3 bottom-1/3 left-0 transform transition duration-1000 ease-in-out"
       />
       <ZeusWhite
         imgRef={secondImgRef}
-        className="z-0 absolute w-1/4 bottom-1/2 right-0 transform transition duration-200 ease-in-out"
+        className="z-0 absolute w-1/4 bottom-1/2 right-0 transform transition duration-1000 ease-in-out"
       />
     </div>
   ) : (
@@ -74,11 +63,11 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     >
       <ZeusBlue
         imgRef={firstImgRef}
-        className="z-0 absolute w-1/3 bottom-1/2 left-0 transform transition duration-200 ease-in-out"
+        className="z-0 absolute w-1/3 bottom-1/3 left-0 transform transition duration-[1500ms] ease-in-out"
       />
       <ZWhite
         imgRef={secondImgRef}
-        className="z-0 absolute w-1/4 bottom-1/2 right-0 transform transition duration-200 ease-in-out"
+        className="z-0 absolute w-1/4 bottom-1/2 right-0 transform transition duration-[2000ms] ease-in-out"
       />
     </div>
   );

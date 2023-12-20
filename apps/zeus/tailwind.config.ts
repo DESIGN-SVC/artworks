@@ -180,15 +180,15 @@ export default {
         "65%": { transform: "scale(1.1) translate(0, 0)" },
         "100%": { transform: "scale(1) translate(0, 0)" },
       },
-      "textDownMd": {
+      textDownMd: {
         "0%": { transform: "translateY(-14%)" },
         "100%": { transform: "translateY(0)" },
       },
-      "textDown": {
+      textDown: {
         "0%": { transform: "translateY(-8%)" },
         "100%": { transform: "translateY(0)" },
       },
-      "audioUp": {
+      audioUp: {
         "0%": { transform: "translateY(15%)" },
         "100%": { transform: "translateY(0)" },
       },
@@ -204,9 +204,10 @@ export default {
       scaleInForwardBottom: "scaleInForwardBottom 2s ease 0s 1 normal forwards",
       scaleInForwardVerticalBottom: "scaleInForwardVerticalBottom 2s ease 0s 1 normal forwards",
       persona: "persona 1s ease-in-out",
-      "textDown": "textDown 1s ease-in-out",
-      "textDownMd": "textDownMd 1s ease-in-out",
-      "audioUp": "audioUp 1.5s ease-in-out",
+      textDown: "textDown 1s ease-in-out",
+      textDownMd: "textDownMd 1s ease-in-out",
+      audioUp: "audioUp 1.5s ease-in-out",
+      iconTransition: "transition duration-200 ease-in-out",
     },
   },
   colors: {

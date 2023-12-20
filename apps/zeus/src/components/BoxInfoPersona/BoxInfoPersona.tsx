@@ -7,7 +7,7 @@ import {
 } from "react";
 import { cx } from "cva";
 import { CheckCircle } from "phosphor-react";
-import { BackgroundIcons } from "./BackgroundIcons";
+import { BackgroundIcons } from "~/components/BoxInfoPersona";
 
 export const PersonaContext = createContext<Persona[]>([]);
 
@@ -36,7 +36,7 @@ interface Persona {
   audioSrc: string;
 }
 
-interface RootProps extends ComponentPropsWithoutRef<"div"> {
+interface RootProps extends ComponentPropsWithoutRef<"section"> {
   personas: Persona[];
 }
 export const Root = ({ personas, children }: RootProps) => {
