@@ -87,7 +87,7 @@ export const AudioPlayer = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollAdio = () => {
       setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
       setPersonaIndex(
         currentIndex <= 0
@@ -96,9 +96,17 @@ export const AudioPlayer = () => {
             ? personas.length - 1
             : currentIndex % personas.length
       );
-    }
+      if (audioRef.current) {
+        if (currentIndex !== personaIndex) {
+          setPlayAudio(false);
+          setProgress(0);
+          audioRef.current.currentTime = 0;
+          audioRef.current.src = personas[personaIndex].audioSrc;
+        }
+      }
+    };
     if (audioRef.current) {
-      window.addEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScrollAdio);
       audioRef.current.addEventListener("loadedmetadata", handleDuration);
       audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
       audioRef.current.addEventListener("ended", handleAudioEnded);
@@ -106,22 +114,22 @@ export const AudioPlayer = () => {
     }
     return () => {
       if (audioRef.current) {
-        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("scroll", handleScrollAdio);
         audioRef.current.removeEventListener("loadedmetadata", handleDuration);
         audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
         audioRef.current.removeEventListener("ended", handleAudioEnded);
       }
     };
-  }, [currentTime, duration, currentIndex, personas.length]);
+  }, [currentTime, duration, currentIndex, personaIndex, personas]);
 
   return (
     <div
       className={cx([
         "order-3 md:w-full lg:mt-auto lg:pb-20 w-full relative z-30",
-        personaIndex === currentIndex ? "animate-audioUp" : "",
+        personaIndex === currentIndex ? "lg:animate-audioUp" : "",
       ])}
     >
-      <audio className="hidden" ref={audioRef}>
+      <audio className="hidden" ref={audioRef} preload="metadata">
         <track src={personas[personaIndex].audioSrc} kind="captions" />
         <source src={personas[personaIndex].audioSrc} type="audio/mp3" />
       </audio>
