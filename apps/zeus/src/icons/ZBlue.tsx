@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from "react";
-import  zBlue from "../assets/z-blue.png";
+import  zBlue from "~/assets/z-blue.png";
 
 interface ZBlueProps extends ComponentPropsWithRef<"img"> {
   imgRef: React.RefObject<HTMLImageElement>;

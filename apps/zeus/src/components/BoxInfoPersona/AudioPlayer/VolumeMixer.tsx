@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cx } from "cva";
-import { ProgressBar } from "../..";
 import {
   SpeakerSimpleHigh,
   SpeakerSimpleLow,
   SpeakerSimpleSlash,
 } from "phosphor-react";
+import { ProgressBar } from "~/components";
 
 interface VolumeMixerProps {
   audioRef: React.RefObject<HTMLAudioElement>;

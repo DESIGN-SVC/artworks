@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from "react";
-import  zeusWhite from "../assets/zeus-white.png";
+import  zeusWhite from "~/assets/zeus-white.png";
 
 interface ZeusWhiteProps extends ComponentPropsWithRef<"img"> {
   imgRef: React.RefObject<HTMLImageElement>;

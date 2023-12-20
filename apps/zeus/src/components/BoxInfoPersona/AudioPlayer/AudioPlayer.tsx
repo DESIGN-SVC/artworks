@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cx } from "cva";
-import { ProgressBar } from "../..";
-import { VolumeMixer } from ".";
 import { Pause, Play } from "phosphor-react";
 import { usePersonasContext } from "~/hooks";
+import { VolumeMixer } from ".";
+import { ProgressBar } from "~/components";
 
 export const AudioPlayer = () => {
   const personas = usePersonasContext();

@@ -1,5 +1,5 @@
 import { cx } from "cva";
-import { ConcentrixWebhelpLogo } from "../icons";
+import { ConcentrixWebhelpLogo } from "~/icons";
 
 export const Footer = () => {
   return (
