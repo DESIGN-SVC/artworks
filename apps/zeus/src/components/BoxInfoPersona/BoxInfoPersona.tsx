@@ -46,7 +46,7 @@ export const Root = ({ personas, children }: RootProps) => {
         style={{ height: `${personas.length * 100}vh` }}
         className={cx([
           "flex flex-col relative",
-          "w-full min-w-screen min-h-screen bg-gray-300 relative",
+          "min-w-screen min-h-screen bg-gray-300 relative",
         ])}
       >
         <article
@@ -100,78 +100,84 @@ export const Description = () => {
   }, [currentIndex, personas.length]);
 
   return (
-    <header
-      className={cx([
-        "flex flex-col lg:order-2 relative z-20",
-        personaIndex === currentIndex
-          ? "animate-textDown md:animate-textDownMd"
-          : "",
-      ])}
-    >
-      <div className="flex flex-col lg:pt-20 gap-1">
-        <div className="flex flex-row gap-2.5">
-          <h1 className="max-ml:text-[2rem] text-blue-400 font-zen-dots leading-none text-[2.125rem] xl:text-[3.125rem]">
-            {personas[personaIndex].name}
-          </h1>
-          {personas[personaIndex].newPersona && (
-            <h4
-              className={cx([
-                "max-ml:text-xs",
-                "font-montserrat h-fit font-bold text-sm",
-                "bg-blue-400 px-3.5 py-2 rounded-[0.625rem]",
-                "text-white self-center",
-              ])}
-            >
-              NOVA
-            </h4>
-          )}
-        </div>
-        <h2 className="font-zen-dots text-sm text-cool-gray-950 xl:text-lg">
-          {personas[personaIndex].role}
-        </h2>
-        <div className="flex flex-row gap-2 items-center py-6">
-          <img
-            src={personas[personaIndex].nationality.flag.src}
-            alt={personas[personaIndex].nationality.flag.alt}
-          />
-          <h3 className="font-montserrat text-sm text-black">
-            {personas[personaIndex].nationality.language}
-          </h3>
-        </div>
-      </div>
-      <ul className="flex flex-row align-left gap-2.5 pb-5 lg:mb-0">
-        {personas[personaIndex].attributes.map(({ title, item }, index) => (
-          <li
+    <>
+      {personas.map(
+        (
+          { name, role, newPersona, nationality, attributes }: Persona,
+          index
+        ) => (
+          <header
             className={cx([
-              "flex flex-row align-left gap-2.5",
-              "inline-flex flex-col",
-              "bg-cool-gray-100 rounded-[0.3125rem]",
-              "w-fit h-fit gap-[0.3125rem] py-[0.5625rem] px-[0.8125rem]",
+              "flex flex-col lg:order-2 relative z-20",
+              personaIndex === index
+                ? "animate-textDown md:animate-textDownMd"
+                : "hidden",
             ])}
-            key={index}
           >
-            <h4 className="text-xs font-semibold text-cool-gray-800">
-              {title}
-            </h4>
-            <h5 className="flex flex-wrap justify-left gap-1.5">
-              {item.map(({ text }, index) => (
-                <div
+            <div className="flex flex-col lg:pt-20 gap-1" key={index}>
+              <div className="flex flex-row gap-2.5">
+                <h1 className="max-ml:text-[2rem] text-blue-400 font-zen-dots leading-none text-[2.125rem] xl:text-[3.125rem]">
+                  {name}
+                </h1>
+                {newPersona && (
+                  <h4
+                    className={cx([
+                      "max-ml:text-xs",
+                      "font-montserrat h-fit font-bold text-sm",
+                      "bg-blue-400 px-3.5 py-2 rounded-[0.625rem]",
+                      "text-white self-center",
+                    ])}
+                  >
+                    NOVA
+                  </h4>
+                )}
+              </div>
+              <h2 className="font-zen-dots text-sm text-cool-gray-950 xl:text-lg">
+                {role}
+              </h2>
+              <div className="flex flex-row gap-2 items-center py-6">
+                <img src={nationality.flag.src} alt={nationality.flag.alt} />
+                <h3 className="font-montserrat text-sm text-black">
+                  {nationality.language}
+                </h3>
+              </div>
+            </div>
+            <ul className="flex flex-row align-left gap-2.5 pb-5 lg:mb-0">
+              {attributes.map(({ title, item }, index) => (
+                <li
                   className={cx([
-                    "flex flex-row items-center",
-                    "bg-white rounded ",
-                    "p-2.5 gap-1.5 w-fit",
+                    "flex flex-row align-left gap-2.5",
+                    "inline-flex flex-col",
+                    "bg-cool-gray-100 rounded-[0.3125rem]",
+                    "w-fit h-fit gap-[0.3125rem] py-[0.5625rem] px-[0.8125rem]",
                   ])}
                   key={index}
                 >
-                  <CheckCircle size={12} color="#323E48" weight="bold" />
-                  <p className="text-xs text-cool-gray-900">{text}</p>
-                </div>
+                  <h4 className="text-xs font-semibold text-cool-gray-800">
+                    {title}
+                  </h4>
+                  <h5 className="flex flex-wrap justify-left gap-1.5">
+                    {item.map(({ text }, index) => (
+                      <div
+                        className={cx([
+                          "flex flex-row items-center",
+                          "bg-white rounded ",
+                          "p-2.5 gap-1.5 w-fit",
+                        ])}
+                        key={index}
+                      >
+                        <CheckCircle size={12} color="#323E48" weight="bold" />
+                        <p className="text-xs text-cool-gray-900">{text}</p>
+                      </div>
+                    ))}
+                  </h5>
+                </li>
               ))}
-            </h5>
-          </li>
-        ))}
-      </ul>
-    </header>
+            </ul>
+          </header>
+        )
+      )}
+    </>
   );
 };
 
@@ -187,8 +193,8 @@ export const Images = () => {
         currentIndex <= 0
           ? 0
           : currentIndex % personas.length === 0
-            ? personas.length - 1
-            : currentIndex % personas.length
+          ? personas.length - 1
+          : currentIndex % personas.length
       );
     };
     window.addEventListener("scroll", handleScroll);
