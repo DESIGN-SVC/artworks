@@ -6,6 +6,54 @@ import { ModalVideo } from "~/components";
 import { ConcentrixWebhelpLogo, Robot } from "~/icons";
 import { BoxInfoPersona } from "~/components";
 
+import adriano1x from "~/assets/personas/adriano-1x.png";
+import adriano2x from "~/assets/personas/adriano-2x.png";
+
+import beca1x from "~/assets/personas/beca-1x.png";
+import beca2x from "~/assets/personas/beca-2x.png";
+
+import carlos1x from "~/assets/personas/carlos-1x.png";
+import carlos2x from "~/assets/personas/carlos-2x.png";
+
+import debora1x from "~/assets/personas/debora-1x.png";
+import debora2x from "~/assets/personas/debora-2x.png";
+
+import diego1x from "~/assets/personas/diego-1x.png";
+import diego2x from "~/assets/personas/diego-2x.png";
+
+import douglas1x from "~/assets/personas/douglas-1x.png";
+import douglas2x from "~/assets/personas/douglas-2x.png";
+
+import edna1x from "~/assets/personas/edna-1x.png";
+import edna2x from "~/assets/personas/edna-2x.png";
+
+import enzo1x from "~/assets/personas/enzo-1x.png";
+import enzo2x from "~/assets/personas/enzo-2x.png";
+
+import helena1x from "~/assets/personas/helena-1x.png";
+import helena2x from "~/assets/personas/helena-2x.png";
+
+import isabel1x from "~/assets/personas/isabel-1x.png";
+import isabel2x from "~/assets/personas/isabel-2x.png";
+
+import jorge1x from "~/assets/personas/jorge-1x.png";
+import jorge2x from "~/assets/personas/jorge-2x.png";
+
+import lisa1x from "~/assets/personas/lisa-1x.png";
+import lisa2x from "~/assets/personas/lisa-2x.png";
+
+import mariana1x from "~/assets/personas/mariana-1x.png";
+import mariana2x from "~/assets/personas/mariana-2x.png";
+
+import milena1x from "~/assets/personas/milena-1x.png";
+import milena2x from "~/assets/personas/milena-2x.png";
+
+import rodrigo1x from "~/assets/personas/rodrigo-1x.png";
+import rodrigo2x from "~/assets/personas/rodrigo-2x.png";
+
+import brazilFlag from "~/assets/brazil-flag.png";
+import spanishFlag from "~/assets/spanish-flag.png";
+
 export const HomePage = () => {
   // const { data, isLoading, isError } = usePersonasQuery();
   // if (isLoading) {
@@ -23,8 +71,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -46,9 +94,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/adriano-1x.png",
-        srcSet:
-          "src/assets/personas/adriano-1x.png 1x, src/assets/personas/adriano-2x.png 2x",
+        src: adriano1x,
+        srcSet: `${adriano1x} 1x, ${adriano2x} 2x`,
         alt: "Persona Adriano",
       },
       audioSrc:
@@ -61,8 +108,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -84,9 +131,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/beca-1x.png",
-        srcSet:
-          "src/assets/personas/beca-1x.png 1x, src/assets/personas/beca-2x.png 2x",
+        src: beca1x,
+        srcSet: `${beca1x} 1x, ${beca2x} 2x`,
         alt: "Persona Beca",
       },
       audioSrc:
@@ -99,8 +145,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -122,9 +168,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/debora-1x.png",
-        srcSet:
-          "src/assets/personas/debora-1x.png 1x, src/assets/personas/debora-2x.png 2x",
+        src: debora1x,
+        srcSet: `${debora1x} 1x, ${debora2x} 2x`,
         alt: "Persona Debora",
       },
       audioSrc:
@@ -137,8 +182,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -160,9 +205,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/diego-1x.png",
-        srcSet:
-          "src/assets/personas/diego-1x.png 1x, src/assets/personas/diego-2x.png 2x",
+        src: diego1x,
+        srcSet: `${diego1x} 1x, ${diego2x} 2x`,
         alt: "Persona Diego",
       },
       audioSrc:
@@ -175,8 +219,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -198,9 +242,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/douglas-1x.png",
-        srcSet:
-          "src/assets/personas/douglas-1x.png 1x, src/assets/personas/douglas-2x.png 2x",
+        src: douglas1x,
+        srcSet: `${douglas1x} 1x, ${douglas2x} 2x`,
         alt: "Persona Douglas",
       },
       audioSrc:
@@ -213,8 +256,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -236,9 +279,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/edna-1x.png",
-        srcSet:
-          "src/assets/personas/edna-1x.png 1x, src/assets/personas/edna-2x.png 2x",
+        src: edna1x,
+        srcSet: `${edna1x} 1x, ${edna2x} 2x`,
         alt: "Persona Edna",
       },
       audioSrc:
@@ -251,8 +293,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -274,9 +316,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/enzo-1x.png",
-        srcSet:
-          "src/assets/personas/enzo-1x.png 1x, src/assets/personas/enzo-2x.png 2x",
+        src: enzo1x,
+        srcSet: `${enzo1x} 1x, ${enzo2x} 2x`,
         alt: "Persona Enzo",
       },
       audioSrc:
@@ -289,8 +330,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -312,9 +353,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/helena-1x.png",
-        srcSet:
-          "src/assets/personas/helena-1x.png 1x, src/assets/personas/helena-2x.png 2x",
+        src: helena1x,
+        srcSet: `${helena1x} 1x, ${helena2x} 2x`,
         alt: "Persona Helena",
       },
       audioSrc:
@@ -327,8 +367,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -350,9 +390,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/jorge-1x.png",
-        srcSet:
-          "src/assets/personas/jorge-1x.png 1x, src/assets/personas/jorge-2x.png 2x",
+        src: jorge1x,
+        srcSet: `${jorge1x} 1x, ${jorge2x} 2x`,
         alt: "Persona Jorge",
       },
       audioSrc:
@@ -365,8 +404,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -388,9 +427,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/lisa-1x.png",
-        srcSet:
-          "src/assets/personas/lisa-1x.png 1x, src/assets/personas/lisa-2x.png 2x",
+        src: lisa1x,
+        srcSet: `${lisa1x} 1x, ${lisa2x} 2x`,
         alt: "Persona Lisa",
       },
       audioSrc:
@@ -403,8 +441,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -426,9 +464,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/milena-1x.png",
-        srcSet:
-          "src/assets/personas/milena-1x.png 1x, src/assets/personas/milena-2x.png 2x",
+        src: milena1x,
+        srcSet: `${milena1x} 1x, ${milena2x} 2x`,
         alt: "Persona Milena",
       },
       audioSrc:
@@ -441,8 +478,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -464,9 +501,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/rodrigo-1x.png",
-        srcSet:
-          "src/assets/personas/rodrigo-1x.png 1x, src/assets/personas/rodrigo-2x.png 2x",
+        src: rodrigo1x,
+        srcSet: `${rodrigo1x} 1x, ${rodrigo2x} 2x`,
         alt: "Persona Rodrigo",
       },
       audioSrc:
@@ -479,8 +515,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -502,9 +538,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/mariana-1x.png",
-        srcSet:
-          "src/assets/personas/mariana-1x.png 1x, src/assets/personas/mariana-2x.png 2x",
+        src: mariana1x,
+        srcSet: `${mariana1x} 1x, ${mariana2x} 2x`,
         alt: "Persona Mariana",
       },
       audioSrc:
@@ -517,8 +552,8 @@ export const HomePage = () => {
       nationality: {
         language: "Brasil",
         flag: {
-          src: "src/assets/brazil-flag.png",
-          alt: "Brazil Flag",
+          src: brazilFlag,
+          alt: "Brazil Flag"
         },
       },
       attributes: [
@@ -540,9 +575,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/isabel-1x.png",
-        srcSet:
-          "src/assets/personas/isabel-1x.png 1x, src/assets/personas/isabel-2x.png 2x",
+        src: isabel1x,
+        srcSet: `${isabel1x} 1x, ${isabel2x} 2x`,
         alt: "Persona Isabel",
       },
       audioSrc:
@@ -555,7 +589,7 @@ export const HomePage = () => {
       nationality: {
         language: "Argentina",
         flag: {
-          src: "src/assets/spanish-flag.png",
+          src: spanishFlag,
           alt: "Spanish Flag",
         },
       },
@@ -578,9 +612,8 @@ export const HomePage = () => {
         },
       ],
       img: {
-        src: "src/assets/personas/carlos-1x.png",
-        srcSet:
-          "src/assets/personas/carlos-1x.png 1x, src/assets/personas/carlos-2x.png 2x",
+        src: carlos1x,
+        srcSet: `${carlos1x} 1x, ${carlos2x} 2x`,
         alt: "Persona Carlos",
       },
       audioSrc:
