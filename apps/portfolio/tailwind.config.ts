@@ -24,15 +24,11 @@ export default {
       yellow: {
         300: "#FFC30D",
       },
-      purple: {
-        200: "#B64ADF",
-        500: "#6B11D2",
-      },
       blue: {
         300: "#0ED6FA",
         600: "#0180FD"
       },
-      selago: {
+      violet: {
         50: "#F4F4F9",
         100: "3EBEBF4",
         300: "#AEABCE",
@@ -42,9 +38,11 @@ export default {
         800: "#61597A",
         950: "#200837"
       },
-      daisy: {
+      purple: {
+        150: "B64ADF",
         200: "#E7D6FE",
         300: "#D4B5FD",
+        500: "#6B11D2",
         600: "#8A35E8",
         800: "#6423A6",
         900: "#5A2092",
@@ -55,7 +53,7 @@ export default {
     },
     fontFamily: {
       sans: ["SF", "sans-serif"],
-      SF: ["SF", "sans-serif"],
+      montserrat: ["Montserrat", "sans-serif"],
     },
   },
 } satisfies Config;
