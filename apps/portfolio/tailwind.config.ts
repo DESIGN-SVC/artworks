@@ -55,7 +55,7 @@ export default {
     },
     fontFamily: {
       sans: ["SF", "sans-serif"],
-      montserrat: ["Montserrat", "sans-serif"],
+      SF: ["SF", "sans-serif"],
     },
   },
 } satisfies Config;
