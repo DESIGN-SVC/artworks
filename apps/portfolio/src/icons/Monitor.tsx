@@ -1,7 +1,7 @@
-import React from 'react';
+import { ComponentPropsWithRef } from "react";
 import monitor from '/images/monitor.png';
 
-export const Monitor = ({...props}: React.ImgHTMLAttributes<HTMLImageElement>) => {
+export const Monitor = ({...props}: ComponentPropsWithRef<"img">) => {
     return (
        <img 
         src={monitor}

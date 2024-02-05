@@ -1,7 +1,7 @@
-import React from 'react';
+import { ComponentPropsWithRef } from "react";
 import greenCheck from '/images/green-check.png';
 
-export const GreenCheck = ({...props}: React.ImgHTMLAttributes<HTMLImageElement>) => {
+export const GreenCheck = ({...props}: ComponentPropsWithRef<"img">) => {
     return (
        <img 
         src={greenCheck}

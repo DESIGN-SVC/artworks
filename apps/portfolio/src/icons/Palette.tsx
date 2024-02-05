@@ -1,7 +1,7 @@
-import React from 'react';
+import { ComponentPropsWithRef } from "react";
 import palette from '/images/palette.png';
 
-export const Palette = ({...props}: React.ImgHTMLAttributes<HTMLImageElement>) => {
+export const Palette = ({...props}: ComponentPropsWithRef<"img">) => {
     return (
        <img 
         src={palette}
