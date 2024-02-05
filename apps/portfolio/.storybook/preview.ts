@@ -2,7 +2,6 @@ import { themes } from '@storybook/theming';
 import type { Preview } from "@storybook/react";
 import '../src/main.css'
 
-
 const preview: Preview = {
   parameters: {
     actions: { argTypesRegex: "^on[A-Z].*" },
@@ -14,7 +13,8 @@ const preview: Preview = {
     },
     docs: {
       theme: themes.dark
-    }
+    },
+    layout:'fullscreen'
   },
 };
 
