@@ -1,20 +1,26 @@
+import { PencilSimple } from "@phosphor-icons/react";
 import { Button } from "./button";
 import { StoryObj } from "@storybook/react";
-
 
 export default {
   title: "Components/Button",
   component: Button,
   args: {
-    children: "button",    
-    onClick: () => console.log("clicked"),
+    children: (
+      <>
+        <PencilSimple />
+        <span>Button</span>
+      </>
+    ),
   },
 };
 
-export const Default: StoryObj = {};
-export const TEste1: StoryObj = {
-  args: {
-    children: "button",
-    size: "sm",
+export const Default: StoryObj = {
+  argTypes: {
+    children: {
+      table: {
+        disable: true,
+      },
+    },
   },
 };
