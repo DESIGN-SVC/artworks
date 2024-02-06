@@ -12,15 +12,20 @@ export default {
       inherit: "inherit",
       current: "currentColor",
       transparent: "transparent",
-      
+
       gray: {
-        400: "#989898",
+        100: '#EBEBF4',
+        200: '#DADBEB',
+        300: '#D1D1D1',
+        400: '#B0B0B0',
+        500: "#989898",
       },
 
       pink: {
         300: "#FF59C0",
         400: "#F3469D",
-        700: "#DF008A",
+        500: "#DF008A",
+        600: '#B0046C',
         800: "#C7007B"
       },
 
@@ -43,7 +48,7 @@ export default {
         600: "#61597A",
         900: "#200837"
       },
-      
+
       purple: {
         100: "B64ADF",
         200: "#E7D6FE",
