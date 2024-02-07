@@ -7,31 +7,32 @@ const twButton = cva(
     "flex items-center justify-center ",
     "py-2.5 font-medium bg-violet-500-600",
     "relative overflow-hidden z-10",
-    "disabled:cursor-not-allowed disabled:bg-gray-300 disabled:hover:shadow-none disabled:text-gray-500",
+    "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:hover:shadow-none disabled:text-gray-300",
+    'disabled:border-gray-300',
     "transition-all duration-500 ease-in-out",
   ],
   {
     variants: {
       appearance: {
         primary: [
-          "bg-purple-700 shadow-[inset_0_0_0_0_#360863]",
+          "bg-violet-800 shadow-[inset_0_0_0_0_#360863]",
           "hover:shadow-[inset_0_-100px_0_0_#360863] active:shadow-[inset_0_-100px_0_0_#2A074C]",
           "text-white",
         ],
         secondary: [
-          "bg-white border border-gray-200 shadow-[inset_0_0_0_0_#F4F4F9]",
+          "bg-white border border-selago-200 shadow-[inset_0_0_0_0_#F4F4F9]",
           "hover:shadow-[inset_0_-100px_0_0_#F4F4F9] active:shadow-[inset_0_-100px_0_0_#ffffff]",
-          "text-violet-600",
+          "text-selago-800",
         ],
         tertiary: [
-          "bg-pink-500 shadow-[inset_0_0_0_0_#B0046C] hover:shadow-[inset_0_-100px_0_0_#B0046C]",
+          "bg-pink-700 shadow-[inset_0_0_0_0_#B0046C] hover:shadow-[inset_0_-100px_0_0_#B0046C]",
           "active:shadow-[inset_0_-100px_0_0_#DF008A]",
           "text-white",
         ],
         ghost: [
           "bg-transparent border border-white",
           "text-white",
-          "hover:border-gray-100 active:border-gray-100",
+          "hover:border-selago-100 active:border-selago-200 hover:text-selago-200",
         ],
       },
       size: {
