@@ -7,19 +7,15 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
+    '@storybook/addon-docs',
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
+    defaultName: 'Documentation',
   },
-  viteFinal: (config, { configType }) => {
-    if (configType === "PRODUCTION") {
-      config.base = '/design-system/'
-    }
-    return config
-  }
 };
 export default config;
