@@ -3,7 +3,23 @@ import type { Config } from "tailwindcss";
 export default {
   purge: ["./index.html", "./src/**/*.{ts,tsx}"],
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
-  plugins: [],
+  plugins: [
+    function groupPeer({ addVariant }) {
+      const pseudoVariants = [
+        // ... Any other pseudo variants you want to support.
+        // See https://github.com/tailwindlabs/tailwindcss/blob/6729524185b48c9e25af62fc2372911d66e7d1f0/src/corePlugins.js#L78
+        'checked',
+      ].map((variant) =>
+        Array.isArray(variant) ? variant : [variant, `&:${variant}`],
+      )
+
+      for (const [variantName, state] of pseudoVariants) {
+        addVariant(`group-peer-${variantName}`, (ctx) => {
+          const result = typeof state === 'function' ? state(ctx) : state
+          return result.replace(/&(\S+)/, ':merge(.peer)$1 ~ .group &')
+        })
+      }
+    },],
   theme: {
     extend: {},
     colors: {
