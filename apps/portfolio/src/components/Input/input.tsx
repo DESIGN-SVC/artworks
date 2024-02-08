@@ -3,24 +3,27 @@ import { ComponentPropsWithRef, useId } from "react";
 
 export type InputProps = {
   label: string;
-  error: string;
+  error?: string;
 } & ComponentPropsWithRef<"input">;
 
-export const Input = ({ label, error, ...props }: InputProps) => {
+export const Input = ({ label, error, className, ...props }: InputProps) => {
   const id = useId();
 
   return (
     <fieldset
       className={cx([
-        "w-full h-24",
-        "flex flex-col gap-1.5 relative justify-center group",
+        "w-full h-[4.688rem] flex-none duration-300 ease-out",
+        "flex flex-col gap-1.5 justify-end relative  group",
+        {
+          "!h-24 !justify-center": !!error,
+        },
       ])}
     >
       <input
         id={id}
         className={cx([
           "px-5 py-4 peer text-sm text-selago-950",
-          "rounded-lg bg-white border border-selago-200 outline-none",
+          "rounded-lg bg-white border border-selago-200 outline-none flex-none",
           "duration-300 ease-out",
 
           "placeholder:opacity-0 focus-visible:placeholder:opacity-100 placeholder:text-selago-500",
@@ -32,10 +35,10 @@ export const Input = ({ label, error, ...props }: InputProps) => {
             "!border-red-700 !bg-red-100 !text-red-700 placeholder:!text-red-700 animate-shake":
               !!error,
           },
+          className,
         ])}
         {...props}
         aria-labelledby={id}
-        required
       />
       <Label id={id} label={label} error={error} />
       <TextError error={error} />
@@ -50,7 +53,7 @@ const Label = ({
 }: {
   id: string;
   label: string;
-  error: string;
+  error?: string;
 }) => (
   <label
     htmlFor={id}
@@ -62,7 +65,7 @@ const Label = ({
       "peer-placeholder-shown:top-10 peer-placeholder-shown:left-5",
       "dark:text-selago-50",
       {
-        "!top-0 !left-0": !!error,
+        "!top-0 !left-0 !text-red-800": !!error,
       }
     )}
   >
@@ -70,14 +73,15 @@ const Label = ({
   </label>
 );
 
-const TextError = ({ error }: { error: string }) => (
+const TextError = ({ error }: { error?: string }) => (
   <span
     className={cx([
       "text-xs text-red-700",
-      "left-4 bottom-10 opacity-0 invisible",
-      "duration-300 ease-out",
+      "left-4 bottom-10 opacity-0 invisible absolute",
+      "duration-300 ease-out w-1 h-1 -m-1",
       {
-        "!opacity-100 !left-0 !visible !bottom-0 !absolute": !!error,
+        "!opacity-100 !w-auto !h-auto !visible !bottom-0 !absolute !left-1":
+          !!error,
       },
     ])}
   >
