@@ -123,5 +123,21 @@ export default {
       sans: ["SF", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
+    keyframes: {
+      'shake': {
+        '25%': {
+          transform: 'translateX(4px)'
+        },
+        '50%': {
+          transform: 'translateX(-5px)'
+        },
+        '100%': {
+          transform: 'translateX(4px)'
+        }
+      }
+    },
+    animation: {
+      'shake': 'shake 200ms'
+    }
   },
 } satisfies Config;
