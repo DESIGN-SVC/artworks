@@ -6,6 +6,7 @@ import { WarningOctagon } from "@phosphor-icons/react/dist/ssr";
 export default {
   title: "Components/Toast",
   component: Toast,
+  tags: ["autodocs"],
   args: {
     open: true,
     icon: <Check size={18} />,
