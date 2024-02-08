@@ -123,5 +123,34 @@ export default {
       sans: ["SF", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
+    keyframes: {
+      hide: {
+        from: { opacity: 1 },
+        to: { opacity: 0 },
+      },
+      slideInRight: {
+        from: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
+        to: { transform: "translateX(0)" },
+      },
+      slideInLeft: {
+        from: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
+        to: { transform: "translateX(0)" },
+      },
+      swipeOutLeft: {
+        from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+        to: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
+      },
+      swipeOutRight: {
+        from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+        to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
+      },
+    },
+    animation: {
+      hide: "hide 100ms ease-in",
+      slideInLeft: "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      slideInRight: "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      swipeOutLeft: "swipeOutLeft 100ms ease-out",
+      swipeOutRight: "swipeOutRight 100ms ease-out",
+    },
   },
 } satisfies Config;
