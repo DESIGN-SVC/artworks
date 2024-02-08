@@ -1,22 +1,24 @@
-import { Description } from "../Tag";
+import { Tag } from "~/components/";
 import { StoryObj } from "@storybook/react";
 
 export default {
   title: "Components/Tag/Description",
-  component: Description,
+  component: Tag.Description,
+  tags: ["autodocs"],
   args: {
-    children: <>Tag</>,
+    text: "Tag",
   },
   argTypes: {
-    children: {
-      table: {
-        disable: true,
-      },
-    },
     ref: {
       table: {
         disable: true,
       },
+    },
+    text: {
+      control: {
+        type: "text",
+      },
+      
     },
   },
 };

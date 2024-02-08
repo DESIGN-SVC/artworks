@@ -1,20 +1,22 @@
+import { Tag } from "~/components/";
 import { Cards } from "@phosphor-icons/react";
-import { Episode } from "../Tag";
 import { StoryObj } from "@storybook/react";
 
 export default {
   title: "Components/Tag/Episode",
-  component: Episode,
+  component: Tag.Episode,
+  tags: ["autodocs"],
   args: {
-    children: (
-      <>
-        <Cards size={14} className="transform scale-y-[-1]" />
-        <span>4 episodes</span>
-      </>
-    ),
+    icon: <Cards size={14} className="transform scale-y-[-1]" />,
+    text: "4 episodes",
   },
   argTypes: {
     children: {
+      table: {
+        disable: true,
+      },
+    },
+    icon: {
       table: {
         disable: true,
       },

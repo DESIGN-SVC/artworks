@@ -1,21 +1,23 @@
-import { Search } from "../Tag";
+import { Tag } from "~/components/";
 import { StoryObj } from "@storybook/react";
 
 export default {
   title: "Components/Tag/Search",
-  component: Search,
+  component: Tag.Search,
+  tags: ["autodocs"],
   args: {
-    children: <>Example (2)</>,
+    current: false,
+    text: "Example (2)",
   },
   argTypes: {
-    children: {
+    ref: {
       table: {
         disable: true,
       },
     },
-    ref: {
-      table: {
-        disable: true,
+    text: {
+      control: {
+        type: "text",
       },
     },
     current: {

@@ -1,9 +1,12 @@
+import { X } from "@phosphor-icons/react";
 import { cva, cx, VariantProps } from "cva";
 import { ComponentPropsWithRef } from "react";
 
-type DescriptionProps = {} & ComponentPropsWithRef<"button">;
+type DescriptionProps = {
+  text: string;
+} & ComponentPropsWithRef<"button">;
 
-export const Description = ({ children, ...props }: DescriptionProps) => {
+export const Description = ({ text, ...props }: DescriptionProps) => {
   return (
     <button
       className={cx(
@@ -12,14 +15,17 @@ export const Description = ({ children, ...props }: DescriptionProps) => {
       )}
       {...props}
     >
-      {children}
+      {text}
     </button>
   );
 };
 
-type EpisodeProps = {} & ComponentPropsWithRef<"button">;
+type EpisodeProps = {
+  icon?: React.ReactNode;
+  text: string;
+} & ComponentPropsWithRef<"button">;
 
-export const Episode = ({ children, ...props }: EpisodeProps) => {
+export const Episode = ({ icon, text, ...props }: EpisodeProps) => {
   return (
     <button
       className={cx(
@@ -29,16 +35,26 @@ export const Episode = ({ children, ...props }: EpisodeProps) => {
       )}
       {...props}
     >
-      {children}
+      {icon}
+      {text}
     </button>
   );
 };
 
-type FunctionProps = {} & ComponentPropsWithRef<"button">;
+type ProductionProps = {
+  personName: string;
+  personFunction: string;
+  type?: "normal" | "delete";
+} & ComponentPropsWithRef<"button">;
 
-export const Function = ({ children, ...props }: FunctionProps) => {
+export const Production = ({
+  personName,
+  personFunction,
+  type,
+  ...props
+}: ProductionProps) => {
   return (
-    <button
+    <article
       className={cx(
         "flex flex-row rounded-lg p-[0.875rem] items-center",
         "justify-between min-w-fit w-[16.625rem] gap-1",
@@ -49,16 +65,28 @@ export const Function = ({ children, ...props }: FunctionProps) => {
       )}
       {...props}
     >
-      {children}
-    </button>
+      <span className="flex flex-col gap-[4px]">
+        {personName}
+        <br />
+        <span className="text-[12px] text-violet-300">{personFunction}</span>
+      </span>
+      {type === "delete" && (
+        <button>
+          <X size={16} />
+        </button>
+      )}
+    </article>
   );
 };
 
-type NameProps = {} & ComponentPropsWithRef<"button">;
+type CastProps = {
+  personName: string;
+  type?: "normal" | "delete";
+} & ComponentPropsWithRef<"button">;
 
-export const Name = ({ className, children, ...props }: NameProps) => {
+export const Cast = ({ personName, type, ...props }: CastProps) => {
   return (
-    <button
+    <article
       className={cx(
         "flex flex-row w-fit p-2.5 rounded-lg",
         "text-left text-[0.875rem] leading-[1.375rem]",
@@ -69,8 +97,13 @@ export const Name = ({ className, children, ...props }: NameProps) => {
       )}
       {...props}
     >
-      {children}
-    </button>
+      <span>{personName}</span>
+      {type === "delete" && (
+        <button>
+          <X size={16} />
+        </button>
+      )}
+    </article>
   );
 };
 
@@ -97,19 +130,20 @@ const twSearch = cva(
 );
 
 type SearchProps = {
+  text: string;
   current?: boolean;
 } & VariantProps<typeof twSearch> &
   ComponentPropsWithRef<"button">;
 
 export const Search = ({
-  className,
+  text,
   current,
   children,
   ...props
 }: SearchProps) => {
   return (
-    <button className={twSearch({ className, current })} {...props}>
-      {children}
+    <button className={twSearch({ current })} {...props}>
+      {text}
     </button>
   );
 };
