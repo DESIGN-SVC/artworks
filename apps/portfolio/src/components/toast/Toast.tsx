@@ -14,9 +14,9 @@ const TwToast = cva(
   ],
   {
     variants: {
-      type: {
-        successful: "bg-green-200 text-selago-950",
-        error: "bg-red-700 text-selago-50",
+      success: {
+        true: "bg-green-200 text-selago-950",
+        false: "bg-red-700 text-selago-50",
       },
       direction: {
         left: "data-[state=open]:animate-slideInLeft data-[swipe=end]:animate-swipeOutLeft",
@@ -25,7 +25,7 @@ const TwToast = cva(
       },
     },
     defaultVariants: {
-      type: "successful",
+      success: true,
     },
   }
 );
@@ -34,7 +34,7 @@ const TwToastViewport = cva(
   [
     "[--viewport-padding:_25px] fixed flex flex-col",
     "p-[var(--viewport-padding)] gap-2.5 m-0",
-    "list-none max-w-[100vw] z-[2147483647] outline-none",
+    "list-none max-w-screen z-50 outline-none",
   ],
   {
     variants: {
@@ -58,7 +58,7 @@ type ToastProps = {
   open: boolean;
   icon?: React.ReactNode;
   text: string;
-  type: "successful" | "error";
+  success: boolean;
   position: "top" | "middle" | "bottom";
   direction: "left" | "right";
 } & ComponentPropsWithRef<typeof ToastRadix.Provider> &
@@ -67,21 +67,21 @@ type ToastProps = {
 
 export const Toast = ({
   open,
+  success,
   icon,
   text,
-  type,
   position,
   direction,
   ...props
 }: ToastProps) => {
-  const [openState, setOpenState] = useState(open);
+  const [openState, setOpenState] = useState<boolean>(open);
 
   return (
     <ToastRadix.Provider
       swipeDirection={direction === "left" ? "left" : "right"}
     >
       <ToastRadix.Root
-        className={cx(TwToast({ type, direction }))}
+        className={cx(TwToast({ success, direction }))}
         open={openState}
         duration={4000}
         onOpenChange={(open) => {
