@@ -41,11 +41,10 @@ export default {
         400: "#BA85FB",
         500: "#A057F5",
         600: "#8A35E8",
-        700: "#8A35E8",
-        800: "#6423A6",
-        900: "#5A2092",
-        950: "#360863",
-        970: "#2A074C",
+        700: "#6423A6",
+        800: "#5A2092",
+        900: "#360863",
+        950: "#2A074C",
         1000: "#200837",
       },
 
@@ -124,37 +123,48 @@ export default {
       montserrat: ["Montserrat", "sans-serif"],
     },
     keyframes: {
-      hide: {
-        "0%": {
-          opacity: "1",
+      'shake': {
+        '25%': {
+          transform: 'translateX(4px)'
         },
-        "100%": {
-          opacity: "0",
+        '50%': {
+          transform: 'translateX(-5px)'
         },
+        '100%': {
+          transform: 'translateX(4px)'
       },
-      openProdCast: {
-        "0%": {
-          transform: "translateY(-15%)",
-        },
-        "100%": {
-          transform: "translateX(0)",
-        },
+    },
+      'hide': {
+        from: { opacity: 1 },
+        to: { opacity: 0 },
       },
-      closeProdCast: {
-        "0%": {
-          opacity: "1",
-          transform: "translateY(0)",
-        },
-        "100%": {
-          opacity: "0",
-          transform: "translateY(15%)",
-        },
+      'slideInRight': {
+        from: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
+        to: { transform: "translateX(0)" },
+      },
+      'slideInLeft': {
+        from: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
+        to: { transform: "translateX(0)" },
+      },
+      'swipeOutLeft': {
+        from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+        to: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
+      },
+      'swipeOutRight': {
+        from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
+        to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
     },
     animation: {
-      hide: "hide 300ms ease-in-out",
-      openProdCast: "openProdCast 500ms ease-in-out",
-      closeProdCast: "closeProdCast 500ms ease-in-out",
+      'shake': 'shake 200ms',
+      'hide': "hide 100ms ease-in",
+      'slideInLeft': "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      'slideInRight': "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      'swipeOutLeft': "swipeOutLeft 100ms ease-out",
+      'swipeOutRight': "swipeOutRight 100ms ease-out",
+      'openProdCast': "openProdCast 500ms ease-in-out",
+      'closeProdCast': "closeProdCast 500ms ease-in-out",
     },
   },
+  
 } satisfies Config;
