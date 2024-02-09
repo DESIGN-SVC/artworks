@@ -40,7 +40,7 @@ export const Login: StoryObj = {
             />
             <a
               href="#"
-              className="ml-auto w-fit text-xs text-violet-600 font-semibold transition-colors "
+              className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors "
             >
               Fogot password?
             </a>
@@ -48,7 +48,7 @@ export const Login: StoryObj = {
           <Button appearance="tertiary" size="lg">
             Continue
           </Button>
-          <p className="text-selago-700 w-fit ml-auto">
+          <p className="text-selago-700 text-center w-full">
             Don't have on account yet?{" "}
             <a
               href="#"
@@ -128,7 +128,7 @@ export const Error: StoryObj = {
               />
               <a
                 href="#"
-                className="ml-auto w-fit text-xs text-violet-600 font-semibold transition-colors "
+                className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors "
               >
                 Fogot password?
               </a>
@@ -141,7 +141,7 @@ export const Error: StoryObj = {
             >
               Continue
             </Button>
-            <p className="text-selago-700 w-fit ml-auto">
+            <p className="text-selago-700 text-center w-full">
               Don't have on account yet?{" "}
               <a
                 href="#"
