@@ -3,6 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "hooks": {
+    "pre-commit": "echo 'teste'"
+  },
   "scripts": {
     "prepare": "husky install",
     "dev": "vite",
