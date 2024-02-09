@@ -1,5 +1,7 @@
 import { ComponentPropsWithRef } from "react";
-export const LogoConcentrixWebhelp = ({ ...props }: ComponentPropsWithRef<"svg">) => (
+export const LogoConcentrixWebhelp = ({
+  ...props
+}: ComponentPropsWithRef<"svg">) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="100%"

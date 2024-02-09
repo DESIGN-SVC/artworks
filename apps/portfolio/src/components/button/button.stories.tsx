@@ -1,7 +1,7 @@
 import { PencilSimple } from "@phosphor-icons/react";
 
 import { Meta, StoryObj } from "@storybook/react";
-import { Button,ButtonProps } from "./Button";
+import { Button, ButtonProps } from "./Button";
 
 export default {
   title: "Components/Button",

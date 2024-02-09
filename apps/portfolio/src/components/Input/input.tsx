@@ -66,7 +66,7 @@ const Label = ({
       "dark:text-selago-50",
       {
         "!top-0 !left-0 !text-red-800": !!error,
-      }
+      },
     )}
   >
     {label}
