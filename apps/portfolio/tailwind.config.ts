@@ -123,5 +123,38 @@ export default {
       sans: ["SF", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
+    keyframes: {
+      hide: {
+        "0%": {
+          opacity: "1",
+        },
+        "100%": {
+          opacity: "0",
+        },
+      },
+      openProdCast: {
+        "0%": {
+          transform: "translateY(-15%)",
+        },
+        "100%": {
+          transform: "translateX(0)",
+        },
+      },
+      closeProdCast: {
+        "0%": {
+          opacity: "1",
+          transform: "translateY(0)",
+        },
+        "100%": {
+          opacity: "0",
+          transform: "translateY(15%)",
+        },
+      },
+    },
+    animation: {
+      hide: "hide 300ms ease-in-out",
+      openProdCast: "openProdCast 500ms ease-in-out",
+      closeProdCast: "closeProdCast 500ms ease-in-out",
+    },
   },
 } satisfies Config;

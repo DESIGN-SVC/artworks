@@ -1,77 +1,90 @@
 import { X } from "@phosphor-icons/react";
 import { cva, cx, VariantProps } from "cva";
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useState } from "react";
 
 type DescriptionProps = {
   text: string;
-} & ComponentPropsWithRef<"button">;
+} & ComponentPropsWithRef<"h5">;
 
 export const Description = ({ text, ...props }: DescriptionProps) => {
   return (
-    <button
+    <h5
       className={cx(
-        "min-w-fit px-5 py-1 rounded-md leading-none",
+        "w-fit px-5 py-1 rounded-md leading-none",
         "bg-selago-950 text-violet-50 text-[0.75rem]"
       )}
       {...props}
     >
       {text}
-    </button>
+    </h5>
   );
 };
 
 type EpisodeProps = {
   icon?: React.ReactNode;
   text: string;
-} & ComponentPropsWithRef<"button">;
+} & ComponentPropsWithRef<"h5">;
 
 export const Episode = ({ icon, text, ...props }: EpisodeProps) => {
   return (
-    <button
+    <h5
       className={cx(
         "flex flex-row items-center rounded-md",
-        "px-2 py-1.5 gap-1",
+        "px-2 py-1.5 gap-1 w-fit",
         "text-[0.625rem] text-white bg-[rgba(0,0,0,0.70)]"
       )}
       {...props}
     >
       {icon}
       {text}
-    </button>
+    </h5>
   );
 };
 
 type ProductionProps = {
   personName: string;
   personFunction: string;
-  type?: "normal" | "delete";
+  deleting?: boolean;
+  handleDelete?: () => void;
 } & ComponentPropsWithRef<"button">;
 
 export const Production = ({
   personName,
+  deleting,
   personFunction,
-  type,
+  handleDelete,
   ...props
 }: ProductionProps) => {
+  const [deletingState, setDeletingState] = useState<boolean>(false);
+
+  const handleDeleteButton = () => {
+    deleting && setDeletingState(true);
+    setTimeout(() => {
+      handleDelete && handleDelete();
+    }, 300);
+  };
+
   return (
     <article
       className={cx(
         "flex flex-row rounded-lg p-[0.875rem] items-center",
         "justify-between min-w-fit w-[16.625rem] gap-1",
         "leading-[0.875rem] text-left text-[0.875rem]",
-        "transition-colors duration-500 ease-in-out",
-        "text-selago-800 bg-white",
-        "dark:text-selago-50 dark:bg-violet-900"
+        "bg-white text-selago-800",
+        "dark:text-selago-50 dark:bg-violet-900",
+        {
+          "animate-openProdCast": deleting && !deletingState,
+          "animate-closeProdCast": deletingState,
+        }
       )}
       {...props}
     >
-      <span className="flex flex-col gap-[4px]">
-        {personName}
-        <br />
-        <span className="text-[12px] text-violet-300">{personFunction}</span>
-      </span>
-      {type === "delete" && (
-        <button>
+      <div className="flex flex-col gap-[4px]">
+        <p>{personName}</p>
+        <p className="text-[12px] text-violet-300">{personFunction}</p>
+      </div>
+      {deleting && (
+        <button onClick={handleDeleteButton}>
           <X size={16} />
         </button>
       )}
@@ -81,10 +94,24 @@ export const Production = ({
 
 type CastProps = {
   personName: string;
-  type?: "normal" | "delete";
+  deleting?: boolean;
+  handleDelete?: () => void;
 } & ComponentPropsWithRef<"button">;
 
-export const Cast = ({ personName, type, ...props }: CastProps) => {
+export const Cast = ({
+  personName,
+  deleting,
+  handleDelete,
+  ...props
+}: CastProps) => {
+  const [deletingState, setDeletingState] = useState<boolean>(false);
+
+  const handleDeleteButton = () => {
+    deleting && setDeletingState(true);
+    setTimeout(() => {
+      handleDelete && handleDelete();
+    }, 300);
+  };
   return (
     <article
       className={cx(
@@ -93,13 +120,17 @@ export const Cast = ({ personName, type, ...props }: CastProps) => {
         "gap-2.5 justify-between min-w-fit",
         "transition-colors duration-500 ease-in-out items-center gap-1",
         "text-selago-800 bg-white",
-        "dark:text-selago-50 dark:bg-violet-900"
+        "dark:text-selago-50 dark:bg-violet-900",
+        {
+          "animate-openProdCast": deleting && !deletingState,
+          "animate-closeProdCast": deletingState,
+        }
       )}
       {...props}
     >
       <span>{personName}</span>
-      {type === "delete" && (
-        <button>
+      {deleting && (
+        <button onClick={handleDeleteButton}>
           <X size={16} />
         </button>
       )}
@@ -135,12 +166,7 @@ type SearchProps = {
 } & VariantProps<typeof twSearch> &
   ComponentPropsWithRef<"button">;
 
-export const Search = ({
-  text,
-  current,
-  children,
-  ...props
-}: SearchProps) => {
+export const Search = ({ text, current, ...props }: SearchProps) => {
   return (
     <button className={twSearch({ current })} {...props}>
       {text}

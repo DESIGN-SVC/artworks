@@ -7,7 +7,11 @@ export default {
   tags: ["autodocs"],
   args: {
     personName: "Name",
-    type: "normal",
+    id: "cast",
+    handleDelete: () => {
+      const component = document.getElementById("cast");
+      if (component) component.style.display = "none";
+    },
   },
   argTypes: {
     personName: {
@@ -15,11 +19,22 @@ export default {
         type: "text",
       },
     },
-    type: {
-      options: ["normal", "delete"],
-      control: { type: "inline-radio", defaultValue: "normal" },
+    deleting: {
+      control: {
+        type: "boolean",
+      },
     },
     ref: {
+      table: {
+        disable: true,
+      },
+    },
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+    handleDelete: {
       table: {
         disable: true,
       },
@@ -30,6 +45,13 @@ export default {
 export const Default: StoryObj = {};
 export const WithX: StoryObj = {
   args: {
-    type: "delete",
+    id: "castWithX",
+    deleting: true,
+    handleDelete: () => {
+      const component = document.getElementById("castWithX");
+      if (component) {
+        component.style.display = "none";
+      }
+    },
   },
 };

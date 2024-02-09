@@ -8,7 +8,14 @@ export default {
   args: {
     personName: "Name",
     personFunction: "Function",
-    type: "normal",
+    deleting: false,
+    id: "production",
+    handleDelete: () => {
+      const component = document.getElementById("production");
+      if (component) {
+        component.style.display = "none";
+      }
+    },
   },
   argTypes: {
     personName: {
@@ -21,11 +28,22 @@ export default {
         type: "text",
       },
     },
-    type: {
-      options: ["normal", "delete"],
-      control: { type: "inline-radio", defaultValue: "normal" },
+    deleting: {
+      control: {
+        type: "boolean",
+      },
     },
     ref: {
+      table: {
+        disable: true,
+      },
+    },
+    id: {
+      table: {
+        disable: true,
+      },
+    },
+    handleDelete: {
       table: {
         disable: true,
       },
@@ -36,6 +54,13 @@ export default {
 export const Default: StoryObj = {};
 export const WithX: StoryObj = {
   args: {
-    type: "delete",
+    id: "productionWithX",
+    deleting: true,
+    handleDelete: () => {
+      const component = document.getElementById("productionWithX");
+      if (component) {
+        component.style.display = "none";
+      }
+    },
   },
 };
