@@ -4,11 +4,11 @@ import { ComponentPropsWithRef } from "react";
 
 const twButton = cva(
   [
-    "flex items-center justify-center ",
+    "flex items-center justify-center w-full",
     "py-2.5 font-medium bg-violet-500-600",
     "relative overflow-hidden z-10",
     "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:hover:shadow-none disabled:text-gray-300",
-    'disabled:border-gray-300',
+    "disabled:border-gray-300",
     "transition-all duration-500 ease-in-out",
   ],
   {
@@ -37,8 +37,8 @@ const twButton = cva(
       },
       size: {
         sm: ["px-2.5 gap-1.5 rounded", "text-xs"],
-        md: ["px-3.5 gap-2.5 rounded-md", "h-11 w-full max-w-32", "text-sm"],
-        lg: ["px-2.5 gap-3 rounded-lg", "w-full max-w-48 h-12", "text-lg"],
+        md: ["px-3.5 gap-2.5 rounded-md", "h-11", "text-sm"],
+        lg: ["px-2.5 gap-3 rounded-lg", "h-12", "text-lg"],
       },
     },
     defaultVariants: {
