@@ -124,33 +124,45 @@ export default {
       montserrat: ["Montserrat", "sans-serif"],
     },
     keyframes: {
-      hide: {
+    'shake': {
+      '25%': {
+        transform: 'translateX(4px)'
+      },
+      '50%': {
+        transform: 'translateX(-5px)'
+      },
+      '100%': {
+        transform: 'translateX(4px)'
+      },
+     },
+      'hide': {
         from: { opacity: 1 },
         to: { opacity: 0 },
       },
-      slideInRight: {
+      'slideInRight': {
         from: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
         to: { transform: "translateX(0)" },
       },
-      slideInLeft: {
+      'slideInLeft': {
         from: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
         to: { transform: "translateX(0)" },
       },
-      swipeOutLeft: {
+      'swipeOutLeft': {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
       },
-      swipeOutRight: {
+      'swipeOutRight': {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
     },
     animation: {
-      hide: "hide 100ms ease-in",
-      slideInLeft: "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
-      slideInRight: "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
-      swipeOutLeft: "swipeOutLeft 100ms ease-out",
-      swipeOutRight: "swipeOutRight 100ms ease-out",
+      'shake': 'shake 200ms',
+      'hide': "hide 100ms ease-in",
+      'slideInLeft': "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      'slideInRight': "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      'swipeOutLeft': "swipeOutLeft 100ms ease-out",
+      'swipeOutRight': "swipeOutRight 100ms ease-out",
     },
   },
 } satisfies Config;
