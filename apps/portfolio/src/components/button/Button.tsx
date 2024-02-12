@@ -45,7 +45,7 @@ const twButton = cva(
       size: "md",
       appearance: "primary",
     },
-  }
+  },
 );
 
 export type ButtonProps = {
