@@ -6,12 +6,14 @@ type SidebarProfileProps = {
   imgSrc: string;
   name: string;
   email: string;
+  href?: string;
 } & ComponentPropsWithRef<"a">;
 
 export const SidebarProfile = ({
   imgSrc,
   name,
   email,
+  href,
   ...props
 }: SidebarProfileProps) => {
   return (
@@ -23,7 +25,7 @@ export const SidebarProfile = ({
         "hover:bg-selago-50 hover:shadow-sm",
         "dark:hover:bg-violet-1000 dark:hover:shadow-lg",
       ])}
-      href="https://example.com"
+      href={href}
       {...props}
     >
       <img
