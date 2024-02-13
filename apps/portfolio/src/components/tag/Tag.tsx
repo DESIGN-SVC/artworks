@@ -46,7 +46,7 @@ type ProductionProps = {
   personFunction: string;
   deleting?: boolean;
   handleDelete?: () => void;
-} & ComponentPropsWithRef<"button">;
+} & ComponentPropsWithRef<"article">;
 
 export const Production = ({
   personName,
@@ -68,10 +68,8 @@ export const Production = ({
     <article
       className={cx(
         "flex flex-row rounded-lg p-[0.875rem] items-center",
-        "justify-between min-w-fit w-[16.625rem] gap-1",
-        "leading-[0.875rem] text-left text-[0.875rem]",
-        "bg-white text-selago-800",
-        "dark:text-selago-50 dark:bg-violet-900",
+        "justify-between min-w-fit w-[16.625rem] text-left",
+        "bg-white dark:bg-violet-800",
         {
           "animate-openProdCast": deleting && !deletingState,
           "animate-closeProdCast": deletingState,
@@ -79,13 +77,13 @@ export const Production = ({
       )}
       {...props}
     >
-      <div className="flex flex-col gap-[4px]">
-        <p>{personName}</p>
-        <p className="text-[12px] text-violet-300">{personFunction}</p>
+      <div className="flex flex-col gap-1">
+        <p className="text-sm leading-[0.875rem] text-selago-800 dark:text-selago-50">{personName}</p>
+        <p className="text-xs leading-[0.875rem] text-selago-600 dark:text-selago-400">{personFunction}</p>
       </div>
       {deleting && (
         <button onClick={handleDeleteButton}>
-          <X size={16} />
+          <X size={16} className="text-selago-700 dark:text-selago-50" />
         </button>
       )}
     </article>
@@ -96,7 +94,7 @@ type CastProps = {
   personName: string;
   deleting?: boolean;
   handleDelete?: () => void;
-} & ComponentPropsWithRef<"button">;
+} & ComponentPropsWithRef<"article">;
 
 export const Cast = ({
   personName,
@@ -116,11 +114,9 @@ export const Cast = ({
     <article
       className={cx(
         "flex flex-row w-fit p-2.5 rounded-lg",
-        "text-left text-[0.875rem] leading-[1.375rem]",
         "gap-2.5 justify-between min-w-fit",
-        "transition-colors duration-500 ease-in-out items-center gap-1",
-        "text-selago-800 bg-white",
-        "dark:text-selago-50 dark:bg-violet-900",
+        "bg-white items-center gap-1",
+        "dark:text-selago-50 dark:bg-violet-800",
         {
           "animate-openProdCast": deleting && !deletingState,
           "animate-closeProdCast": deletingState,
@@ -128,10 +124,12 @@ export const Cast = ({
       )}
       {...props}
     >
-      <span>{personName}</span>
+      <span className="text-sm leading-[1.375rem] text-selago-800 text-left dark:text-selago-50">
+        {personName}
+      </span>
       {deleting && (
         <button onClick={handleDeleteButton}>
-          <X size={16} />
+          <X size={16} className="text-selago-700 dark:text-selago-50" />
         </button>
       )}
     </article>

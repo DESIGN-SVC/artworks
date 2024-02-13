@@ -7,11 +7,7 @@ export default {
   tags: ["autodocs"],
   args: {
     personName: "Name",
-    id: "cast",
-    handleDelete: () => {
-      const component = document.getElementById("cast");
-      if (component) component.style.display = "none";
-    },
+    handleDelete: () => {},
   },
   argTypes: {
     personName: {
@@ -20,8 +16,8 @@ export default {
       },
     },
     deleting: {
-      control: {
-        type: "boolean",
+      table: {
+        disable: true,
       },
     },
     ref: {

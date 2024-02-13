@@ -9,13 +9,7 @@ export default {
     personName: "Name",
     personFunction: "Function",
     deleting: false,
-    id: "production",
-    handleDelete: () => {
-      const component = document.getElementById("production");
-      if (component) {
-        component.style.display = "none";
-      }
-    },
+    handleDelete: () => {},
   },
   argTypes: {
     personName: {
@@ -29,8 +23,8 @@ export default {
       },
     },
     deleting: {
-      control: {
-        type: "boolean",
+      table: {
+        disable: true,
       },
     },
     ref: {

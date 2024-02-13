@@ -154,6 +154,15 @@ export default {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
+      'openProdCast': {
+        from: { transform: "translateY(12%)", opacity: "0" },
+        to: { transform: "translateY(0)", opacity: "1", }
+
+      },
+      'closeProdCast': {
+        from: { transform: "translateY(0)", opacity: "1" },
+        to: { transform: "translateY(12%)", opacity: "0", }
+      },
     },
     animation: {
       'shake': 'shake 200ms',
