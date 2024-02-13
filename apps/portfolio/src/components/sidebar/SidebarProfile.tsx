@@ -17,7 +17,7 @@ export const SidebarProfile = ({
   return (
     <a
       className={cx([
-        "flex flex-row w-[18.25rem] rounded-xl p-1",
+        "flex flex-row w-full rounded-xl p-1",
         "break-all text-white gap-2.5 items-top",
         "hover:transition-all hover:duration-500",
         "hover:bg-selago-50 hover:shadow-sm",
@@ -31,7 +31,7 @@ export const SidebarProfile = ({
         className="w-9 h-9 rounded-full"
         alt="Profile picture"
       />
-      <div className="w-full">
+      <article className="w-full">
         <h6
           className={cx([
             "font-medium text-selago-950 text-sm",
@@ -41,7 +41,7 @@ export const SidebarProfile = ({
           {name}
         </h6>
         <h6 className="text-selago-700 text-xs">{email}</h6>
-      </div>
+      </article>
       <CaretRight
         size={14}
         className="text-selago-200 min-w-fit dark:text-selago-500"
