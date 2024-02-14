@@ -6,7 +6,7 @@ type SidebarProfileProps = {
   imgSrc: string;
   name: string;
   email: string;
-  href?: string;
+  href: string;
 } & ComponentPropsWithRef<"a">;
 
 export const SidebarProfile = ({
@@ -31,7 +31,7 @@ export const SidebarProfile = ({
       <img
         src={imgSrc}
         className="w-9 h-9 rounded-full"
-        alt="Profile picture"
+        alt={"Profile picture of" + name}
       />
       <article className="w-full">
         <h6
@@ -40,7 +40,7 @@ export const SidebarProfile = ({
             "leading-none dark:text-selago-100",
           ])}
         >
-          {name}
+          <p>{name}</p>
         </h6>
         <h6 className="text-selago-700 text-xs">{email}</h6>
       </article>
