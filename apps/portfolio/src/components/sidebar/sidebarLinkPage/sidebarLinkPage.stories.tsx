@@ -3,7 +3,7 @@ import { StoryObj } from "@storybook/react";
 import { SidebarLinkPage } from "~/components/sidebar";
 
 export default {
-  title: "Components/Sidebar/RedirectPage",
+  title: "Components/Sidebar/Linkpage",
   component: SidebarLinkPage,
   tags: ["autodocs"],
   args: {
@@ -18,6 +18,11 @@ export default {
       },
     },
     ref: {
+      table: {
+        disable: true,
+      },
+    },
+    icon: {
       table: {
         disable: true,
       },
