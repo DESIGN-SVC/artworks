@@ -156,6 +156,15 @@ export default {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
+      'openProdCast': {
+        from: { transform: "translateY(12%)", opacity: "0" },
+        to: { transform: "translateY(0)", opacity: "1", }
+
+      },
+      'closeProdCast': {
+        from: { transform: "translateY(0)", opacity: "1" },
+        to: { transform: "translateY(12%)", opacity: "0", }
+      },
     },
     animation: {
       shake: "shake 200ms",
@@ -164,6 +173,9 @@ export default {
       slideInRight: "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
       swipeOutLeft: "swipeOutLeft 100ms ease-out",
       swipeOutRight: "swipeOutRight 100ms ease-out",
+      openProdCast: "openProdCast 500ms ease-in-out",
+      closeProdCast: "closeProdCast 500ms ease-in-out",
     },
   },
+  
 } satisfies Config;
