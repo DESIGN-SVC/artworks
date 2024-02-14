@@ -1,5 +1,5 @@
 import { ComponentPropsWithRef } from "react";
-export const LogoArtworks = ({...props}: ComponentPropsWithRef<"svg">) => (
+export const LogoArtworks = ({ ...props }: ComponentPropsWithRef<"svg">) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="100%"

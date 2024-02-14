@@ -27,7 +27,7 @@ const TwToast = cva(
     defaultVariants: {
       success: true,
     },
-  }
+  },
 );
 
 const TwToastViewport = cva(
@@ -51,7 +51,7 @@ const TwToastViewport = cva(
     defaultVariants: {
       position: "bottom",
     },
-  }
+  },
 );
 
 type ToastProps = {
