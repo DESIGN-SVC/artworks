@@ -8,16 +8,16 @@ export default {
       const pseudoVariants = [
         // ... Any other pseudo variants you want to support.
         // See https://github.com/tailwindlabs/tailwindcss/blob/6729524185b48c9e25af62fc2372911d66e7d1f0/src/corePlugins.js#L78
-        'checked',
+        "checked",
       ].map((variant) =>
         Array.isArray(variant) ? variant : [variant, `&:${variant}`],
-      )
+      );
 
       for (const [variantName, state] of pseudoVariants) {
         addVariant(`group-peer-${variantName}`, (ctx) => {
-          const result = typeof state === 'function' ? state(ctx) : state
-          return result.replace(/&(\S+)/, ':merge(.peer)$1 ~ .group &')
-        })
+          const result = typeof state === "function" ? state(ctx) : state;
+          return result.replace(/&(\S+)/, ":merge(.peer)$1 ~ .group &");
+        });
       }
     },
   ],
@@ -116,52 +116,66 @@ export default {
         800: "#B0046C",
         900: "#92095C",
         950: "#5B0034",
-      }
+      },
     },
     fontFamily: {
       sans: ["SF", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
     keyframes: {
-    'shake': {
-      '25%': {
-        transform: 'translateX(4px)'
+      shake: {
+        "25%": {
+          transform: "translateX(4px)",
+        },
+        "50%": {
+          transform: "translateX(-5px)",
+        },
+        "100%": {
+          transform: "translateX(4px)",
+        },
       },
-      '50%': {
-        transform: 'translateX(-5px)'
-      },
-      '100%': {
-        transform: 'translateX(4px)'
-      },
-     },
-      'hide': {
+      hide: {
         from: { opacity: 1 },
         to: { opacity: 0 },
       },
-      'slideInRight': {
+      slideInRight: {
         from: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
         to: { transform: "translateX(0)" },
       },
-      'slideInLeft': {
-        from: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
+      slideInLeft: {
+        from: {
+          transform: "translateX(calc(-100% - var(--viewport-padding)))",
+        },
         to: { transform: "translateX(0)" },
       },
-      'swipeOutLeft': {
+      swipeOutLeft: {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(-100% - var(--viewport-padding)))" },
       },
-      'swipeOutRight': {
+      swipeOutRight: {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
+      'openProdCast': {
+        from: { transform: "translateY(12%)", opacity: "0" },
+        to: { transform: "translateY(0)", opacity: "1", }
+
+      },
+      'closeProdCast': {
+        from: { transform: "translateY(0)", opacity: "1" },
+        to: { transform: "translateY(12%)", opacity: "0", }
+      },
     },
     animation: {
-      'shake': 'shake 200ms',
-      'hide': "hide 100ms ease-in",
-      'slideInLeft': "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
-      'slideInRight': "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
-      'swipeOutLeft': "swipeOutLeft 100ms ease-out",
-      'swipeOutRight': "swipeOutRight 100ms ease-out",
+      shake: "shake 200ms",
+      hide: "hide 100ms ease-in",
+      slideInLeft: "slideInLeft 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      slideInRight: "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
+      swipeOutLeft: "swipeOutLeft 100ms ease-out",
+      swipeOutRight: "swipeOutRight 100ms ease-out",
+      openProdCast: "openProdCast 500ms ease-in-out",
+      closeProdCast: "closeProdCast 500ms ease-in-out",
     },
   },
+  
 } satisfies Config;
