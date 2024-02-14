@@ -4,7 +4,6 @@ import { ComponentPropsWithRef } from "react";
 type SidebarLinkPageProps = {
   icon?: React.ReactNode;
   label: string;
-  href?: string;
 } & ComponentPropsWithRef<"a">;
 
 export const SidebarLinkPage = ({
