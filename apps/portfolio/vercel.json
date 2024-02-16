@@ -1,15 +1,5 @@
 {
   "$schema": "https://vercel.com/schema.json",
   "version": 2,
-  "builds": [
-    {
-      "src": "storybook-static/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "dist/**",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [{ "src": "/(.*)", "dest": "/$1" }]
 }
