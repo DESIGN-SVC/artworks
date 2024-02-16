@@ -1,0 +1,32 @@
+name: Portfolio App
+on:
+  push:
+    branches: [hml]
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Check if commit message contains '[skip ci]'
+        run: |
+          SKIP_CI=$(git log --format=%B -n 1 ${{ github.sha }} | grep -ci '\[skip ci\]')
+          if [ $SKIP_CI -eq 0 ]; then exit 0; else exit 1; fi
+        shell: bash
+      
+      - name: Deploy to Vercel Action
+        if: ${{ success() }}
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
