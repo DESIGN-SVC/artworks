@@ -2,7 +2,7 @@ name: Build and Deploy Storybook
 on:
   push:
     branches:
-      - "main" # Trigger the action only pushed to main branch
+      - "hml" # Trigger the action only pushed to main branch
 
 jobs:
   build-and-deploy:
