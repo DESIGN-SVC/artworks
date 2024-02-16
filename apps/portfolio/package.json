@@ -21,7 +21,7 @@
     "build-storybook": "storybook build",
     "storybook-docs": "storybook dev --docs",
     "build-storybook-docs": "storybook build --docs",
-    "deploy-app": "vercel deploy dist --prod --token 1DhNvWNCjobtPKmgz1bu10VQ"
+    "deploy-app": "vercel --prod"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.0.15",
