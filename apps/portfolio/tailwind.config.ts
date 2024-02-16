@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   purge: ["./index.html", "./src/**/*.{ts,tsx}"],
@@ -20,6 +21,32 @@ export default {
         });
       }
     },
+    plugin(({ addComponents }) => {
+      addComponents([
+        {
+          ".hover-this": {
+            transition: "all 0.3s ease-out",
+            cursor: "pointer",
+          },
+          ".container": {
+            paddingLeft: "2rem",
+            paddingRight: "2rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: "100%",
+            maxWidth: "1280px",
+          },
+        },
+        {
+          "@media (min-width: 1280px) ": {
+            ".container": {
+              paddingLeft: "5.625rem",
+              paddingRight: "5.625rem",
+            },
+          },
+        },
+      ]);
+    }),
   ],
 
   darkMode: "class",
@@ -117,6 +144,9 @@ export default {
         900: "#92095C",
         950: "#5B0034",
       },
+      purple: {
+        900: "#371642",
+      },
     },
     fontFamily: {
       sans: ["SF", "sans-serif"],
@@ -135,8 +165,8 @@ export default {
         },
       },
       hide: {
-        from: { opacity: 1 },
-        to: { opacity: 0 },
+        from: { opacity: "1" },
+        to: { opacity: "0" },
       },
       slideInRight: {
         from: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
@@ -164,6 +194,9 @@ export default {
       slideInRight: "slideInRight 1500ms cubic-bezier(0.16, 1, 0.3, 1)",
       swipeOutLeft: "swipeOutLeft 100ms ease-out",
       swipeOutRight: "swipeOutRight 100ms ease-out",
+    },
+    backgroundImage: {
+      hero: "url('/images/bg-login.png')",
     },
   },
 } satisfies Config;
