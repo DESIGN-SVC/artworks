@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Login, Root } from "./pages";
+import { Home, Root, PreLoginFormsContainer } from "./pages";
+import { AccountForms } from "./form";
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +12,29 @@ export const router = createBrowserRouter([
         index: true,
         id: "login",
         path: "/",
-        element: <Login />,
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.Login />
+          </PreLoginFormsContainer>
+        ),
+      },
+      {
+        id: "signup",
+        path: "/accounts/signup",
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.SignUp />
+          </PreLoginFormsContainer>
+        ),
+      },
+      {
+        id: "password-reset",
+        path: "/accounts/password/reset",
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.PasswordReset />
+          </PreLoginFormsContainer>
+        ),
       },
       {
         id: "home",
