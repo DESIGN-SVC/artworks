@@ -48,6 +48,7 @@ export const SearchBar = ({ onSearchResult }: SearchBarProps) => {
         "items-center justify-start",
         "rounded-[0.625rem] gap-5 p-1 pl-3.5",
         "bg-selago-50 dark:bg-violet-900",
+        "hover:bg-selago-100 dark:hover:bg-violet-900",
         "transition-colors duration-200 ease-in-out",
       ])}
     >
@@ -82,15 +83,12 @@ export const SearchBar = ({ onSearchResult }: SearchBarProps) => {
           "bg-white dark:bg-violet-900",
           "border-selago-200 dark:border-violet-800",
           "border border-solid rounded-md",
-          "hover:bg-selago-100 dark:hover:bg-violet-800",
-          "transition-colors duration-200 ease-in-out",
         ])}
       >
         <select
           className={cx([
             "w-full bg-transparent focus:outline-none",
             "text-xs text-selago-700 dark:text-selago-600",
-            "transition-colors duration-200 ease-in-out",
           ])}
           name="searchType"
           id="searchType"
