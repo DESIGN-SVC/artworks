@@ -1,5 +1,6 @@
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
+import { GreenCheck } from "~/icons";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"div">) => (
   <div
@@ -18,4 +19,18 @@ export const Title = ({ ...props }: ComponentPropsWithRef<"h1">) => (
 
 export const SubTitle = ({ ...props }: ComponentPropsWithRef<"h5">) => (
   <h5 className="text-selago-700" {...props} />
+);
+
+type SuccessProps = {
+  title: string;
+  description: string;
+};
+export const Success = ({ description, title }: SuccessProps) => (
+  <div className="flex flex-col gap-8">
+    <GreenCheck className="w-20" />
+    <div className="space-y-2">
+      <h2 className="text-2xl font-semibold text-selago-950">{title}</h2>
+      <p className="text-selago-700">{description}</p>
+    </div>
+  </div>
 );

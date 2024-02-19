@@ -14,23 +14,27 @@
     "lint-front": "lint-staged",
     "prepare": "cd && husky install .husky",
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build --outDir dist",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "storybook-docs": "storybook dev --docs",
-    "build-storybook-docs": "storybook build --docs"
+    "build-storybook-docs": "storybook build --docs",
+    "deploy-app": "vercel --prod"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@phosphor-icons/react": "^2.0.15",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
     "cva": "npm:class-variance-authority@^0.7.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.50.1",
     "react-router-dom": "^6.22.0",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite-tsconfig-paths": "^4.3.1",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^7.6.13",
@@ -39,6 +43,7 @@
     "@storybook/addon-links": "^7.6.12",
     "@storybook/addon-onboarding": "^1.0.11",
     "@storybook/blocks": "^7.6.12",
+    "@storybook/cli": "^7.6.16",
     "@storybook/react": "^7.6.12",
     "@storybook/react-vite": "^7.6.12",
     "@storybook/test": "^7.6.12",
