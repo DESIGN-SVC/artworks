@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home, Root, PreLoginFormsContainer } from "./pages";
-import { AccountForms } from "./form";
+import { AccountForms } from "./forms";
 
 export const router = createBrowserRouter([
   {
