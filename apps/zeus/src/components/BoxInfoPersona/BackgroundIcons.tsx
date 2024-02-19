@@ -19,20 +19,22 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
       if (firstImgRef.current && secondImgRef.current) {
         
         if (lastScroll < currentScroll) {
+          //scroll down
           setCurrentScrolltop(currentScrolltop - 10);
 
           firstImgRef.current.style.transform = `translate3d(${currentScrolltop * 0.05}px, ${currentScrolltop * 0.3}px, 0px)`;
           secondImgRef.current.style.transform = `translate3d(0px, ${currentScrolltop * 0.3}px, 0px)`;
 
-          if (currentIndex !== index) {setCurrentScrolltop(0);}
+          currentIndex !== index && setCurrentScrolltop(0);
 
         } else if (lastScroll > currentScroll) {
+          //scroll up
           setCurrentScrolltop(currentScrolltop + 10);
           
-          firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : -(currentScrolltop * 0.05) }px, ${currentScrolltop * 0.3}px, 0px`;
-          secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : currentScrolltop * 0.05}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
+          firstImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop * 0.3}px, 0px`;
+          secondImgRef.current.style.transform = `translate3d(${currentScrolltop > 0 ? setCurrentScrolltop(0) : 0}px, ${currentScrolltop > 0 ? 0 : currentScrolltop * 0.3}px, 0px)`;
           
-          if (currentIndex !== index) {setCurrentScrolltop(0);}
+          currentIndex !== index && setCurrentScrolltop(0);
         }
       }
     };
@@ -40,7 +42,7 @@ export const BackgroundIcons = ({ index, ...props }: BackgroundIconsProps) => {
     const handleScroll = () => {
       setLastScroll(currentScroll);
       setCurrentScroll(window.scrollY);
-      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight));
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight)-1);
       setScrollEffects();
     };
 

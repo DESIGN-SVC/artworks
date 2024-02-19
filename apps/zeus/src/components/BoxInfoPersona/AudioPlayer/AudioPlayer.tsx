@@ -1,21 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { cx } from "cva";
-import { ProgressBar, VolumeMixer } from "..";
+import { ProgressBar } from "../..";
+import { VolumeMixer } from ".";
 import { Pause, Play } from "phosphor-react";
+import { usePersonasContext } from "~/hooks";
 
-interface AudioPlayerProps {
-  audioSrc: string;
-  index: number;
-}
-
-export const AudioPlayer = ({ audioSrc, index }: AudioPlayerProps) => {
+export const AudioPlayer = () => {
+  const personas = usePersonasContext();
+  const [personaIndex, setPersonaIndex] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playAudio, setPlayAudio] = useState(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [progress, setProgress] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
-
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (audioRef.current) {
       const progressBar = e.currentTarget;
@@ -91,13 +88,15 @@ export const AudioPlayer = ({ audioSrc, index }: AudioPlayerProps) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY; //qnty que foi rolado desde o topo
-      const newIndex = Math.floor(scrollTop / window.innerHeight); //tamanho total da tela
-
-      if (newIndex !== currentIndex) {
-        setCurrentIndex(newIndex);
-      }
-    };
+      setCurrentIndex(Math.floor(window.scrollY / window.innerHeight) - 1);
+      setPersonaIndex(
+        currentIndex <= 0
+          ? 0
+          : currentIndex % personas.length === 0
+            ? personas.length - 1
+            : currentIndex % personas.length
+      );
+    }
     if (audioRef.current) {
       window.addEventListener("scroll", handleScroll);
       audioRef.current.addEventListener("loadedmetadata", handleDuration);
@@ -113,18 +112,18 @@ export const AudioPlayer = ({ audioSrc, index }: AudioPlayerProps) => {
         audioRef.current.removeEventListener("ended", handleAudioEnded);
       }
     };
-  }, [currentTime, duration, currentIndex]);
+  }, [currentTime, duration, currentIndex, personas.length]);
 
   return (
-    <div className={cx([
-      "order-3 md:w-full lg:mt-auto lg:pb-20 w-full",
-      (index === currentIndex  ? "animate-video-up" : "")
-    ]) 
-    }
+    <div
+      className={cx([
+        "order-3 md:w-full lg:mt-auto lg:pb-20 w-full relative z-30",
+        personaIndex === currentIndex ? "animate-audioUp" : "",
+      ])}
     >
       <audio className="hidden" ref={audioRef}>
-        <track src={audioSrc} kind="captions" />
-        <source src={audioSrc} type="audio/mp3" />
+        <track src={personas[personaIndex].audioSrc} kind="captions" />
+        <source src={personas[personaIndex].audioSrc} type="audio/mp3" />
       </audio>
       <div
         className={cx([
