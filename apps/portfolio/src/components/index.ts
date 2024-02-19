@@ -5,4 +5,4 @@ export * as Form from "./Form/form";
 export { Toast } from "./toast/Toast";
 export * as Tag from './tag/Tag' 
 
-export * as SearchBar from './searchBar/SearchBar';
+export * as Searchbar from './searchbar/Searchbar';
