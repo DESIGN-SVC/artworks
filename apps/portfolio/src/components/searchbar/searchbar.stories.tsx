@@ -7,10 +7,18 @@ export default {
   tags: ["autodocs"],
   component: Searchbar.Root,
   argTypes: {
-    onSearchResult: {
-      description: "Callback function to handle search results",
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
     },
   },
+  
 };
 
 export const Default: StoryObj = {

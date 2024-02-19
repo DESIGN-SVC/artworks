@@ -6,8 +6,15 @@ export default {
   tags: ["autodocs"],
   component: Select.Field,
   argTypes: {
-    onSearchResult: {
-      description: "Callback function to handle search results",
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
