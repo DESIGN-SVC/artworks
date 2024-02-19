@@ -30,9 +30,9 @@ export const Login: StoryObj = {
           <SubTitle>Enter your access</SubTitle>
         </div>
         <form className="space-y-5">
-          <Input label="User" placeholder="User" type="text" />
+          <Input.Input label="User" placeholder="User" type="text" />
           <div className="space-y-2.5 text-end">
-            <Input
+            <Input.Password
               label="Password"
               placeholder="Password"
               type="password"
@@ -72,7 +72,7 @@ export const ResetPassword: StoryObj = {
           <SubTitle>No worries, we’ll send you reset instructions.</SubTitle>
         </div>
         <form className="space-y-5">
-          <Input label="E-Mail" placeholder="E-Mail" type="email" />
+          <Input.Input label="E-Mail" placeholder="E-Mail" type="email" />
           <Button appearance="tertiary" size="lg">
             Continue
           </Button>
@@ -88,9 +88,9 @@ export const Register: StoryObj = {
       <>
         <Title>Register</Title>
         <form className="space-y-5">
-          <Input label="Name" placeholder="Name" type="text" />
-          <Input label="E-Mail" placeholder="E-Mail" type="email" />
-          <Input label="Team" placeholder="Team" type="text" />
+          <Input.Input label="Name" placeholder="Name" type="text" />
+          <Input.Input label="E-Mail" placeholder="E-Mail" type="email" />
+          <Input.Password label="Team" placeholder="Team" type="text" />
           <Button appearance="tertiary" size="lg">
             Continue
           </Button>
@@ -112,14 +112,14 @@ export const Error: StoryObj = {
             <SubTitle>Enter your access</SubTitle>
           </div>
           <form className="space-y-5">
-            <Input
+            <Input.Input
               label="User"
               placeholder="User"
               type="text"
               error={error ? "Error" : ""}
             />
             <div className="space-y-2.5 text-end">
-              <Input
+              <Input.Password
                 label="Password"
                 placeholder="Password"
                 type="password"
