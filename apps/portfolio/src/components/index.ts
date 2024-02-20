@@ -5,3 +5,5 @@ export * as Form from "./Form/form";
 export { Toast } from "./toast/Toast";
 export * as Tag from "./tag/Tag";
 export { Sidebar } from "./sidebar";
+export { Searchbar } from "./searchbar";
+export { MobileHeader } from "./mobileHeader/MobileHeader";

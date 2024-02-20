@@ -1,2 +1,2 @@
 export * as Select from "./select/Select";
-export * from "./Searchbar";
+export * as Searchbar from "./Searchbar";
