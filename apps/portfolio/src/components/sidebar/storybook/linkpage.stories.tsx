@@ -1,12 +1,15 @@
+import { House } from "@phosphor-icons/react";
 import { StoryObj } from "@storybook/react";
-import { MobileHeader } from "./MobileHeader";
+import { Sidebar } from "~/components";
 
 export default {
-  title: "Components/MobileHeader",
-  component: MobileHeader,
+  title: "Components/Sidebar/Linkpage",
+  component: Sidebar.Linkpage,
   tags: ["autodocs"],
   args: {
-
+    icon: <House size={21} />,
+    label: "Home",
+    href: "#",
   },
   argTypes: {
     asChild: {
@@ -15,6 +18,11 @@ export default {
       },
     },
     ref: {
+      table: {
+        disable: true,
+      },
+    },
+    icon: {
       table: {
         disable: true,
       },

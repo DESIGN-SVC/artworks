@@ -9,37 +9,28 @@ import {
 } from "@phosphor-icons/react";
 import { StoryObj } from "@storybook/react";
 import { cx } from "cva";
+import { Router } from "react-router-dom";
 import { Sidebar, ToggleSwitch } from "~/components";
 import { LogoArtworks } from "~/icons";
-import { LinkPage, Profile } from "~/components/sidebar";
+
+const navigator = {
+  createHref: () => "",
+  go: () => {},
+  push: () => {},
+  replace: () => {},
+};
 
 export default {
   title: "Components/Sidebar",
   component: Sidebar.Root,
+  decorators: [
+    (Story: React.ComponentType) => (
+      <Router location={"/?sidebar=true"} navigator={navigator}>
+        <Story />
+      </Router>
+    ),
+  ],
   tags: ["autodocs"],
-  args: {
-    openCloseState: true,
-  },
-  argTypes: {
-    asChild: {
-      table: {
-        disable: true,
-      },
-    },
-    ref: {
-      table: {
-        disable: true,
-      },
-    },
-    children: {
-      table: {
-        disable: true,
-      },
-    },
-  },
-};
-
-export const Default: StoryObj = {
   args: {
     children: (
       <>
@@ -61,19 +52,31 @@ export const Default: StoryObj = {
             />
           </Sidebar.SectionItem>
           <Sidebar.SectionItem>
-            <LinkPage icon={<House size={21} />} label="Home" href="#" />
-            <LinkPage
+            <Sidebar.Linkpage
+              icon={<House size={21} />}
+              label="Home"
+              href="#"
+            />
+            <Sidebar.Linkpage
               icon={<VideoCamera size={21} />}
               label="Audiovisual"
               href="#"
             />
-            <LinkPage
+            <Sidebar.Linkpage
               icon={<Camera size={21} />}
               label="Photography"
               href="#"
             />
-            <LinkPage icon={<Palette size={21} />} label="Pallete" href="#" />
-            <LinkPage icon={<AppWindow size={21} />} label="Apps" href="#" />
+            <Sidebar.Linkpage
+              icon={<Palette size={21} />}
+              label="Pallete"
+              href="#"
+            />
+            <Sidebar.Linkpage
+              icon={<AppWindow size={21} />}
+              label="Apps"
+              href="#"
+            />
 
             <span
               className={cx([
@@ -84,12 +87,16 @@ export const Default: StoryObj = {
             />
           </Sidebar.SectionItem>
           <Sidebar.SectionItem>
-            <LinkPage
+            <Sidebar.Linkpage
               icon={<Lock size={21} />}
               label="Manage access"
               href="#"
             />
-            <LinkPage icon={<SignOut size={21} />} label="Logout" href="#" />
+            <Sidebar.Linkpage
+              icon={<SignOut size={21} />}
+              label="Logout"
+              href="#"
+            />
 
             <span
               className={cx([
@@ -100,16 +107,48 @@ export const Default: StoryObj = {
           </Sidebar.SectionItem>
           <Sidebar.SectionItem>
             <ToggleSwitch />
-            <Profile
+            <Sidebar.Profile
               imgSrc="https://media.licdn.com/dms/image/C4D03AQH42xHBPSJopQ/profile-displayphoto-shrink_800_800/0/1648127827047?e=1712793600&v=beta&t=aoi6b3Dv2b6jBR9lHuFueAT-ra3asaEo6kuqC86T2yA"
               name="Betina"
-              email="aaa@gmial.com"
+              email="betina@wh.com"
               href="#"
             />
           </Sidebar.SectionItem>
         </Sidebar.Section>
-        <Sidebar.Close setOpenCloseState={() => {}} />
+        <Sidebar.Close />
       </>
     ),
+  },
+  argTypes: {
+    asChild: {
+      table: {
+        disable: true,
+      },
+    },
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const Mobile: StoryObj = {
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+};
+export const Desktop: StoryObj = {
+  parameters: {
+    viewport: {
+      defaultViewport: "desktop",
+    },
   },
 };

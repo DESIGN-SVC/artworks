@@ -1,9 +1,9 @@
 import { StoryObj } from "@storybook/react";
-import { SidebarProfile } from "./SidebarProfile";
+import { Sidebar } from "~/components";
 
 export default {
-  title: "Components/Sidebar/SidebarProfile",
-  component: SidebarProfile,
+  title: "Components/Sidebar/Profile",
+  component: Sidebar.Profile,
   tags: ["autodocs"],
   args: {
     imgSrc:
