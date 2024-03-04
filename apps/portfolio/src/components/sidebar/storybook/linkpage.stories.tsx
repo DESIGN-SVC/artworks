@@ -1,10 +1,10 @@
 import { House } from "@phosphor-icons/react";
 import { StoryObj } from "@storybook/react";
-import { SidebarLinkPage } from "~/components/sidebar";
+import { Sidebar } from "~/components";
 
 export default {
   title: "Components/Sidebar/Linkpage",
-  component: SidebarLinkPage,
+  component: Sidebar.Linkpage,
   tags: ["autodocs"],
   args: {
     icon: <House size={21} />,
