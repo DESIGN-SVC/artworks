@@ -32,9 +32,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
             "placeholder:opacity-0 focus-visible:placeholder:opacity-100 placeholder:text-selago-500",
 
-            "dark:border-transparent dark:bg-violet-950 dark:text-selago-300 dark:placeholder:text-selago-300",
+            "dark:border-transparent dark:bg-violet-950 dark:text-selago-400 dark:placeholder:text-selago-400",
 
-            "group-hover:border-selago-300 dark:group-hover:border-transparent",
+            "group-hover:border-selago-400 dark:group-hover:border-transparent",
             {
               "!border-red-700 !bg-red-100 !text-red-700 placeholder:!text-red-700 animate-shake":
                 !!error,
@@ -119,8 +119,8 @@ export const Password = forwardRef<HTMLInputElement, InputProps>(
             "rounded-lg bg-white border border-selago-200  flex-none",
             "duration-300 ease-out",
             "flex items-center justify-between",
-            "group-hover:border-selago-300 dark:group-hover:border-transparent",
-            "dark:border-transparent dark:bg-violet-950 dark:text-selago-300",
+            "group-hover:border-selago-400 dark:group-hover:border-transparent",
+            "dark:border-transparent dark:bg-violet-950 dark:text-selago-400",
             {
               "!border-red-700 !bg-red-100 !text-red-700 placeholder:!text-red-700 animate-shake":
                 !!error,
@@ -134,7 +134,7 @@ export const Password = forwardRef<HTMLInputElement, InputProps>(
               "outline-none peer bg-transparent py-4 flex-1",
               "placeholder:opacity-0 focus-visible:placeholder:opacity-100 placeholder:text-selago-500",
 
-              "dark:placeholder:text-selago-300",
+              "dark:placeholder:text-selago-400",
             ])}
             type={type}
             {...props}
