@@ -1,9 +1,15 @@
-import { CaretRight, X } from "@phosphor-icons/react";
+import { CaretRight, List, MagnifyingGlass, X } from "@phosphor-icons/react";
 import { cx } from "cva";
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
+import { LogoArtworks } from "~/icons";
+import { Search, Select } from "~/components";
 
-export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => {
+export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => (
+  <section className="w-full h-screen lg:h-auto lg:w-auto" {...props} />
+);
+
+export const Portal = ({ ...props }: ComponentPropsWithRef<"section">) => {
   const [searchParams] = useSearchParams();
   const sidebar = searchParams.get("sidebar");
   return (
@@ -20,19 +26,42 @@ export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => {
   );
 };
 
-export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => (
-  <article
-    className={cx([
-      "flex flex-col bg-selago-100 px-6 py-[3.125rem]",
-      "w-full max-w-[21.25rem] min-h-screen justify-start",
-      "text-sm items-start transition-colors duration-500",
-      "overflow-y-auto overflow-x-hidden z-50 lg:z-0",
-      "dark:bg-violet-950 dark:text-selago-100 ",
-      "lg:rounded-r-[0.875rem] lg:max-w-[14.25rem]",
-    ])}
-    {...props}
-  />
-);
+export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sidebar = searchParams.get("sidebar");
+  const ref = useRef<HTMLElement>(null);
+
+  function handleCloseOnOutsideClick(event: MouseEvent) {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      setSearchParams((state) => {
+        state.delete("sidebar");
+        return state;
+      });
+    }
+  }
+  useEffect(() => {
+    if (ref.current && sidebar) {
+      document.addEventListener("mousedown", handleCloseOnOutsideClick);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleCloseOnOutsideClick);
+    };
+  }, [ref, setSearchParams]);
+  return (
+    <article
+      className={cx([
+        "flex flex-col bg-selago-100 px-6 py-[3.125rem] flex-auto",
+        "w-full max-w-[21.25rem] min-h-screen justify-start",
+        "text-sm items-start transition-colors duration-500",
+        "overflow-y-auto overflow-x-hidden z-50 lg:z-0",
+        "dark:bg-violet-950 dark:text-selago-100 shadow-lg",
+        "lg:rounded-r-[0.875rem] lg:max-w-[14.25rem]",
+      ])}
+      ref={ref}
+      {...props}
+    />
+  );
+};
 
 export const SectionItem = ({ ...props }: ComponentPropsWithRef<"section">) => (
   <section
@@ -57,12 +86,12 @@ export const Close = ({ ...props }: ComponentPropsWithRef<"button">) => {
       }}
       className={cx([
         "bg-selago-50 lg:hidden dark:bg-violet-900",
-        "rounded-r-[0.875rem] min-w-[5.625rem] h-fit",
+        "rounded-r-[0.875rem] min-w-[5.625rem] flex-auto h-fit",
         "px-[1.875rem] py-6 shadow-sm z-20 dark:shadow-lg",
       ])}
       {...props}
     >
-      <X size={32} color="#61597A" />
+      <X size={32} color="#61597A" className="float-right" />
     </button>
   );
 };
@@ -135,3 +164,91 @@ export const Profile = ({
     />
   </a>
 );
+
+
+
+export const MobileMenu = ({ ...props }: ComponentPropsWithRef<"header">) => {
+  const selectValues = [
+    "All",
+    "Audiovisual",
+    "Photography",
+    "Branding",
+    "Design Digital",
+  ];
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sidebarParam = searchParams.get("sidebar");
+  const searchParam = searchParams.get("search");
+
+  const handleSidebarState = (sidebar: boolean) => {
+    setSearchParams((state) => {
+      sidebar ? state.set("sidebar", "true") : state.delete("sidebar");
+      return state;
+    });
+  };
+
+  const handleSearchState = (search: boolean) => {
+    setSearchParams((state) => {
+      search ? state.set("search", "true") : state.delete("search");
+      return state;
+    });
+  };
+
+  return (
+    <header
+      className={cx([
+        "flex flex-col w-full h-fit lg:hidden",
+        "items-center justify-between",
+      ])}
+      {...props}
+    >
+      <section
+        className={cx([
+          "flex flex-row w-full h-fit",
+          "items-center justify-between",
+          "px-[1.875rem] py-6 rounded-b-[0.875rem]",
+          "bg-selago-50 dark:bg-violet-900",
+          "transition-colors duration-500 ease-in-out",
+        ])}
+      >
+        <LogoArtworks className="lg:hidden w-[9.625rem] h-[1.125rem] text-pink-700 dark:text-violet-600" />
+        <aside className="flex flex-row items-center gap-5 lg:hidden">
+          <label
+            className="text-white cursor-pointer"
+            onClick={() => {
+              handleSearchState(!searchParam);
+            }}
+          >
+            <MagnifyingGlass
+              size={32}
+              color={searchParam ? "#F50DA3" : "#897EAD"}
+              className="transition-colors duration-500 ease-in-out"
+            />
+          </label>
+          <span className="w-px h-8 bg-selago-200 dark:bg-violet-800" />
+          <button
+            className="text-white"
+            onClick={() => {
+              handleSidebarState(!sidebarParam);
+            }}
+          >
+            <List size={32} color="#897EAD" />
+          </button>
+        </aside>
+      </section>
+      {searchParam && (
+        <section className="p-5 animate-openProdCast">
+          <Search.Root>
+            <Search.Input placeholder="Search projects" />
+            <Select.Root>
+              {selectValues.map((value) => (
+                <Select.Item key={value} value={value}>
+                  {value}
+                </Select.Item>
+              ))}
+            </Select.Root>
+          </Search.Root>
+        </section>
+      )}
+    </header>
+  );
+};

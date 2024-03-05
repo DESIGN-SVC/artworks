@@ -1,5 +1,5 @@
 import { StoryObj } from "@storybook/react";
-import { MobileMenu } from "./MobileMenu";
+import { MobileMenu } from "../Sidebar";
 import { Router } from "react-router-dom";
 
 const navigator = {

@@ -7,4 +7,3 @@ export * as Tag from "./tag/Tag";
 export * as Sidebar from "./sidebar/Sidebar";
 export * as Search from "./search/Search";
 export * as Select from "./select/Select";
-export { MobileMenu } from "./mobileMenu/MobileMenu";
