@@ -6,7 +6,7 @@ import { LogoArtworks } from "~/icons";
 import { Search, Select } from "~/components";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => (
-  <section className="w-full h-screen lg:h-auto lg:w-auto" {...props} />
+  <section className="w-full lg:h-auto lg:w-auto" {...props} />
 );
 
 export const Portal = ({ ...props }: ComponentPropsWithRef<"section">) => {
