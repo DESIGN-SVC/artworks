@@ -1,4 +1,4 @@
-export * as Breadcrumb from "./breadcrumb/Breadcrumb";
+export { Breadcrumb } from "./breadcrumb/Breadcrumb";
 export { Button } from "./button/Button";
 export { ToggleSwitch } from "./toggleSwitch/toggleSwitch";
 export * as Input from "./Input/input";
