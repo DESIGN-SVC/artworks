@@ -6,47 +6,54 @@ import { LogoArtworks } from "~/icons";
 import { Search, Select } from "~/components";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => (
-  <section className="w-full h-screen lg:h-auto lg:w-auto" {...props} />
+  <section className="w-full lg:h-auto lg:w-auto" {...props} />
 );
 
 export const Portal = ({ ...props }: ComponentPropsWithRef<"section">) => {
-  const [searchParams] = useSearchParams();
-  const sidebar = searchParams.get("sidebar");
-  return (
-    <section
-      className={cx([
-        "flex w-full flex-row h-screen fixed top-0 left-0 ",
-        "lg:sticky lg:translate-x-0",
-        "transform duration-500 ease-in-out",
-        { "translate-x-0": sidebar },
-        { "-translate-x-full": !sidebar },
-      ])}
-      {...props}
-    />
-  );
-};
-
-export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const sidebar = searchParams.get("sidebar");
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null),
+    content = ref.current?.querySelector("article"),
+    close = ref.current?.querySelector("button");
 
   function handleCloseOnOutsideClick(event: MouseEvent) {
-    if (ref.current && !ref.current.contains(event.target as Node)) {
+    if (
+      ref.current?.contains(event.target as Node) &&
+      !content?.contains(event.target as Node) &&
+      !close?.contains(event.target as Node)
+    ) {
       setSearchParams((state) => {
         state.delete("sidebar");
         return state;
       });
     }
   }
+
   useEffect(() => {
     if (ref.current && sidebar) {
-      document.addEventListener("mousedown", handleCloseOnOutsideClick);
+      document.addEventListener("click", handleCloseOnOutsideClick);
     }
     return () => {
-      document.removeEventListener("mousedown", handleCloseOnOutsideClick);
+      document.removeEventListener("click", handleCloseOnOutsideClick);
     };
-  }, [ref, setSearchParams]);
+  }, [sidebar]);
+
+  return (
+    <section
+      className={cx([
+        "flex w-full flex-row-reverse h-screen fixed top-0 left-0 ",
+        "lg:sticky lg:translate-x-0 lg:flex-row",
+        "transform duration-500 ease-in-out",
+        { "translate-x-0": sidebar },
+        { "-translate-x-full": !sidebar },
+      ])}
+      ref={ref}
+      {...props}
+    />
+  );
+};
+
+export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => {
   return (
     <article
       className={cx([
@@ -57,7 +64,6 @@ export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => {
         "dark:bg-violet-950 dark:text-selago-100 shadow-lg",
         "lg:rounded-r-[0.875rem] lg:max-w-[14.25rem]",
       ])}
-      ref={ref}
       {...props}
     />
   );
@@ -81,17 +87,21 @@ export const Close = ({ ...props }: ComponentPropsWithRef<"button">) => {
   };
   return (
     <button
-      onClick={() => {
-        handleSidebarState(false);
-      }}
       className={cx([
-        "bg-selago-50 lg:hidden dark:bg-violet-900",
+        "bg-selago-50 lg:hidden dark:bg-violet-900 cursor-default",
         "rounded-r-[0.875rem] min-w-[5.625rem] flex-auto h-fit",
         "px-[1.875rem] py-6 shadow-sm z-20 dark:shadow-lg",
       ])}
       {...props}
     >
-      <X size={32} color="#61597A" className="float-right" />
+      <X
+        onClick={() => {
+          handleSidebarState(false);
+        }}
+        size={32}
+        color="#61597A"
+        className="float-right cursor-pointer"
+      />
     </button>
   );
 };
@@ -165,8 +175,6 @@ export const Profile = ({
   </a>
 );
 
-
-
 export const MobileMenu = ({ ...props }: ComponentPropsWithRef<"header">) => {
   const selectValues = [
     "All",
@@ -176,7 +184,6 @@ export const MobileMenu = ({ ...props }: ComponentPropsWithRef<"header">) => {
     "Design Digital",
   ];
   const [searchParams, setSearchParams] = useSearchParams();
-  const sidebarParam = searchParams.get("sidebar");
   const searchParam = searchParams.get("search");
 
   const handleSidebarState = (sidebar: boolean) => {
@@ -228,7 +235,7 @@ export const MobileMenu = ({ ...props }: ComponentPropsWithRef<"header">) => {
           <button
             className="text-white"
             onClick={() => {
-              handleSidebarState(!sidebarParam);
+              handleSidebarState(true);
             }}
           >
             <List size={32} color="#897EAD" />
