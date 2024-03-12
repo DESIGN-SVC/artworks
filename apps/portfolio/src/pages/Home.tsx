@@ -15,6 +15,7 @@ export const Home = () => (
     <Sidebar.Root>
       <Sidebar.MobileMenu />
       <Sidebar.Portal>
+        <Sidebar.Close />
         <Sidebar.Section>
           <Sidebar.SectionItem>
             <LogoArtworks
@@ -96,7 +97,6 @@ export const Home = () => (
             />
           </Sidebar.SectionItem>
         </Sidebar.Section>
-        <Sidebar.Close />
       </Sidebar.Portal>
     </Sidebar.Root>
   </div>
