@@ -21,8 +21,6 @@ const twTitleReturn = cva(
 
 type TitleReturnProps = {
   label: string;
-  size?: "sm" | "md" | "lg";
-  className?: string;
 } & VariantProps<typeof twTitleReturn> &
   ComponentPropsWithRef<"button">;
 
@@ -34,10 +32,8 @@ export const TitleReturn = ({
 }: TitleReturnProps) => {
   const navigate = useNavigate();
 
-  const handleReturn = () => {
-    navigate(-1);
-  };
-  
+  const handleReturn = () => navigate(-1);
+
   return (
     <button
       className={twTitleReturn({ className, size })}

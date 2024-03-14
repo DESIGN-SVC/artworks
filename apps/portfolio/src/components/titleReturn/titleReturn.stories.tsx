@@ -1,5 +1,5 @@
 import { StoryObj } from "@storybook/react";
-import { TitleReturn } from "~/components";
+import { TitleReturn } from "./TitleReturn";
 import { Router } from "react-router-dom";
 
 const navigator = {
