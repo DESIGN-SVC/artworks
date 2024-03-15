@@ -8,10 +8,10 @@ import {
   Lock,
 } from "@phosphor-icons/react";
 import { cx } from "cva";
-import { Sidebar, ToggleSwitch } from "~/components";
+import { Profile, Sidebar, ToggleSwitch } from "~/components";
 import { LogoArtworks } from "~/icons";
 export const Home = () => (
-  <div className="grid">
+  <div className="flex flex-col lg:flex-row bg-selago-50">
     <Sidebar.Root>
       <Sidebar.MobileMenu />
       <Sidebar.Portal>
@@ -99,5 +99,13 @@ export const Home = () => (
         </Sidebar.Section>
       </Sidebar.Portal>
     </Sidebar.Root>
+    <div className="flex flex-col gap-[20px] m-[20px] w-full">
+      <Profile.Picture imgSrc="https://media.licdn.com/dms/image/C4D03AQH42xHBPSJopQ/profile-displayphoto-shrink_800_800/0/1648127827047?e=1712793600&v=beta&t=aoi6b3Dv2b6jBR9lHuFueAT-ra3asaEo6kuqC86T2yA" />
+      <Profile.Information
+        fullName="Betina"
+        email="betina@wh.com"
+        team="Design"
+      />
+    </div>
   </div>
 );
