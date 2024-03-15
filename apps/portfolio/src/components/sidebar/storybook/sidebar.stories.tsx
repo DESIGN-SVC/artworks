@@ -7,15 +7,33 @@ import {
   VideoCamera,
   Lock,
 } from "@phosphor-icons/react";
+import { StoryObj } from "@storybook/react";
 import { cx } from "cva";
+import { Router } from "react-router-dom";
 import { Sidebar, ToggleSwitch } from "~/components";
 import { LogoArtworks } from "~/icons";
-export const Home = () => (
-  <div className="grid">
-    <Sidebar.Root>
-      <Sidebar.MobileMenu />
-      <Sidebar.Portal>
-        <Sidebar.Close />
+
+const navigator = {
+  createHref: () => "",
+  go: () => {},
+  push: () => {},
+  replace: () => {},
+};
+
+export default {
+  title: "Components/Sidebar",
+  component: Sidebar.Root,
+  decorators: [
+    (Story: React.ComponentType) => (
+      <Router location={"/?sidebar=true"} navigator={navigator}>
+        <Story />
+      </Router>
+    ),
+  ],
+  tags: ["autodocs"],
+  args: {
+    children: (
+      <>
         <Sidebar.Section>
           <Sidebar.SectionItem>
             <LogoArtworks
@@ -97,7 +115,40 @@ export const Home = () => (
             />
           </Sidebar.SectionItem>
         </Sidebar.Section>
-      </Sidebar.Portal>
-    </Sidebar.Root>
-  </div>
-);
+        <Sidebar.Close />
+      </>
+    ),
+  },
+  argTypes: {
+    asChild: {
+      table: {
+        disable: true,
+      },
+    },
+    ref: {
+      table: {
+        disable: true,
+      },
+    },
+    children: {
+      table: {
+        disable: true,
+      },
+    },
+  },
+};
+
+export const Mobile: StoryObj = {
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+};
+export const Desktop: StoryObj = {
+  parameters: {
+    viewport: {
+      defaultViewport: "desktop",
+    },
+  },
+};

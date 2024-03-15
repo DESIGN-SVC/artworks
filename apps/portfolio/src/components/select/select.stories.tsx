@@ -1,10 +1,10 @@
-import { Select } from "..";
+import { Select } from "~/components";
 import { StoryObj } from "@storybook/react";
 
 export default {
-  title: "Components/Searchbar/Select",
+  title: "Components/Select",
   tags: ["autodocs"],
-  component: Select.Field,
+  component: Select.Root,
   argTypes: {
     ref: {
       table: {

@@ -142,9 +142,9 @@ const twSearch = cva(
     "text-[0.75rem] text-selago-600 leading-[1.375rem]",
     "min-w-fit transition-colors duration-500 ease-in-out",
     "hover:bg-selago-200 hover:text-selago-600",
-    "active:bg-selago-300 active:text-selago-200 ",
+    "active:bg-selago-400 active:text-selago-200 ",
     "disabled:bg-gray-300 disabled:text-gray-100 disabled:cursor-not-allowed",
-    "dark:bg-violet-950 dark:hover:bg-violet-900 dark:active:bg-violet-800 dark:active:text-selago-300",
+    "dark:bg-violet-950 dark:hover:bg-violet-900 dark:active:bg-violet-800 dark:active:text-selago-400",
   ],
   {
     variants: {
