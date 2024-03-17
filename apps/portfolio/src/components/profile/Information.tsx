@@ -1,7 +1,7 @@
-import { PencilSimple } from "@phosphor-icons/react";
+import { PencilSimple, X } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef, useRef, useState } from "react";
-import { Button } from "~/components";
+import { Button, Form, Input, Modal } from "~/components";
 
 type InformationProps = {
   fullName: string;
@@ -18,7 +18,7 @@ export const Information = ({
   const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const handleEditInfo = () => {
-    setModalOpen(true);
+    setModalOpen(!modalOpen);
   };
 
   return (
@@ -54,34 +54,63 @@ export const Information = ({
         <PencilSimple size={24} />
         Edit info
       </Button>
-      {modalOpen && (
-        <EditInformationModal
-          onSubmit={() => setModalOpen(false)}
-        />
-      )}
+      {!modalOpen && <EditInformationModal onClose={handleEditInfo} />}
     </section>
   );
 };
 
 type EditInformationModalProps = {
-} & ComponentPropsWithRef<"form">;
+  onClose: () => void;
+};
 
-const EditInformationModal = ({
-  ...props
-}: EditInformationModalProps) => {
+const EditInformationModal = ({ onClose }: EditInformationModalProps) => {
   return (
-    <form
-    className="" 
-    {...props}>
-      <h3>Edit profile</h3>
-      <fieldset>
-        <label htmlFor="fullName">Name</label>
-        <input type="text" id="fullName" />
-      </fieldset>
-      <fieldset>
-        <label htmlFor="team">Team</label>
-        <input type="text" id="team" />
-      </fieldset>
-    </form>
+    <Modal.Overlay>
+      <Modal.Root>
+        <Modal.Portal>
+          <Modal.Title label="Edit profile" />
+          <Modal.Close />
+          <Modal.Content>
+            <p>oiiii</p>
+          </Modal.Content>
+        </Modal.Portal>
+        <Modal.ButtonArea>
+          <Button appearance="secondary" size="md" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button appearance="tertiary" size="md">
+            Save
+          </Button>
+        </Modal.ButtonArea>
+      </Modal.Root>
+    </Modal.Overlay>
+    // <div
+    //   className={cx([
+    //     "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+    //     "bg-[rgba(0,0,0,0.3)] rounded-[0.625rem] w-full h-full flex flex-col justify-center z-50",
+    //     "",
+    //   ])}
+    // >
+    //   <Form.Root>
+    //     <fieldset className="flex flex-row w-full">
+    //       <h3 className="text-selago-950 text-[22px] font-bold leading-[43px] mr-auto">
+    //         Edit profile
+    //       </h3>
+    //       <button onClick={onClose}>
+    //         <X size={30} />
+    //       </button>
+    //     </fieldset>
+    //     <Input.Input label="Full name" placeholder="Full name" />
+    //     <Input.Input label="Team" placeholder="Team" />
+    //   </Form.Root>
+    //   <div className="flex flex-row gap-[20px] bg-selago-200">
+    //     <Button appearance="secondary" size="md">
+    //       Cancel
+    //     </Button>
+    //     <Button appearance="tertiary" size="md">
+    //       Save
+    //     </Button>
+    //   </div>
+    // </div>
   );
 };
