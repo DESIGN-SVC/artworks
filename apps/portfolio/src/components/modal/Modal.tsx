@@ -1,16 +1,43 @@
 import { X } from "@phosphor-icons/react";
-import { ComponentPropsWithRef } from "react";
 
-export const Overlay = ({ ...props }: ComponentPropsWithRef<"div">) => (
-  <div
-    className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
-    {...props}
-  />
+import { useRef, ComponentPropsWithRef } from "react";
+
+type ModalProps = {
+  onClose: () => void;
+} & ComponentPropsWithRef<"div">;
+
+export const Overlay = ({ onClose, ...props }: ModalProps) => {
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (overlayRef.current) {
+      Array.from(overlayRef.current.children).map((child) => {
+        if (!child.contains(e.target as Node)) {
+          overlayRef.current?.style.setProperty("display", "none");
+          if (onClose) {
+            onClose();
+          }
+        }
+      });
+    }
+  };
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
+      ref={overlayRef}
+      onClick={handleClose}
+      {...props}
+    />
+  );
+};
+
+export const Root = ({ className, ...props }: ComponentPropsWithRef<"div">) => (
+  <div className={`flex flex-col ${className}`} {...props} />
 );
 
 export const Portal = ({ ...props }: ComponentPropsWithRef<"div">) => (
   <div
-    className="flex flex-col gap-5 w-full max-w-md p-[30px] pb-[60px] rounded-2xl bg-white"
+    className="flex flex-col w-full p-[30px] pb-[60px] rounded-2xl rounded-b-[0px] bg-white"
     {...props}
   />
 );
@@ -20,7 +47,10 @@ type TitleProps = {
 } & ComponentPropsWithRef<"h3">;
 
 export const Title = ({ label, ...props }: TitleProps) => (
-  <h1 className="text-selago-950 text-[22px] font-bold leading-[43px] mr-auto" {...props}>
+  <h1
+    className="text-selago-950 text-[22px] font-bold leading-[43px] mr-auto mb-[40px]"
+    {...props}
+  >
     {label}
   </h1>
 );
@@ -30,15 +60,18 @@ export const Content = ({ ...props }: ComponentPropsWithRef<"div">) => (
 );
 
 export const ButtonArea = ({ ...props }: ComponentPropsWithRef<"div">) => (
-  <div className="flex gap-5" {...props} />
+  <div
+    className="flex gap-5 p-[20px] rounded-b-[10px] bg-selago-50"
+    {...props}
+  />
 );
 
-export const Close = ({ ...props }: ComponentPropsWithRef<"button">) => (
-  <button className="absolute top-5 right-5" {...props}>
+type CloseProps = {
+  onClick: () => void;
+} & ComponentPropsWithRef<"button">;
+
+export const Close = ({ onClick, ...props }: CloseProps) => (
+  <button onClick={onClick} {...props}>
     <X size={30} />
   </button>
-);
-
-export const Root = ({ ...props }: ComponentPropsWithRef<"div">) => (
-  <div className="flex flex-col" {...props} />
 );
