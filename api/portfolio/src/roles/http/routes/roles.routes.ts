@@ -32,6 +32,6 @@ rolesRoutes.put('/:id', IsAuthenticated, (req, res) => {
   return updateRoleController.handle(req, res)
 })
 
-rolesRoutes.delete('/', IsAuthenticated, (req, res) => {
+rolesRoutes.delete('/:id', IsAuthenticated, (req, res) => {
   return deleteRoleController.handle(req, res)
 })
