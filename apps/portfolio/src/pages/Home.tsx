@@ -11,7 +11,7 @@ import { cx } from "cva";
 import { Sidebar, ToggleSwitch } from "~/components";
 import { LogoArtworks } from "~/icons";
 export const Home = () => (
-  <div className="grid">
+  <main className="flex flex-col bg-white dark:bg-violet-1000 lg:flex-row">
     <Sidebar.Root>
       <Sidebar.MobileMenu />
       <Sidebar.Portal>
@@ -93,11 +93,12 @@ export const Home = () => (
               imgSrc="https://media.licdn.com/dms/image/C4D03AQH42xHBPSJopQ/profile-displayphoto-shrink_800_800/0/1648127827047?e=1712793600&v=beta&t=aoi6b3Dv2b6jBR9lHuFueAT-ra3asaEo6kuqC86T2yA"
               name="Betina"
               email="betina@wh.com"
-              href="#"
+              href="/profile"
             />
           </Sidebar.SectionItem>
         </Sidebar.Section>
       </Sidebar.Portal>
     </Sidebar.Root>
-  </div>
+    <section className="flex flex-col p-[1.875rem] w-full bg-white dark:bg-violet-1000"></section>
+  </main>
 );

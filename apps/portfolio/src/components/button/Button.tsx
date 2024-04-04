@@ -23,6 +23,9 @@ const twButton = cva(
           "bg-white border border-selago-200 shadow-[inset_0_0_0_0_#F4F4F9]",
           "hover:shadow-[inset_0_-100px_0_0_#F4F4F9] active:shadow-[inset_0_-100px_0_0_#ffffff]",
           "text-selago-800",
+          "dark:bg-violet-800 dark:text-white dark:border-none",
+          "dark:shadow-[inset_0_0_0_0_#360863] dark:hover:shadow-[inset_0_-100px_0_0_#6423A6]",
+          "dark:active:shadow-[inset_0_-100px_0_0_#6423A6] dark:shadow-[inset_0_0_0_0_#6423A6]",
         ],
         tertiary: [
           "bg-pink-700 shadow-[inset_0_0_0_0_#B0046C] hover:shadow-[inset_0_-100px_0_0_#B0046C]",

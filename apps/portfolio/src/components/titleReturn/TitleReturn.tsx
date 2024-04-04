@@ -4,7 +4,10 @@ import { ComponentPropsWithRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const twTitleReturn = cva(
-  ["flex items-center gap-1", "text-selago-950 dark:text-selago-50 font-bold"],
+  [
+    "flex items-center gap-1 w-fit",
+    "text-selago-950 dark:text-selago-50 font-bold",
+  ],
   {
     variants: {
       size: {

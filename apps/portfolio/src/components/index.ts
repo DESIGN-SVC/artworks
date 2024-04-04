@@ -8,3 +8,4 @@ export * as Sidebar from "./sidebar/Sidebar";
 export * as Search from "./search/Search";
 export * as Select from "./select/Select";
 export { TitleReturn } from "./titleReturn/TitleReturn";
+export * as Modal from "./modal/Modal";
