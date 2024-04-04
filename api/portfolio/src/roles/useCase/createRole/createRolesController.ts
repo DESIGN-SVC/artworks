@@ -1,6 +1,6 @@
 import { container } from 'tsyringe'
 import { Request, Response } from 'express'
-import { CreateRoleUseCase } from './createRoleUseCase'
+import { CreateRoleUseCase } from './createRolesUseCase'
 import { z } from 'zod'
 
 export class CreateRoleController {

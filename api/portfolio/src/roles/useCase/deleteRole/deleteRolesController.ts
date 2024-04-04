@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { container } from 'tsyringe'
-import { DeleteRoleUseCase } from './deleteRoleUseCase'
+import { DeleteRoleUseCase } from './deleteRolesUseCase'
 import { z } from 'zod'
 
 export class DeleteRoleController {
