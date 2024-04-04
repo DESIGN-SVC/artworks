@@ -1,7 +1,7 @@
 import { CaretRight, List, MagnifyingGlass, X } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef, useEffect, useRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { LogoArtworks } from "~/icons";
 import { Search, Select } from "~/components";
 
@@ -140,7 +140,7 @@ export const Profile = ({
   href,
   ...props
 }: ProfileProps) => (
-  <a
+  <Link
     className={cx([
       "flex flex-row w-full rounded-xl p-1",
       "break-all text-white gap-2.5 items-top",
@@ -148,7 +148,7 @@ export const Profile = ({
       "hover:bg-selago-50 hover:shadow-sm",
       "dark:hover:bg-violet-1000 dark:hover:shadow-lg",
     ])}
-    href={href}
+    to={href}
     {...props}
   >
     <img
@@ -172,7 +172,7 @@ export const Profile = ({
       className="text-selago-200 min-w-fit dark:text-selago-500"
       weight="bold"
     />
-  </a>
+  </Link>
 );
 
 export const MobileMenu = ({ ...props }: ComponentPropsWithRef<"header">) => {

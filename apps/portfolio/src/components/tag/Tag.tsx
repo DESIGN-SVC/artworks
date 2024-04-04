@@ -25,13 +25,15 @@ type EpisodeProps = {
   text: string;
 } & ComponentPropsWithRef<"h5">;
 
-export const Episode = ({ icon, text, ...props }: EpisodeProps) => {
+export const Episode = ({ icon, text, className, ...props }: EpisodeProps) => {
   return (
     <h5
       className={cx(
         "flex flex-row items-center rounded-md",
-        "px-2 py-1.5 gap-1 w-fit",
-        "text-[0.625rem] text-white bg-[rgba(0,0,0,0.70)]"
+        "px-2 py-1.5 gap-1 w-fit backdrop-blur-[2px]",
+        "text-[0.625rem] text-white bg-[rgba(0,0,0,0.40)]",
+        "dark:bg-selago-950 dark:text-selago-300",
+        className
       )}
       {...props}
     >
@@ -78,8 +80,12 @@ export const Production = ({
       {...props}
     >
       <div className="flex flex-col gap-1">
-        <p className="text-sm leading-[0.875rem] text-selago-800 dark:text-selago-50">{personName}</p>
-        <p className="text-xs leading-[0.875rem] text-selago-600 dark:text-selago-400">{personFunction}</p>
+        <p className="text-sm leading-[0.875rem] text-selago-800 dark:text-selago-50">
+          {personName}
+        </p>
+        <p className="text-xs leading-[0.875rem] text-selago-600 dark:text-selago-400">
+          {personFunction}
+        </p>
       </div>
       {deleting && (
         <button onClick={handleDeleteButton}>

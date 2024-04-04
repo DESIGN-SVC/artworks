@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Root, PreLoginFormsContainer } from "./pages";
+import { Home, Root, Profile, PreLoginFormsContainer } from "./pages";
 import { AccountForms } from "./forms";
 
 export const router = createBrowserRouter([
@@ -41,6 +41,11 @@ export const router = createBrowserRouter([
         path: "/home",
         element: <Home />,
       },
+      {
+        id: "profile",
+        path: "/profile",
+        element: <Profile />,
+      }
     ],
   },
 ]);
