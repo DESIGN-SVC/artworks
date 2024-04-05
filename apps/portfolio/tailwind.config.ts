@@ -213,6 +213,7 @@ export default {
     },
     backgroundImage: {
       hero: "url('/images/bg-login.png')",
+      purple: "linear-gradient(180deg, #4A1979 0%, #200837 100%)",
     },
   },
 

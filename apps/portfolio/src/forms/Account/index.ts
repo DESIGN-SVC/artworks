@@ -1,3 +1,4 @@
 export { Login } from "./login";
-export { PasswordReset } from "./passwordReset";
+export { PasswordRecovery } from "./passwordRecovery";
 export { SignUp } from "./signUp";
+export { PasswordReset } from "./passwordReset";

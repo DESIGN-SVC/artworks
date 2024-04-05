@@ -1,6 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Root, Profile, PreLoginFormsContainer } from "./pages";
-import { AccountForms } from "./forms";
+import {
+  Home,
+  Root,
+  Profile,
+  PasswordReset,
+  SignUp,
+  Login,
+  PasswordRecovery,
+} from "./pages";
 
 export const router = createBrowserRouter([
   {
@@ -12,29 +19,22 @@ export const router = createBrowserRouter([
         index: true,
         id: "login",
         path: "/",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.Login />
-          </PreLoginFormsContainer>
-        ),
+        element: <Login />,
       },
       {
         id: "signup",
         path: "/accounts/signup",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.SignUp />
-          </PreLoginFormsContainer>
-        ),
+        element: <SignUp />,
+      },
+      {
+        id: "password-recovery",
+        path: "/accounts/password/recovery",
+        element: <PasswordRecovery />,
       },
       {
         id: "password-reset",
         path: "/accounts/password/reset",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.PasswordReset />
-          </PreLoginFormsContainer>
-        ),
+        element: <PasswordReset />,
       },
       {
         id: "home",
@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
         id: "profile",
         path: "/profile",
         element: <Profile />,
-      }
+      },
     ],
   },
 ]);

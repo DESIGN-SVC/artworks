@@ -47,7 +47,7 @@ export const Login = () => {
             error={password?.message}
           />
           <Link
-            to={"/accounts/password/reset"}
+            to={"/accounts/password/recovery"}
             className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors "
           >
             Forgot your password?
