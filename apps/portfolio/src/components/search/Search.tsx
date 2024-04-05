@@ -2,7 +2,7 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
 
-export const Root = ({ ...props }: ComponentPropsWithRef<"form">) => (
+export const Root = ({ className,...props }: ComponentPropsWithRef<"form">) => (
   <form
     className={cx([
       "flex flex-row w-fit",
@@ -11,6 +11,7 @@ export const Root = ({ ...props }: ComponentPropsWithRef<"form">) => (
       "bg-selago-50 dark:bg-violet-900",
       "hover:bg-selago-100 dark:hover:bg-violet-900",
       "transition-colors duration-200 ease-in-out",
+      className,
     ])}
     {...props}
   />
