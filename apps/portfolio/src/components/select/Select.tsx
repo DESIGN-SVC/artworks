@@ -24,7 +24,7 @@ export const Root = ({ ...props }: ComponentPropsWithRef<"select">) => (
 export const Item = ({ ...props }: ComponentPropsWithRef<"option">) => (
   <option
     className={cx([
-      "text-selago-700 dark:text-selago-300",
+      "text-selago-700 dark:text-selago-400",
       "bg-white dark:bg-violet-800",
     ])}
     {...props}
