@@ -12,6 +12,12 @@ type Pathname = "personal-info" | "password" | "finish";
 export const SignUp = () => {
   const [currentStep, setCurrentStep] = useState<Pathname>("personal-info");
   const [_, setSearchParams] = useSearchParams();
+  const [criteriaState, setCriteriaState] = useState<PasswordCriteria>({
+    length: false,
+    lowercase: false,
+    uppercase: false,
+    number: false,
+  });
 
   const {
     register,
@@ -51,20 +57,6 @@ export const SignUp = () => {
     }
   );
 
-  type PasswordCriteria = {
-    length: boolean;
-    lowercase: boolean;
-    uppercase: boolean;
-    number: boolean;
-  };
-
-  const [criteriaState, setCriteriaState] = useState<PasswordCriteria>({
-    length: false,
-    lowercase: false,
-    uppercase: false,
-    number: false,
-  });
-
   const handleCreatePassword = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
@@ -87,6 +79,9 @@ export const SignUp = () => {
       {currentStep == "password" && (
         <aside className="w-full flex flex-col gap-16 xl:h-[30.625rem] xl:justify-between">
           <LogoArtworks className="text-white w-full max-w-48 xl:h-5" />
+          <h2 className="text-white text-3xl font-medium -mb-24">
+            Password must contain:
+          </h2>
           <PasswordValidationContainer criteriaState={criteriaState} />
           <LogoConcentrix
             aria-description="Concentrix"
@@ -262,3 +257,10 @@ const SignUpSchema = z
   });
 
 type SignUpFields = z.infer<typeof SignUpSchema>;
+
+type PasswordCriteria = {
+  length: boolean;
+  lowercase: boolean;
+  uppercase: boolean;
+  number: boolean;
+};

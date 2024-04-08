@@ -1,41 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "~/components";
 
-type UserInformationProps = {
-  onClose: () => void;
-  submitRef: React.RefObject<HTMLButtonElement>;
-};
-
-export const UserInformation = ({
-  onClose,
-  submitRef,
-}: UserInformationProps) => {
-  type UserForm = {
-    name: string;
-    team: string;
-  };
-
-  const formSchema: z.ZodSchema<UserForm> = z.object({
-    name: z.string().min(1, "Could not be empty"),
-    team: z.string().min(1, "Could not be empty"),
-  });
-
+export const UserInformation = () => {
   const {
     register,
     handleSubmit,
     formState: {
       errors: { name, team },
     },
-  } = useForm<UserForm>({
-    resolver: zodResolver(formSchema),
+  } = useForm<UserFields>({
+    resolver: zodResolver(UserSchema),
   });
 
   const onSubmit = handleSubmit(
     async (fields) => {
       console.log(fields);
-      onClose();
     },
     (error) => {
       console.log(error);
@@ -43,12 +25,15 @@ export const UserInformation = ({
   );
 
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={onSubmit}
+      id="user-information-form"
+      className="space-y-5 mx-8 mb-[60px]"
+    >
       <Input.Input
         label="Name"
         placeholder="Name"
         type="text"
-        className="mb-5"
         {...register("name")}
         error={name?.message}
       />
@@ -59,7 +44,13 @@ export const UserInformation = ({
         {...register("team")}
         error={team?.message}
       />
-      <button className="hidden" type="submit" ref={submitRef} />
     </form>
   );
 };
+
+const UserSchema = z.object({
+  name: z.string().min(1, "Could not be empty"),
+  team: z.string().min(1, "Could not be empty"),
+});
+
+type UserFields = z.infer<typeof UserSchema>;

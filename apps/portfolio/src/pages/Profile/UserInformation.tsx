@@ -1,5 +1,5 @@
-import { PencilSimple } from "@phosphor-icons/react";
-import { useRef, useState } from "react";
+import { PencilSimple, X } from "@phosphor-icons/react";
+import { useState } from "react";
 import { Button, Modal } from "~/components";
 import { ProfileForms } from "~/forms";
 import { Card, Title } from "./Card";
@@ -18,77 +18,81 @@ export const PersonalInformation = ({
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
 
   return (
-    <Card>
-      <article className="flex flex-col gap-5 mr-auto w-full">
-        <Title label={"Personal info"} />
+    <>
+      <Card>
+        <article className="flex flex-col gap-5 mr-auto w-full">
+          <Title label={"Personal info"} />
 
-        <ul className="w-full flex flex-col gap-5 lg:mr-auto lg:flex-row">
-          <li className="flex flex-col flex-1">
-            <InfoHeader label="Full name" />
-            <InfoDetail info={fullName} />
-          </li>
+          <ul className="w-full flex flex-col gap-5 lg:mr-auto lg:flex-row">
+            <li className="flex flex-col flex-1">
+              <InfoHeader label="Full name" />
+              <InfoDetail info={fullName} />
+            </li>
 
-          <li className="flex flex-col flex-1">
-            <InfoHeader label="Email" />
-            <InfoDetail info={email} />
-          </li>
+            <li className="flex flex-col flex-1">
+              <InfoHeader label="Email" />
+              <InfoDetail info={email} />
+            </li>
 
-          <li className="flex flex-col flex-1">
-            <InfoHeader label="Team" />
-            <InfoDetail info={team} />
-          </li>
-        </ul>
-      </article>
-      <Button
-        appearance="secondary"
-        className="text-selago-300 lg:max-w-[9.375rem]"
-        onClick={() => setEditModalOpen(true)}
-      >
-        <PencilSimple size={24} />
-        Edit info
-      </Button>
+            <li className="flex flex-col flex-1">
+              <InfoHeader label="Team" />
+              <InfoDetail info={team} />
+            </li>
+          </ul>
+        </article>
+        <Button
+          appearance="secondary"
+          className="text-selago-300 lg:max-w-[9.375rem]"
+          onClick={() => setEditModalOpen(true)}
+        >
+          <PencilSimple size={24} />
+          Edit info
+        </Button>
+      </Card>
 
-      {editModalOpen && (
-        <EditInformationModal onClose={() => setEditModalOpen(false)} />
-      )}
-    </Card>
+      <EditInformationModal
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+      />
+    </>
   );
 };
 
 type EditInformationModalProps = {
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
-const EditInformationModal = ({ onClose }: EditInformationModalProps) => {
-  const submitRef = useRef<HTMLButtonElement>(null);
+const EditInformationModal = ({
+  open,
+  onOpenChange,
+}: EditInformationModalProps) => {
   return (
-    <Modal.Overlay onClose={onClose}>
-      <Modal.Root>
-        <Modal.Portal>
-          <Modal.Title label="Edit profile" />
-          <Modal.Content>
-            <ProfileForms.UserInformation
-              submitRef={submitRef}
-              onClose={onClose}
-            />
-          </Modal.Content>
-          <Modal.Close onClick={onClose} />
-        </Modal.Portal>
+    <Modal.Root open={open} onOpenChange={onOpenChange}>
+      <Modal.Content>
+        <Modal.Title>Edit profile</Modal.Title>
+        <Modal.Close>
+          <X size={30} className="text-selago-950 dark:text-selago-50" />
+        </Modal.Close>
+        <ProfileForms.UserInformation />
         <Modal.ButtonArea>
-          <Button appearance="secondary" size="md" onClick={onClose}>
-            Cancel
-          </Button>
+          <Modal.Close asChild>
+            <Button appearance="secondary" size="md">
+              Cancel
+            </Button>
+          </Modal.Close>
           <Button
+            type="submit"
             appearance="tertiary"
             size="md"
-            onClick={() => submitRef.current?.click()}
+            form="user-information-form"
+            // onClick={() => onOpenChange(false)}
           >
             Save
           </Button>
         </Modal.ButtonArea>
-        <Modal.Close onClick={onClose} />
-      </Modal.Root>
-    </Modal.Overlay>
+      </Modal.Content>
+    </Modal.Root>
   );
 };
 

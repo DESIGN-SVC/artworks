@@ -11,6 +11,12 @@ export const PasswordReset = () => {
   //provisório
   const [validation, setValidation] = useState(false);
   const [_, setSearchParams] = useSearchParams();
+  const [criteriaState, setCriteriaState] = useState<PasswordCriteria>({
+    length: false,
+    lowercase: false,
+    uppercase: false,
+    number: false,
+  });
 
   const {
     register,
@@ -37,20 +43,6 @@ export const PasswordReset = () => {
     }
   );
 
-  type PasswordCriteria = {
-    length: boolean;
-    lowercase: boolean;
-    uppercase: boolean;
-    number: boolean;
-  };
-
-  const [criteriaState, setCriteriaState] = useState<PasswordCriteria>({
-    length: false,
-    lowercase: false,
-    uppercase: false,
-    number: false,
-  });
-
   const handleCreatePassword = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
@@ -76,6 +68,9 @@ export const PasswordReset = () => {
       {!validation && (
         <aside className="w-full flex flex-col gap-16 xl:h-[30.625rem] xl:justify-between">
           <LogoArtworks className="text-white w-full max-w-48 xl:h-5" />
+          <h2 className="text-white text-3xl font-medium -mb-24">
+            Password must contain:
+          </h2>
           <PasswordValidationContainer criteriaState={criteriaState} />
           <LogoConcentrix
             aria-description="Concentrix"
@@ -164,3 +159,9 @@ const PasswordResetSchema = z
   });
 
 type PasswordResetFields = z.infer<typeof PasswordResetSchema>;
+type PasswordCriteria = {
+  length: boolean;
+  lowercase: boolean;
+  uppercase: boolean;
+  number: boolean;
+};

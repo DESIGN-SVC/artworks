@@ -4,6 +4,7 @@ import {
   Pencil,
   Trash,
   UserCircle,
+  X,
 } from "@phosphor-icons/react";
 import {
   ChangeEvent,
@@ -44,33 +45,37 @@ export const Picture = ({ imgSrc }: { imgSrc: string }) => {
           Upload new picture
         </Button>
       </article>
-      {editModalOpen && (
-        <NewPictureModal
-          onClose={() => setEditModalOpen(false)}
-          imgSrc={imgSrc}
-        />
-      )}
+
+      <NewPictureModal
+        imgSrc={imgSrc}
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+      />
     </Card>
   );
 };
 
 type NewPictureModalProps = {
   imgSrc: string;
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
-const NewPictureModal = ({ imgSrc, onClose }: NewPictureModalProps) => {
-  const [deleteModalOpen, setDeleteModalOpen] =  useState<boolean>(false);
+const NewPictureModal = ({
+  imgSrc,
+  open,
+  onOpenChange,
+}: NewPictureModalProps) => {
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
   const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
-  const [imgReference, setImgReference] = useState<string>(imgSrc);
+  const [newImgSrc, setNewImgSrc] = useState<string>(imgSrc);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleNewUpload = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onload = (event) =>
-        setImgReference(event.target?.result as string);
+      reader.onload = (event) => setNewImgSrc(event.target?.result as string);
       reader.readAsDataURL(file);
       setEditModalOpen(true);
     }
@@ -78,69 +83,77 @@ const NewPictureModal = ({ imgSrc, onClose }: NewPictureModalProps) => {
 
   return (
     <>
-      {!deleteModalOpen && !editModalOpen && (
-        <Modal.Overlay onClose={onClose}>
-          <Modal.Root>
-            <Modal.Portal>
-              <Modal.Title label="Profile photo" />
-              <Modal.Content className="flex items-center relative">
-                <img
-                  src={imgReference}
-                  alt="Profile Picture"
-                  className="w-[12.5rem] h-[12.5rem] rounded-full border-2 border-white"
-                />
-                <Button
-                  appearance="secondary"
-                  className="!absolute bottom-10 !w-[7.5rem]"
-                  size={"sm"}
-                  onClick={() => inputRef.current?.click()}
-                >
-                  <Camera size={18} />
-                  Upload photo
-                </Button>
-                <input
-                  type="file"
-                  className="hidden"
-                  accept="image/png, image/jpeg"
-                  ref={inputRef}
-                  onChange={handleNewUpload}
-                />
-              </Modal.Content>
-              <Modal.Close onClick={onClose} />
-            </Modal.Portal>
-            <Modal.ButtonArea>
-              <Button
-                appearance="secondary"
-                onClick={() => setDeleteModalOpen(true)}
-              >
-                <Trash size={24} />
-                Delete photo
-              </Button>
-              <Button
-                appearance="secondary"
-                onClick={() => setEditModalOpen(true)}
-              >
-                <Pencil size={24} />
-                Edit photo
-              </Button>
-            </Modal.ButtonArea>
-          </Modal.Root>
-        </Modal.Overlay>
-      )}
-      {deleteModalOpen && <DeletePictureModal onClose={onClose} />}
-      {editModalOpen && (
-        <EditPictureModal imgSrc={imgReference} onClose={onClose} />
-      )}
+      <Modal.Root open={open} onOpenChange={onOpenChange}>
+        <Modal.Content>
+          <Modal.Title className="m-8">Profile photo</Modal.Title>
+          <Modal.Close>
+            <X size={30} className="text-selago-950 dark:text-selago-50" />
+          </Modal.Close>
+          <div className="flex justify-center relative mb-[60px]">
+            <img
+              src={imgSrc}
+              alt="Profile Picture"
+              className="w-[12.5rem] h-[12.5rem] rounded-full border-2 border-white"
+            />
+            <Button
+              appearance="secondary"
+              className="!absolute bottom-10 !w-[7.5rem]"
+              size={"sm"}
+              onClick={() => inputRef.current?.click()}
+            >
+              <Camera size={18} />
+              Upload photo
+            </Button>
+            <input
+              type="file"
+              className="hidden"
+              accept="image/png, image/jpeg"
+              ref={inputRef}
+              onChange={handleNewUpload}
+            />
+          </div>
+          <Modal.ButtonArea>
+            <Button
+              appearance="secondary"
+              onClick={() => setDeleteModalOpen(true)}
+            >
+              <Trash size={24} />
+              Delete photo
+            </Button>
+            <Button
+              appearance="secondary"
+              onClick={() => setEditModalOpen(true)}
+            >
+              <Pencil size={24} />
+              Edit photo
+            </Button>
+          </Modal.ButtonArea>
+        </Modal.Content>
+      </Modal.Root>
+      <DeletePictureModal
+        open={deleteModalOpen}
+        onOpenChange={setDeleteModalOpen}
+      />
+      <EditPictureModal
+        imgSrc={newImgSrc}
+        open={editModalOpen}
+        onOpenChange={setEditModalOpen}
+      />
     </>
   );
 };
 
 type EditPictureModalProps = {
   imgSrc: string;
-  onClose: () => void;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 };
 
-const EditPictureModal = ({ imgSrc, onClose }: EditPictureModalProps) => {
+const EditPictureModal = ({
+  imgSrc,
+  open,
+  onOpenChange,
+}: EditPictureModalProps) => {
   const imageRef = useRef<HTMLImageElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [lastTouchY, setLastTouchY] = useState(0);
@@ -211,86 +224,90 @@ const EditPictureModal = ({ imgSrc, onClose }: EditPictureModalProps) => {
   };
 
   return (
-    <Modal.Overlay onClose={onClose}>
-      <Modal.Root>
-        <Modal.Portal>
-          <Modal.Title label="Edit photo" />
-          <Modal.Content className="relative overflow-hidden w-full items-center">
-            <div
-              onMouseDown={startDrag}
-              onMouseMove={onDrag}
-              onMouseUp={endDrag}
-              onMouseLeave={endDrag}
-              onTouchStart={startDrag}
-              onTouchMove={onDrag}
+    <Modal.Root open={open} onOpenChange={onOpenChange}>
+      <Modal.Content>
+        <Modal.Title>Edit photo</Modal.Title>
+        <Modal.Close>
+          <X size={30} className="text-selago-950 dark:text-selago-50" />
+        </Modal.Close>
+        <div className="flex flex-col w-full items-center mb-[60px]">
+          <div
+            onMouseDown={startDrag}
+            onMouseMove={onDrag}
+            onMouseUp={endDrag}
+            onMouseLeave={endDrag}
+            onTouchStart={startDrag}
+            onTouchMove={onDrag}
+            className={cx([
+              "w-[16.25rem] h-[16.25rem] relative overflow-hidden",
+              "select-none cursor-grab",
+              { "cursor-grabbing": isDragging },
+            ])}
+          >
+            <img
+              ref={imageRef}
+              src={imgSrc}
+              alt="Profile"
+              draggable={false}
+              className="absolute min-w-[16.25rem] min-h-[16.25rem] object-cover select-none"
+            />
+            <span
               className={cx([
-                "w-[16.25rem] h-[16.25rem] relative overflow-hidden",
-                "select-none cursor-grab",
-                { "cursor-grabbing": isDragging },
+                "w-full h-full max-w-[12.5rem] max-h-[12.5rem]",
+                "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
+                "rounded-full shadow-[#ffff]/50 shadow-[0_0_0_4000px_rgba(0,0,0,0.7)] ",
               ])}
-            >
-              <img
-                ref={imageRef}
-                src={imgSrc}
-                alt="Profile"
-                draggable={false}
-                className="absolute min-w-[16.25rem] min-h-[16.25rem] object-cover select-none"
-              />
-              <span
-                className={cx([
-                  "w-full h-full max-w-[12.5rem] max-h-[12.5rem]",
-                  "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-                  "rounded-full shadow-[#ffff]/50 shadow-[0_0_0_4000px_rgba(0,0,0,0.7)] ",
-                ])}
-              />
-              <Tag.Episode
-                className="absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2 select-none"
-                icon={<ArrowsOutCardinal size={14} />}
-                text="Drag to position"
-              />
-            </div>
-          </Modal.Content>
-        </Modal.Portal>
+            />
+            <Tag.Episode
+              className="absolute left-1/2 bottom-10 -translate-x-1/2 -translate-y-1/2 select-none"
+              icon={<ArrowsOutCardinal size={14} />}
+              text="Drag to position"
+            />
+          </div>
+        </div>
         <Modal.ButtonArea>
-          <Button appearance="secondary" onClick={onClose}>
-            Cancel
-          </Button>
+          <Modal.Close asChild>
+            <Button appearance="secondary">Cancel</Button>
+          </Modal.Close>
           <Button appearance="tertiary" onClick={handleCreateImg}>
             Save picture
           </Button>
         </Modal.ButtonArea>
-        <Modal.Close onClick={onClose} />
-      </Modal.Root>
-    </Modal.Overlay>
+        <Modal.Close />
+      </Modal.Content>
+    </Modal.Root>
   );
 };
 
-const DeletePictureModal = ({ onClose }: { onClose: () => void }) => {
+type DeletePictureModalProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+const DeletePictureModal = ({
+  open,
+  onOpenChange,
+}: DeletePictureModalProps) => {
   const handleDelete = () => {
-    
     // Lógica para delete posterior
   };
 
   return (
-    <>
-      <Modal.Overlay onClose={onClose}>
-        <Modal.Root>
-          <Modal.Portal>
-            <Modal.Title label="Profile photo" />
-            <Modal.Content>
-              <p>Are you sure you want to delete your photo?</p>
-            </Modal.Content>
-          </Modal.Portal>
-          <Modal.ButtonArea>
-            <Button appearance="secondary" onClick={onClose}>
-              Cancel
-            </Button>
-            <Button appearance="tertiary" onClick={handleDelete}>
-              Delete
-            </Button>
-          </Modal.ButtonArea>
-        </Modal.Root>
-      </Modal.Overlay>
-    </>
+    <Modal.Root open={open} onOpenChange={onOpenChange}>
+      <Modal.Content>
+        <Modal.Title>Profile photo</Modal.Title>
+        <div>
+          <p>Are you sure you want to delete your photo?</p>
+        </div>
+        <Modal.ButtonArea>
+          <Modal.Close>
+            <Button appearance="secondary">Cancel</Button>
+          </Modal.Close>
+          <Button appearance="tertiary" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.ButtonArea>
+      </Modal.Content>
+    </Modal.Root>
   );
 };

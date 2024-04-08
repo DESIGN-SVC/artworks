@@ -1,10 +1,10 @@
-import { PencilSimple } from "@phosphor-icons/react";
+import { PencilSimple, X } from "@phosphor-icons/react";
 import { useRef, useState } from "react";
 import { Button, Modal } from "~/components";
 import { ProfileForms } from "~/forms";
 import { Card, Subtitle, Title } from "./Card";
 
-export const Security = () => {
+export const EditPassword = () => {
   const [editPasswordModalOpen, setEditPasswordModalOpen] =
     useState<boolean>(false);
 
@@ -22,42 +22,45 @@ export const Security = () => {
         <PencilSimple size={24} />
         Edit password
       </Button>
-      {editPasswordModalOpen && (
-        <EditPasswordModal onClose={() => setEditPasswordModalOpen(false)} />
-      )}
+
+      <EditPasswordModal
+        open={editPasswordModalOpen}
+        onOpenChange={setEditPasswordModalOpen}
+      />
     </Card>
   );
 };
 
-const EditPasswordModal = ({ onClose }: { onClose: () => void }) => {
-  const submitRef = useRef<HTMLButtonElement>(null);
+type EditPasswordModalProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
 
+const EditPasswordModal = ({ open, onOpenChange }: EditPasswordModalProps) => {
   return (
-    <Modal.Overlay onClose={onClose}>
-      <Modal.Root>
-        <Modal.Portal className="relative max-h-[80vh] overflow-y-auto">
-          <Modal.Title label="Edit password" />
-          <Modal.Content>
-            <ProfileForms.PasswordReset
-              submitRef={submitRef}
-              onClose={onClose}
-            />
-          </Modal.Content>
-          <Modal.Close onClick={onClose} />
-        </Modal.Portal>
+    <Modal.Root open={open} onOpenChange={onOpenChange}>
+      <Modal.Content>
+        <div className="max-h-[80vh] overflow-y-auto">
+          <Modal.Title>Edit password</Modal.Title>
+          <Modal.Close>
+            <X size={30} className="text-selago-950 dark:text-selago-50" />
+          </Modal.Close>
+          <ProfileForms.EditPassword />
+        </div>
         <Modal.ButtonArea>
-          <Button appearance="secondary" size="md" onClick={onClose}>
+          <Button appearance="secondary" size="md">
             Cancel
           </Button>
           <Button
             appearance="tertiary"
             size="md"
-            onClick={() => submitRef.current?.click()}
+            form="edit-password-form"
+            type="submit"
           >
             Save
           </Button>
         </Modal.ButtonArea>
-      </Modal.Root>
-    </Modal.Overlay>
+      </Modal.Content>
+    </Modal.Root>
   );
 };

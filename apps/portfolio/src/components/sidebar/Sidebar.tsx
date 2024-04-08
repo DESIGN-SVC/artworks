@@ -41,8 +41,8 @@ export const Portal = ({ ...props }: ComponentPropsWithRef<"section">) => {
   return (
     <section
       className={cx([
-        "flex w-full flex-row-reverse h-screen fixed top-0 left-0 ",
-        "lg:sticky lg:translate-x-0 lg:flex-row",
+        "flex w-full flex-row-reverse h-screen fixed top-0 left-0 z-50",
+        "lg:sticky lg:translate-x-0 lg:flex-row ",
         "transform duration-500 ease-in-out",
         { "translate-x-0": sidebar },
         { "-translate-x-full": !sidebar },
@@ -60,7 +60,7 @@ export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => {
         "flex flex-col bg-selago-100 px-6 py-[3.125rem] flex-auto",
         "w-full max-w-[21.25rem] min-h-screen justify-start",
         "text-sm items-start transition-colors duration-500",
-        "overflow-y-auto overflow-x-hidden z-50 lg:z-0",
+        "overflow-y-auto overflow-x-hidden lg:z-0",
         "dark:bg-violet-950 dark:text-selago-100 shadow-lg",
         "lg:rounded-r-[0.875rem] lg:max-w-[14.25rem]",
       ])}

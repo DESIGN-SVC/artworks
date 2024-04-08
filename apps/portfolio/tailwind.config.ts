@@ -195,9 +195,13 @@ export default {
         from: { transform: "translateY(0)", opacity: "1" },
         to: { transform: "translateY(12%)", opacity: "0", }
       },
-      slideUp: {
-        from: { transform: "scale(0.9)", opacity: "0" },
-        to: { transform: "scaleY(1)", opacity: "1" },
+      'popShowIn': {
+        from: { transform: "translateY(0.5)", opacity: "0" },
+        to: { transform: "translateY(1)", opacity: "1" },
+      },
+      'popShowOut': {
+        from: { transform: "translateY(1)", opacity: "1" },
+        to: { transform: "translateY(0.5)", opacity: "0" },
       },
     },
     animation: {
@@ -209,7 +213,8 @@ export default {
       swipeOutRight: "swipeOutRight 100ms ease-out",
       openProdCast: "openProdCast 500ms ease-in-out",
       closeProdCast: "closeProdCast 500ms ease-in-out",
-      slideUp: "slideUp 500ms ease forwards",
+      popShowIn: "popShowIn 300ms ease-in-out",
+      popShowOut: "popShowOut 300ms ease-in-out",
     },
     backgroundImage: {
       hero: "url('/images/bg-login.png')",

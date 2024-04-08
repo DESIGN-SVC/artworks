@@ -18,7 +18,7 @@ import {
 import { LogoArtworks } from "~/icons";
 import { Picture } from "./Picture";
 import { PersonalInformation } from "./UserInformation";
-import { Security } from "./Security";
+import { EditPassword } from "./EditPassword";
 export const Profile = () => {
   const selectValues = [
     "All",
@@ -153,7 +153,7 @@ export const Profile = () => {
             email={userValues.email}
             team={userValues.team}
           />
-          <Security />
+          <EditPassword />
         </article>
       </section>
     </main>
