@@ -296,11 +296,12 @@ const DeletePictureModal = ({
     <Modal.Root open={open} onOpenChange={onOpenChange}>
       <Modal.Content>
         <Modal.Title>Profile photo</Modal.Title>
-        <div>
-          <p>Are you sure you want to delete your photo?</p>
-        </div>
+        <Modal.Close>
+          <X size={30} className="text-selago-950 dark:text-selago-50" />
+        </Modal.Close>
+        <p className="mx-8">Are you sure you want to delete your photo?</p>
         <Modal.ButtonArea>
-          <Modal.Close>
+          <Modal.Close asChild>
             <Button appearance="secondary">Cancel</Button>
           </Modal.Close>
           <Button appearance="tertiary" onClick={handleDelete}>

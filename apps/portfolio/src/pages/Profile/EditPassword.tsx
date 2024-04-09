@@ -1,5 +1,5 @@
 import { PencilSimple, X } from "@phosphor-icons/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button, Modal } from "~/components";
 import { ProfileForms } from "~/forms";
 import { Card, Subtitle, Title } from "./Card";

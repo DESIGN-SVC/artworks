@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { cx } from "cva";
 import {
+  Breadcrumb,
   Search,
   Select,
   Sidebar,
@@ -35,6 +36,9 @@ export const Profile = () => {
     imgSrc:
       "https://media.licdn.com/dms/image/C4D03AQH42xHBPSJopQ/profile-displayphoto-shrink_800_800/0/1648127827047?e=1712793600&v=beta&t=aoi6b3Dv2b6jBR9lHuFueAT-ra3asaEo6kuqC86T2yA",
   };
+
+  const breadcrumbPages = ["Home", "Profile"];
+  
   return (
     <main className="flex flex-col bg-white dark:bg-violet-1000 lg:flex-row">
       <Sidebar.Root>
@@ -127,7 +131,7 @@ export const Profile = () => {
 
       <section className="flex flex-col w-full p-[1.875rem]  bg-white dark:bg-violet-1000">
         <nav className="max-lg:hidden flex items-center justify-between mb-5">
-          <p>Breadcrumb</p>
+          <Breadcrumb pages={breadcrumbPages} />
           <Search.Root>
             <Search.Input placeholder="Search projects" />
             <Select.Root>

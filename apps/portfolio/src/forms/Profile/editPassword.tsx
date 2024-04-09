@@ -69,8 +69,8 @@ export const EditPassword = () => {
           error={confirmPassword?.message}
         />
       </form>
-      <aside className="mx-8 mt-[20px]">
-        <h3 className="text-selago-900 font-bold">Password must contain</h3>
+      <aside className="mx-8 mt-[20px] mb-[60px] space-y-5">
+        <h3 className="text-selago-900 font-bold dark:text-selago-50">Password must contain</h3>
         <PasswordValidationContainer criteriaState={passwordCriteriaState} />
       </aside>
     </>
