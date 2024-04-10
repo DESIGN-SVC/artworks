@@ -1,10 +1,15 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "~/components";
 
-export const UserInformation = () => {
+export const UserInformation = ({
+  setOpen,
+  setToast,
+}: {
+  setOpen: (open: boolean) => void;
+  setToast: (open: boolean) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -18,6 +23,8 @@ export const UserInformation = () => {
   const onSubmit = handleSubmit(
     async (fields) => {
       console.log(fields);
+      setOpen(false);
+      setToast(true);
     },
     (error) => {
       console.log(error);
@@ -28,7 +35,7 @@ export const UserInformation = () => {
     <form
       onSubmit={onSubmit}
       id="user-information-form"
-      className="space-y-5 mx-8 mb-[60px]"
+      className="space-y-5 mx-8 mb-[3.75rem]"
     >
       <Input.Input
         label="Name"

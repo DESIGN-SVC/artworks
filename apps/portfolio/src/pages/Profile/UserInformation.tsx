@@ -1,6 +1,6 @@
-import { PencilSimple, X } from "@phosphor-icons/react";
+import { Check, PencilSimple, X } from "@phosphor-icons/react";
 import { useState } from "react";
-import { Button, Modal } from "~/components";
+import { Button, Modal, Toast } from "~/components";
 import { ProfileForms } from "~/forms";
 import { Card, Title } from "./Card";
 
@@ -67,32 +67,48 @@ const EditInformationModal = ({
   open,
   onOpenChange,
 }: EditInformationModalProps) => {
+  const [toastOpen, setToastOpen] = useState<boolean>(false);
+
   return (
-    <Modal.Root open={open} onOpenChange={onOpenChange}>
-      <Modal.Content>
-        <Modal.Title>Edit profile</Modal.Title>
-        <Modal.Close>
-          <X size={30} className="text-selago-950 dark:text-selago-50" />
-        </Modal.Close>
-        <ProfileForms.UserInformation />
-        <Modal.ButtonArea>
-          <Modal.Close asChild>
-            <Button appearance="secondary" size="md">
-              Cancel
-            </Button>
+    <>
+      <Modal.Root open={open} onOpenChange={onOpenChange}>
+        <Modal.Content>
+          <Modal.Title>Edit profile</Modal.Title>
+          <Modal.Close>
+            <X size={30} className="text-selago-950 dark:text-selago-50" />
           </Modal.Close>
-          <Button
-            type="submit"
-            appearance="tertiary"
-            size="md"
-            form="user-information-form"
-            // onClick={() => onOpenChange(false)}
-          >
-            Save
-          </Button>
-        </Modal.ButtonArea>
-      </Modal.Content>
-    </Modal.Root>
+          <ProfileForms.UserInformation
+            setOpen={onOpenChange}
+            setToast={setToastOpen}
+          />
+          <Modal.ButtonArea>
+            <Modal.Close asChild>
+              <Button appearance="secondary" size="md">
+                Cancel
+              </Button>
+            </Modal.Close>
+            <Button
+              type="submit"
+              appearance="tertiary"
+              size="md"
+              form="user-information-form"
+            >
+              Save
+            </Button>
+          </Modal.ButtonArea>
+        </Modal.Content>
+      </Modal.Root>
+      <Toast
+        open={toastOpen}
+        onOpenChange={setToastOpen}
+        success={true}
+        position="bottom"
+        direction="right"
+        icon={<Check size={18} />}
+        label="Changes saved successfully"
+        className="min-w-[22.25rem] py-3.5 px-2.5"
+      />
+    </>
   );
 };
 

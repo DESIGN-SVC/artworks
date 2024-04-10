@@ -129,7 +129,7 @@ export const Profile = () => {
         </Sidebar.Portal>
       </Sidebar.Root>
 
-      <section className="flex flex-col w-full p-[1.875rem]  bg-white dark:bg-violet-1000">
+      <section className="flex flex-col w-full p-[1.875rem]  bg-white dark:bg-violet-1000 transition-colors duration-500">
         <nav className="max-lg:hidden flex items-center justify-between mb-5">
           <Breadcrumb pages={breadcrumbPages} />
           <Search.Root>

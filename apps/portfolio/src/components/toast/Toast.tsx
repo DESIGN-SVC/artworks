@@ -1,12 +1,13 @@
 import { X } from "@phosphor-icons/react";
 import * as ToastRadix from "@radix-ui/react-toast";
+import type { ToastProps } from "@radix-ui/react-toast";
 import { VariantProps, cva, cx } from "cva";
-import { ComponentPropsWithRef, useState } from "react";
+import { ComponentPropsWithRef } from "react";
 
 const TwToast = cva(
   [
-    "flex flex-row w-[18.75rem] max-w-[18.75rem] h-full justify-between items-center",
-    "p-5 rounded-[8px] gap-5 text-[0.875rem] leading-none text-wrap",
+    "flex flex-row w-full max-w-[18.75rem] h-full justify-between items-center",
+    "p-5 rounded-lg gap-5 text-[0.875rem] leading-none text-wrap",
     "data-[state=closed]:transition-[transform_300ms_ease-out] data-[state=closed]:animate-hide",
     "data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
     "data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out]",
@@ -27,7 +28,7 @@ const TwToast = cva(
     defaultVariants: {
       success: true,
     },
-  },
+  }
 );
 
 const TwToastViewport = cva(
@@ -51,56 +52,45 @@ const TwToastViewport = cva(
     defaultVariants: {
       position: "bottom",
     },
-  },
+  }
 );
 
-type ToastProps = {
-  open: boolean;
-  icon?: React.ReactNode;
-  text: string;
-  success: boolean;
-  position: "top" | "middle" | "bottom";
+type RootProps = {
   direction: "left" | "right";
+  position: "top" | "middle" | "bottom";
+  icon?: React.ReactNode;
 } & ComponentPropsWithRef<typeof ToastRadix.Provider> &
   VariantProps<typeof TwToast> &
-  VariantProps<typeof TwToastViewport>;
+  VariantProps<typeof TwToastViewport> &
+  ToastProps;
 
 export const Toast = ({
-  open,
   success,
   icon,
-  text,
+  label,
   position,
   direction,
+  className,
   ...props
-}: ToastProps) => {
-  const [openState, setOpenState] = useState<boolean>(open);
-
-  return (
-    <ToastRadix.Provider
-      swipeDirection={direction === "left" ? "left" : "right"}
-    >
+}: RootProps) => (
+  <aside className="absolute">
+    <ToastRadix.Provider swipeDirection={direction}>
       <ToastRadix.Root
-        className={cx(TwToast({ success, direction }))}
-        open={openState}
+        className={cx(TwToast({ success, direction }), className)}
         duration={4000}
-        onOpenChange={(open) => {
-          setOpenState(open);
-        }}
         {...props}
       >
-        <article className="flex flex-row gap-[16px] items-center">
+        <article className="flex flex-row gap-4 items-center">
           <span className="min-w-fit">{icon}</span>
-          <span>{text}</span>
+          <span>{label}</span>
         </article>
         <ToastRadix.Close className="cursor-pointer" asChild>
           <X className="min-w-fit" size={14} />
         </ToastRadix.Close>
       </ToastRadix.Root>
-
       <ToastRadix.Viewport
         className={TwToastViewport({ position, direction })}
       />
     </ToastRadix.Provider>
-  );
-};
+  </aside>
+);

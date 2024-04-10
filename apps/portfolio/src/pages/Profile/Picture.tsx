@@ -1,6 +1,7 @@
 import {
   ArrowsOutCardinal,
   Camera,
+  Check,
   Pencil,
   Trash,
   UserCircle,
@@ -15,7 +16,7 @@ import {
   TouchEvent,
 } from "react";
 import { cx } from "cva";
-import { Button, Modal, Tag } from "~/components";
+import { Button, Modal, Tag, Toast } from "~/components";
 import { Card, Subtitle } from "./Card";
 
 export const Picture = ({ imgSrc }: { imgSrc: string }) => {
@@ -23,7 +24,7 @@ export const Picture = ({ imgSrc }: { imgSrc: string }) => {
 
   return (
     <Card>
-      <article className="w-full flex flex-col items-center gap-[20px] lg:flex-row">
+      <article className="w-full flex flex-col items-center gap-5 lg:flex-row">
         <img
           src={imgSrc}
           alt="Profile Picture"
@@ -77,8 +78,18 @@ const NewPictureModal = ({
       const reader = new FileReader();
       reader.onload = (event) => setNewImgSrc(event.target?.result as string);
       reader.readAsDataURL(file);
-      setEditModalOpen(true);
+      toggleModal("edit");
     }
+  };
+
+  const toggleModal = (modal: "delete" | "edit" | "main") => {
+    const isDelete = modal === "delete";
+    const isEdit = modal === "edit";
+    const isMain = modal === "main";
+
+    setDeleteModalOpen(isDelete);
+    setEditModalOpen(isEdit);
+    onOpenChange(isMain || !(isDelete || isEdit));
   };
 
   return (
@@ -89,7 +100,7 @@ const NewPictureModal = ({
           <Modal.Close>
             <X size={30} className="text-selago-950 dark:text-selago-50" />
           </Modal.Close>
-          <div className="flex justify-center relative mb-[60px]">
+          <div className="flex justify-center relative mb-[3.75rem]">
             <img
               src={imgSrc}
               alt="Profile Picture"
@@ -115,15 +126,12 @@ const NewPictureModal = ({
           <Modal.ButtonArea>
             <Button
               appearance="secondary"
-              onClick={() => setDeleteModalOpen(true)}
+              onClick={() => toggleModal("delete")}
             >
               <Trash size={24} />
               Delete photo
             </Button>
-            <Button
-              appearance="secondary"
-              onClick={() => setEditModalOpen(true)}
-            >
+            <Button appearance="secondary" onClick={() => toggleModal("edit")}>
               <Pencil size={24} />
               Edit photo
             </Button>
@@ -154,6 +162,7 @@ const EditPictureModal = ({
   open,
   onOpenChange,
 }: EditPictureModalProps) => {
+  const [toastOpen, setToastOpen] = useState<boolean>(false);
   const imageRef = useRef<HTMLImageElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [lastTouchY, setLastTouchY] = useState(0);
@@ -220,7 +229,9 @@ const EditPictureModal = ({
     img.src = imgSrc;
     img.crossOrigin = "anonymous";
     //Resto da lógica para upload da imagem
-    window.location.reload();
+
+    setToastOpen(true);
+    onOpenChange(false);
   };
 
   return (
@@ -230,7 +241,7 @@ const EditPictureModal = ({
         <Modal.Close>
           <X size={30} className="text-selago-950 dark:text-selago-50" />
         </Modal.Close>
-        <div className="flex flex-col w-full items-center mb-[60px]">
+        <div className="flex flex-col w-full items-center mb-[3.75rem]">
           <div
             onMouseDown={startDrag}
             onMouseMove={onDrag}
@@ -275,6 +286,7 @@ const EditPictureModal = ({
         </Modal.ButtonArea>
         <Modal.Close />
       </Modal.Content>
+      <SuccessToast open={toastOpen} onOpenChange={setToastOpen} />
     </Modal.Root>
   );
 };
@@ -288,7 +300,11 @@ const DeletePictureModal = ({
   open,
   onOpenChange,
 }: DeletePictureModalProps) => {
+  const [toastOpen, setToastOpen] = useState<boolean>(false);
+
   const handleDelete = () => {
+    setToastOpen(true);
+    onOpenChange(false);
     // Lógica para delete posterior
   };
 
@@ -299,7 +315,9 @@ const DeletePictureModal = ({
         <Modal.Close>
           <X size={30} className="text-selago-950 dark:text-selago-50" />
         </Modal.Close>
-        <p className="mx-8">Are you sure you want to delete your photo?</p>
+        <p className="mx-8 text-xl text-selago-950 dark:text-selago-50 mb-[3.75rem]">
+          Are you sure you want to delete your photo?
+        </p>
         <Modal.ButtonArea>
           <Modal.Close asChild>
             <Button appearance="secondary">Cancel</Button>
@@ -309,6 +327,28 @@ const DeletePictureModal = ({
           </Button>
         </Modal.ButtonArea>
       </Modal.Content>
+      <SuccessToast open={toastOpen} onOpenChange={setToastOpen} />
     </Modal.Root>
+  );
+};
+
+const SuccessToast = ({
+  open,
+  onOpenChange,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+}) => {
+  return (
+    <Toast
+      open={open}
+      onOpenChange={onOpenChange}
+      success={true}
+      position="bottom"
+      direction="right"
+      icon={<Check size={18} />}
+      label="Changes saved successfully"
+      className="min-w-[22.25rem] py-3.5 px-2.5"
+    />
   );
 };

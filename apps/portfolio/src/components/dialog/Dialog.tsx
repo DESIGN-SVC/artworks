@@ -15,7 +15,7 @@ export const Content = ({ className, children, ...props }: ContentProps) => (
     <Dialog.Content
       className={cx([
         "fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-        "z-[100] rounded-2xl w-[29.25rem] bg-white dark:bg-violet-1000",
+        "z-[100] rounded-2xl w-full max-w-[29.25rem] bg-white dark:bg-violet-1000",
         className,
       ])}
       {...props}

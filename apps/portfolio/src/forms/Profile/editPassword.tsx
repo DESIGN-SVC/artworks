@@ -4,7 +4,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Input, PasswordValidationContainer } from "~/components";
 
-export const EditPassword = () => {
+export const EditPassword = ({
+  setOpen,
+  setToast,
+}: {
+  setOpen: (open: boolean) => void;
+  setToast: (open: boolean) => void;
+}) => {
   const {
     register,
     handleSubmit,
@@ -15,10 +21,17 @@ export const EditPassword = () => {
     resolver: zodResolver(EditPasswordSchema),
   });
 
-  const onSubmit = (data: EditPasswordFields) => {
-    console.log(data);
-    //Resto da lógica de submit
-  };
+  const onSubmit = handleSubmit(
+    async (data) => {
+      console.log(data);
+      setOpen(false);
+      setToast(true);
+      //Resto da lógica de submit
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
 
   const [passwordCriteriaState, setPasswordCriteriaState] =
     useState<PasswordCriteria>({
@@ -43,11 +56,7 @@ export const EditPassword = () => {
 
   return (
     <>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        id="edit-password-form"
-        className="mx-8"
-      >
+      <form onSubmit={onSubmit} id="edit-password-form" className="mx-8">
         <Input.Password
           label="Current password"
           placeholder="Current password"
@@ -69,8 +78,10 @@ export const EditPassword = () => {
           error={confirmPassword?.message}
         />
       </form>
-      <aside className="mx-8 mt-[20px] mb-[60px] space-y-5">
-        <h3 className="text-selago-900 font-bold dark:text-selago-50">Password must contain</h3>
+      <aside className="mx-8 mt-5 mb-[3.75rem] space-y-5">
+        <h3 className="text-selago-900 font-bold dark:text-selago-50">
+          Password must contain
+        </h3>
         <PasswordValidationContainer criteriaState={passwordCriteriaState} />
       </aside>
     </>
@@ -91,7 +102,7 @@ const EditPasswordSchema = z
       .string()
       .min(1, { message: "This field has to be filled." }),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.newPassword === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
