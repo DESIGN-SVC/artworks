@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from "react";
-import robot1x from "../assets/robot-1x.png";
-import robot2x from "../assets/robot-2x.png";
+import robot1x from "~/assets/robot-1x.png";
+import robot2x from "~/assets/robot-2x.png";
 
 export const Robot = ({ ...props }: ComponentPropsWithRef<"img">) => {
   return (

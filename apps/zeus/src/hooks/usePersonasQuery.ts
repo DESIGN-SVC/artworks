@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { api } from "../services/";
+import { api } from "~/services";
 
 export function usePersonasQuery() {
   const query = useQuery({

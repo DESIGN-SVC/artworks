@@ -1,23 +1,46 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Login, Root } from "./pages";
+import { Home, Root, PreLoginFormsContainer } from "./pages";
+import { AccountForms } from "./forms";
 
 export const router = createBrowserRouter([
-    {
-        id: "root",
+  {
+    id: "root",
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        index: true,
+        id: "login",
         path: "/",
-        element: <Root/>,
-        children: [
-            {
-                index: true,
-                id: "login",
-                path: "/",
-                element: <Login/>
-            },
-            {
-                id: "home",
-                path: "/home",
-                element: <Home/>
-            }
-        ]
-    }
-])
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.Login />
+          </PreLoginFormsContainer>
+        ),
+      },
+      {
+        id: "signup",
+        path: "/accounts/signup",
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.SignUp />
+          </PreLoginFormsContainer>
+        ),
+      },
+      {
+        id: "password-reset",
+        path: "/accounts/password/reset",
+        element: (
+          <PreLoginFormsContainer>
+            <AccountForms.PasswordReset />
+          </PreLoginFormsContainer>
+        ),
+      },
+      {
+        id: "home",
+        path: "/home",
+        element: <Home />,
+      },
+    ],
+  },
+]);
