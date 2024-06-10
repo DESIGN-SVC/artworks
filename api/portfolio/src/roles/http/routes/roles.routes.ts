@@ -20,7 +20,7 @@ rolesRoutes.post('/', (req, res) => {
   return createRoleController.handle(req, res)
 })
 
-rolesRoutes.get('/', IsAuthenticated, (req, res) => {
+rolesRoutes.get('/', (req, res) => {
   return listRoleController.handle(req, res)
 })
 
