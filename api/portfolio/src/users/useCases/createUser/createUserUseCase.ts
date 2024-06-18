@@ -11,7 +11,6 @@ type CreateUserDTO = {
     email: string
     password: string
     isAdmin: boolean
-    roleId: string
 }
 
 @injectable()
@@ -26,17 +25,12 @@ export class CreateUserUseCase {
         email,
         password,
         isAdmin,
-        roleId,
     }: CreateUserDTO): Promise<User> {
         const emailAlreadyExists = await this.usersRepository.findByEmail(email)
+        const roleName = await this.rolesRepository.findByName('user')
 
         if (emailAlreadyExists) {
             throw new AppError('Email already exists')
-        }
-
-        const role = await this.rolesRepository.findById(roleId)
-        if (!role) {
-            throw new AppError('Role not found', 404)
         }
 
         const hashedPassword = await hash(password, 10)
@@ -46,7 +40,7 @@ export class CreateUserUseCase {
             email,
             password: hashedPassword,
             isAdmin,
-            role,
+            role:roleName,
         })
     }
 }

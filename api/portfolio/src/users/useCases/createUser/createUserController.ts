@@ -39,13 +39,12 @@ export class CreateUserController {
                 .refine((value) => value.length >= 6, {
                     message: "Password must be at least 6 characters long",
                 }),
-            roleId: z.string().uuid({ message: 'Role is required' }),
             isAdmin: z.boolean().default(false)
         })
 
-        const { name, email, isAdmin, password, roleId } = createUserBody.parse(req.body)
+        const { name, email, isAdmin, password } = createUserBody.parse(req.body)
 
-        const user = await createUserUseCase.execute({ name, email, isAdmin, password, roleId })
+        const user = await createUserUseCase.execute({ name, email, isAdmin, password })
 
         return res.status(201).json(instanceToInstance(user))
     }

@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { dataSource } from '@shared/typeorm'
 import { app } from './app'
 

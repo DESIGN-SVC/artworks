@@ -2,40 +2,33 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
 
-export const Root = ({ ...props }: ComponentPropsWithRef<"form">) => (
-  <form
-    className={cx([
-      "flex flex-row w-fit",
-      "items-center justify-start",
-      "rounded-[0.625rem] gap-5 p-1 pl-3.5",
-      "bg-selago-50 dark:bg-violet-900",
-      "hover:bg-selago-100 dark:hover:bg-violet-900",
-      "transition-colors duration-200 ease-in-out",
-    ])}
-    {...props}
-  />
-);
-
-export const Input = ({ ...props }: ComponentPropsWithRef<"input">) => (
-  <fieldset
-    className={cx([
-      "flex flex-row justify-start items-center",
-      "gap-2 w-full max-w-[13.25rem] p-[10px]",
-    ])}
+type SearchProps = ComponentPropsWithRef<"input"> & {
+  onSearch?: () => void;
+};
+export const Search = ({ onSearch, ...props }: SearchProps) => (
+  <div
+    className="flex items-center gap-2 w-full max-w-[13.25rem]"
+    onClick={() => {
+      document.getElementById("search-project")?.focus();
+      if (onSearch) onSearch();
+    }}
   >
     <MagnifyingGlass
-      size={18}
+      size={16}
       weight="bold"
-      className="text-selago-500 dark:text-selago-600"
+      className="transition-colors duration-500 ease-in-out flex-none text-selago-500 dark:text-selago-600"
     />
     <input
-      className={cx([
-        "w-full text-sm bg-transparent focus:outline-none",
-        "text-selago-500 dark:text-selago-600",
-        "placeholder-selago-500 dark:placeholder-selago-600",
-      ])}
       type="text"
+      id="search-project"
+      placeholder="Search projects"
+      className={cx([
+        "py-[0.625rem]",
+        "bg-transparent outline-none select-none",
+        "text-sm font-semibold text-selago-800 dark:text-selago-600",
+        "placeholder:text-selago-500 placeholder:font-normal",
+      ])}
       {...props}
     />
-  </fieldset>
+  </div>
 );

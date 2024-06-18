@@ -24,7 +24,7 @@ rolesRoutes.get('/', (req, res) => {
   return listRoleController.handle(req, res)
 })
 
-rolesRoutes.get('/:id', IsAuthenticated, (req, res) => {
+rolesRoutes.get('/:id', (req, res) => {
   return listIdRoleController.handle(req, res)
 })
 

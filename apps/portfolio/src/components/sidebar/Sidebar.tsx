@@ -1,106 +1,50 @@
-import { CaretRight, X } from "@phosphor-icons/react";
+import { CaretRight } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, LinkProps } from "react-router-dom";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => {
-  const [searchParams] = useSearchParams();
-  const sidebar = searchParams.get("sidebar");
   return (
     <section
       className={cx([
-        "flex w-full flex-row h-screen fixed top-0 left-0 ",
-        "lg:sticky lg:translate-x-0",
-        "transform duration-500 ease-in-out",
-        { "translate-x-0": sidebar },
-        { "-translate-x-full": !sidebar },
+        "w-full max-w-sm px-6 py-[3.125rem] h-full",
+        "flex flex-col gap-10",
+        "bg-selago-100 shadow-lg",
+        "dark:bg-violet-900",
+        "transition-all duration-500 ease-in-out",
       ])}
       {...props}
     />
   );
 };
 
-export const Section = ({ ...props }: ComponentPropsWithRef<"article">) => (
-  <article
-    className={cx([
-      "flex flex-col bg-selago-100 px-6 py-[3.125rem]",
-      "w-full max-w-[21.25rem] min-h-screen justify-start",
-      "text-sm items-start transition-colors duration-500",
-      "overflow-y-auto overflow-x-hidden z-50 lg:z-0",
-      "dark:bg-violet-950 dark:text-selago-100 ",
-      "lg:rounded-r-[0.875rem] lg:max-w-[14.25rem]",
-    ])}
-    {...props}
-  />
-);
-
-export const SectionItem = ({ ...props }: ComponentPropsWithRef<"section">) => (
-  <section
-    className="flex flex-col w-full gap-[1.875rem] lg:gap-5"
-    {...props}
-  />
-);
-
-export const Close = ({ ...props }: ComponentPropsWithRef<"button">) => {
-  const [_, setSearchParams] = useSearchParams();
-
-  const handleSidebarState = (sidebar: boolean) => {
-    setSearchParams((state) => {
-      sidebar ? state.set("sidebar", "true") : state.delete("sidebar");
-      return state;
-    });
-  };
-  return (
-    <button
-      onClick={() => {
-        handleSidebarState(false);
-      }}
-      className={cx([
-        "bg-selago-50 lg:hidden dark:bg-violet-900",
-        "rounded-r-[0.875rem] min-w-[5.625rem] h-fit",
-        "px-[1.875rem] py-6 shadow-sm z-20 dark:shadow-lg",
-      ])}
-      {...props}
-    >
-      <X size={32} color="#61597A" />
-    </button>
-  );
-};
-
 type LinkpageProps = {
   icon?: React.ReactNode;
   label: string;
-} & ComponentPropsWithRef<"a">;
+} & LinkProps;
 
-export const Linkpage = ({ icon, label, href, ...props }: LinkpageProps) => (
-  <a
+export const Linkpage = ({ icon, label, ...props }: LinkpageProps) => (
+  <Link
     className={cx([
-      "flex flex-row w-full",
+      "flex flex-row w-fit",
       "justify-left items-center gap-1.5",
       "text-sm text-selago-500 cursor-pointer",
+      "hover:text-selago-600",
     ])}
-    href={href}
     {...props}
   >
     {icon}
     <p>{label}</p>
-  </a>
+  </Link>
 );
 
 type ProfileProps = {
   imgSrc: string;
   name: string;
   email: string;
-  href: string;
 } & ComponentPropsWithRef<"a">;
 
-export const Profile = ({
-  imgSrc,
-  name,
-  email,
-  href,
-  ...props
-}: ProfileProps) => (
+export const Profile = ({ imgSrc, name, email, ...props }: ProfileProps) => (
   <a
     className={cx([
       "flex flex-row w-full rounded-xl p-1",
@@ -109,7 +53,6 @@ export const Profile = ({
       "hover:bg-selago-50 hover:shadow-sm",
       "dark:hover:bg-violet-1000 dark:hover:shadow-lg",
     ])}
-    href={href}
     {...props}
   >
     <img
