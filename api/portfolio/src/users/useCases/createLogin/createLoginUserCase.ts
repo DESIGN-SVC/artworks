@@ -34,8 +34,7 @@ export class CreateLoginUserCase {
         if (!passwordMatch) {
             throw new AppError('Email or password incorrect', 401)
         }
-        console.log(user)
-
+        
         const accessToken = sign({}, jwtConfig.jwt.secret, {
             subject: user.id,
             expiresIn: jwtConfig.jwt.expiresIn,              

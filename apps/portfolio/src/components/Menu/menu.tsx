@@ -14,9 +14,10 @@ import { Search, Select, Sidebar, ToggleSwitch } from "~/components";
 
 interface MenuProps {
   onLogout: () => void;
+  role: "admin" | "user" | "editor";
 }
 
-export const Menu = ({ onLogout }: MenuProps) => {
+export const Menu = ({ onLogout, role }: MenuProps) => {
   const selectProject = [
     "All",
     "Audiovisual",
@@ -52,6 +53,8 @@ export const Menu = ({ onLogout }: MenuProps) => {
       icon: <AppWindow />,
     },
   ];
+
+  console.log(role !== "admin");
 
   return (
     <nav
@@ -190,6 +193,7 @@ export const Menu = ({ onLogout }: MenuProps) => {
                   label={"Manage access"}
                   icon={<Lock />}
                   to={"/"}
+                  className={role !== "admin" ? "hidden" : ""}
                 />
                 <Sidebar.Linkpage
                   label={"Logout"}
@@ -228,6 +232,7 @@ export const Menu = ({ onLogout }: MenuProps) => {
               label={"Manage access"}
               icon={<Lock />}
               to={"/"}
+              className={role !== "admin" ? "hidden" : ""}
             />
             <Sidebar.Linkpage
               label={"Logout"}

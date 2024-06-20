@@ -64,7 +64,7 @@ export const Video = forwardRef<HTMLVideoElement, VideoProps>(
           muted
           {...props}
         />
-        <h6 className="p-4 text-selago-950">{title}</h6>
+        <h6 className="p-4 text-selago-950 dark:text-white">{title}</h6>
       </li>
     );
   },

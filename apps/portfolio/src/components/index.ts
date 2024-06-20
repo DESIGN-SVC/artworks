@@ -7,7 +7,7 @@ export * as Tag from "./tag/Tag";
 export * as Sidebar from "./sidebar/Sidebar";
 export * from "./search/Search";
 export * as Select from "./select/Select";
-export { MobileMenu } from "./mobileMenu/MobileMenu";
 export * from "./Loading/loading";
 export * from "./Menu/menu";
 export * as Carousel from "./carousel";
+export * from "./FormPageContainer";

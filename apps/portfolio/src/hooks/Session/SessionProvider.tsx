@@ -8,6 +8,14 @@ type AccessTokenPayload = Required<JWTPayload> & {
   authorized: boolean;
   name: string;
 };
+type User = {
+  name?: string | undefined;
+  id?: string | undefined;
+  email?: string | undefined;
+  role?: string | undefined;
+  avatar?: string | undefined;
+  isAdmin?: boolean | undefined;
+};
 
 export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const { saveData, clearData, retrieveData } = useCookieData();
@@ -16,6 +24,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessTokenState] = useState<string | undefined>(
     initialAccessToken,
   );
+  const [user, setUser] = useState<User>({});
 
   const clearAccessToken = () => {
     clearData("_access_token");
@@ -28,14 +37,8 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 
   const guest = !accessToken;
 
-  const user = accessToken
-    ? {
-        name: decode(accessToken).name,
-        id: decode(accessToken).sub as string,
-      }
-    : {};
   const setAccessToken = (accessToken: string) => {
-    saveData("accessToken", {
+    saveData("expires", {
       expires: new Date(decode(accessToken).exp * 1000),
       sameSite: "strict",
       secure: import.meta.env.PROD,
@@ -43,13 +46,16 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     saveData("_access_token", accessToken);
     setAccessTokenState(accessToken);
   };
+  const setUserState = (user: User) => {
+    setUser(user);
+  };
 
   useEffect(() => {
     if (initialAccessToken !== accessToken) {
       setAccessTokenState(initialAccessToken);
     }
   }, [initialAccessToken, accessToken]);
-  console.log(accessToken);
+
   return (
     <SessionContext.Provider
       value={{
@@ -59,6 +65,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
         user,
         setAccessToken,
         clearSession: clearAccessToken,
+        setUser: setUserState,
       }}
     >
       {children}

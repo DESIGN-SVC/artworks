@@ -1,8 +1,7 @@
-import authConfig from '@config/auth'
 import { NextFunction, Request, Response } from 'express'
-import { Secret, verify } from 'jsonwebtoken'
+import { decode } from 'jsonwebtoken'
 
-export const IsAuthenticated = (
+export const AddUserInfoToRequest = (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -16,7 +15,6 @@ export const IsAuthenticated = (
       code: 'token.invalid',
     })
   }
-
   const token = authorization.split(' ')[1]
 
   if (!token) {
@@ -28,15 +26,14 @@ export const IsAuthenticated = (
   }
 
   try {
-    const { sub } = verify(token, authConfig.jwt.secret as Secret)
+    const { sub } = decode(token)
     req.user = { id: sub as string }
-    
     return next()
   } catch (error) {
     return res.status(401).json({
       message: 'Access token not present',
       error: true,
-      code: 'token.expired',
+      code: 'token.invalid',
     })
   }
 }

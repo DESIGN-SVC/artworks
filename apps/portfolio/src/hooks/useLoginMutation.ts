@@ -12,7 +12,7 @@ interface ApiError {
 }
 
 export function useLoginMutation() {
-  const { setAccessToken } = useSession();
+  const { setAccessToken, setUser } = useSession();
 
   const mutation = useMutation({
     mutationFn: async ({ email, password }: LoginFields) => {
@@ -29,6 +29,7 @@ export function useLoginMutation() {
     },
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
+      setUser(data.user);
     },
     onError: (error: ApiError) => {
       console.log(error);

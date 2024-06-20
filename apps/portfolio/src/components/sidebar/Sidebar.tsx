@@ -23,13 +23,19 @@ type LinkpageProps = {
   label: string;
 } & LinkProps;
 
-export const Linkpage = ({ icon, label, ...props }: LinkpageProps) => (
+export const Linkpage = ({
+  icon,
+  label,
+  className,
+  ...props
+}: LinkpageProps) => (
   <Link
     className={cx([
       "flex flex-row w-fit",
       "justify-left items-center gap-1.5",
       "text-sm text-selago-500 cursor-pointer",
       "hover:text-selago-600",
+      className,
     ])}
     {...props}
   >

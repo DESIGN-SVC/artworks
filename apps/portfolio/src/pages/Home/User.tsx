@@ -1,9 +1,18 @@
+import { cx } from "cva";
+
 interface UserProps {
   name: string;
   avatar?: string;
 }
 export const User = ({ name, avatar }: UserProps) => (
-  <div className="w-full flex gap-5 pb-3 border-b border-selago-200">
+  <div
+    className={cx([
+      "flex gap-5",
+      "w-full pb-3 border-b border-selago-200",
+      "transition-all duration-500 ease-in-out",
+      "dark:border-violet-900",
+    ])}
+  >
     <img
       src={
         avatar ??
@@ -14,8 +23,12 @@ export const User = ({ name, avatar }: UserProps) => (
     />
 
     <div>
-      <h1 className="text-2xl font-semibold text-selago-950">Hello, {name}</h1>
-      <p className="text-selago-700">Welcome to the Artworks Portfolio.</p>
+      <h1 className="text-2xl font-semibold text-selago-950 dark:text-white">
+        Hello, {name}
+      </h1>
+      <p className="text-selago-700 dark:text-white">
+        Welcome to the Artworks Portfolio.
+      </p>
     </div>
   </div>
 );

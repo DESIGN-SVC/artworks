@@ -6,7 +6,7 @@ import { z } from "zod";
 import { Button, Form, Input, Loading } from "~/components";
 import { useLoginMutation } from "~/hooks";
 
-export const Login = () => {
+export const LoginForm = () => {
   const navigate = useNavigate();
   const { mutate: login, isPending, isSuccess } = useLoginMutation();
   const {
@@ -59,7 +59,7 @@ export const Login = () => {
             error={password?.message}
           />
           <Link
-            to={"/accounts/password/reset"}
+            to={"password/reset"}
             onClick={(e) => e.preventDefault()}
             className="text-gray-500 cursor-not-allowed"
             /* className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors " */
@@ -74,7 +74,7 @@ export const Login = () => {
           Don't have on account yet?{" "}
           <Link
             onClick={(e) => e.preventDefault()}
-            to={"/accounts/signup"}
+            to={"/signup"}
             /* className="text-violet-600 font-semibold hover:text-violet-500 transition-colors" */
             className="text-gray-500 cursor-not-allowed"
           >

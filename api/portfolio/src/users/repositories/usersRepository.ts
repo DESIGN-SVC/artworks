@@ -55,6 +55,9 @@ export class UsersRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<User | null> {
-    return this.repository.findOneBy({ id })
+    return this.repository.findOne({
+      where: { id },
+      relations: ['role']
+    })
   }
 }

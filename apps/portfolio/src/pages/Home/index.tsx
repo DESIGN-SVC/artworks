@@ -6,13 +6,13 @@ import palette from "~/assets/image/palette.png";
 import monitor from "~/assets/image/monitor.png";
 import cameraPhotos from "~/assets/image/camera-to-take-photos.png";
 import { Link } from "react-router-dom";
-import { Carousel } from "~/components";
-import { useSession } from "~/hooks";
+import { Carousel, Loading } from "~/components";
+import { useProfileQuery, useSession } from "~/hooks";
+import { useEffect } from "react";
 
 export const Home = () => {
-  const { authorized } = useSession();
-  console.log(authorized);
-  const name = "Moises";
+  const { user, setUser, accessToken } = useSession();
+  const { data: profile, isSuccess, isLoading } = useProfileQuery();
 
   const linkProjects = [
     {
@@ -37,9 +37,23 @@ export const Home = () => {
     },
   ];
 
+  useEffect(() => {
+    if (accessToken && isSuccess) setUser(profile.user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess, accessToken]);
+  console.log(user.role?.name);
+
+  if (isLoading) return <Loading />;
   return (
-    <main className="flex-1 container py-5 flex flex-col gap-5">
-      <User name={name} />
+    <main
+      className={cx([
+        "container py-5 bg-white",
+        "transition-all duration-500 ease-in-out",
+        "flex flex-col gap-5 flex-1",
+        "dark:bg-violet-1000",
+      ])}
+    >
+      <User name={user.name as string} />
       <ul className="flex flex-col items-center gap-3">
         {linkProjects.map(({ title, description, icon }) => (
           <li key={title} className="w-full">
@@ -80,7 +94,9 @@ export const Home = () => {
         ))}
       </ul>
       <div className="flex flex-col gap-4">
-        <h4 className="text-selago-900 font-medium">Últimos adicionados</h4>
+        <h4 className="text-selago-900 font-medium dark:text-white">
+          Últimos adicionados
+        </h4>
 
         <Carousel.Root>
           {[1, 2, 3, 4, 5].map((item) => (

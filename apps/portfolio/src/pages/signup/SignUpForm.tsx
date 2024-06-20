@@ -8,7 +8,7 @@ import { Button, Form, Input } from "~/components";
 
 type Pathname = "personal-info" | "password" | "finish";
 
-export const SignUp = () => {
+export const SignUpForm = () => {
   const [currentStep, setCurrentStep] = useState<Pathname>("personal-info");
 
   const {

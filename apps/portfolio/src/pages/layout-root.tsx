@@ -1,16 +1,18 @@
+import { cx } from "cva";
 import { Suspense, useEffect } from "react";
 import { Outlet, ScrollRestoration, useNavigate } from "react-router-dom";
 import { Loading, Menu } from "~/components";
 import { useCookieData, useLogout, useSession } from "~/hooks";
 import { HoverAnimation } from "~/utils";
 
-export const Root = () => {
+export const RootLayout = () => {
   const { retrieveData } = useCookieData();
-  const { authorized } = useSession();
+  const { authorized, user } = useSession();
   const navigate = useNavigate();
   const logout = useLogout();
 
   const onLogout = () => {
+    document.querySelector("html")?.classList.remove("dark");
     if (authorized) {
       navigate("/");
       return logout(false);
@@ -29,8 +31,25 @@ export const Root = () => {
   }, [retrieveData, authorized]);
 
   return (
-    <div className="min-h-svh flex flex-col lg:grid lg:grid-cols-[14.25rem_1fr]">
-      {authorized && <Menu onLogout={onLogout} />}
+    <div
+      className={cx(
+        [
+          "flex flex-col",
+          "min-h-svh bg-white",
+          "transition-all duration-500 ease-in-out",
+          "dark:bg-violet-1000",
+        ],
+        {
+          "lg:grid lg:grid-cols-[14.25rem_1fr]": authorized,
+        },
+      )}
+    >
+      {authorized && (
+        <Menu
+          onLogout={onLogout}
+          role={user.role?.name as "admin" | "user" | "editor"}
+        />
+      )}
       <Suspense fallback={<Loading />} />
       <Outlet />
       <ScrollRestoration />
