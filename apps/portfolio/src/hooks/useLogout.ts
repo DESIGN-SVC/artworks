@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { useSession } from "./Session/useSession";
+import { useSession } from "./context/Session/useSession";
 import { useCookieData } from "./useCookieData";
 
 export const useLogout = () => {

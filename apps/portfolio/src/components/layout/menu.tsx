@@ -15,9 +15,20 @@ import { Search, Select, Sidebar, ToggleSwitch } from "~/components";
 interface MenuProps {
   onLogout: () => void;
   role: "admin" | "user" | "editor";
+  img: string;
+  name: string;
+  email: string;
+  linkToProfile: string;
 }
 
-export const Menu = ({ onLogout, role }: MenuProps) => {
+export const Menu = ({
+  onLogout,
+  role,
+  email,
+  img,
+  name,
+  linkToProfile,
+}: MenuProps) => {
   const selectProject = [
     "All",
     "Audiovisual",
@@ -54,10 +65,8 @@ export const Menu = ({ onLogout, role }: MenuProps) => {
     },
   ];
 
-  console.log(role !== "admin");
-
   return (
-    <nav
+    <div
       className={cx([
         "w-full bg-selago-50 rounded-b-2xl",
         "lg:bg-selago-100 lg:h-svh",
@@ -140,8 +149,8 @@ export const Menu = ({ onLogout, role }: MenuProps) => {
               "flex items-center justify-center gap-5",
               "absolute -top-28 left-1/2 -translate-x-1/2 -translate-y-1/2",
               "bg-selago-50 rounded-xl border border-transparent",
-              "hover:border-selago-200 dark:bg-violet-900",
               "transition-all duration-300 ease-in",
+              "hover:border-selago-200 dark:bg-violet-900",
               "peer-checked/search:opacity-100 peer-checked/search:top-28",
               "peer-checked/search:z-0 peer-checked/search:pointer-events-auto",
             ])}
@@ -184,6 +193,10 @@ export const Menu = ({ onLogout, role }: MenuProps) => {
                     label={text}
                     icon={icon}
                     to={link}
+                    onClick={() => {
+                      const input = document.getElementById("menu-mobile");
+                      input?.click();
+                    }}
                   />
                 ))}
               </ul>
@@ -207,7 +220,19 @@ export const Menu = ({ onLogout, role }: MenuProps) => {
                 />
               </div>
               <hr className="bg-selago-200 dark:bg-violet-800" />
-              <ToggleSwitch />
+              <div className="flex flex-col gap-8">
+                <ToggleSwitch />
+                <Sidebar.Profile
+                  email={email}
+                  name={name}
+                  img={img}
+                  to={linkToProfile}
+                  onClick={() => {
+                    const input = document.getElementById("menu-mobile");
+                    input?.click();
+                  }}
+                />
+              </div>
             </Sidebar.Root>
           </div>
         </div>
@@ -246,9 +271,17 @@ export const Menu = ({ onLogout, role }: MenuProps) => {
             />
           </div>
           <hr className="bg-selago-200 dark:bg-violet-800" />
-          <ToggleSwitch />
+          <div className="flex flex-col gap-8">
+            <ToggleSwitch />
+            <Sidebar.Profile
+              email={email}
+              name={name}
+              img={img}
+              to={linkToProfile}
+            />
+          </div>
         </Sidebar.Root>
       </section>
-    </nav>
+    </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { LoginFields } from "~/forms/Account/login";
 import { api } from "~/services";
-import { useSession } from "./Session/useSession";
+import { useSession } from "./context/Session/useSession";
 
 interface ApiError {
   code: number;

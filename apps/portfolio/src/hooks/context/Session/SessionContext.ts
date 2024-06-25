@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-type User = {
+export type User = {
   name?: string | undefined;
   id?: string | undefined;
   email?: string | undefined;

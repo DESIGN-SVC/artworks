@@ -108,7 +108,7 @@ export const Password = forwardRef<HTMLInputElement, InputProps>(
           "w-full h-[4.688rem] flex-none duration-300 ease-out",
           "flex flex-col gap-1.5 justify-end relative  group",
           {
-            "!h-24 !justify-center": !!error,
+            "!h-24 !justify-center mb-1": !!error,
           },
           className,
         ])}

@@ -1,18 +1,21 @@
 import { Moon, SunDim } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
-import { useCookieData } from "~/hooks";
+import { useCookieData, useTheme } from "~/hooks";
 
 export type ToggleSwitchProps = ComponentPropsWithRef<"button">;
 export const ToggleSwitch = ({ ...props }: ToggleSwitchProps) => {
   const { saveData } = useCookieData();
+  const { setTheme } = useTheme();
   const handleToggleDark = () => {
     if (document.querySelector("html")?.classList.contains("dark")) {
       document.querySelector("html")?.classList.remove("dark");
       saveData("theme", "light");
+      setTheme("light");
     } else {
       saveData("theme", "dark");
       document.querySelector("html")?.classList.add("dark");
+      setTheme("dark");
     }
   };
 

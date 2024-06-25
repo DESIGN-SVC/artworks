@@ -38,7 +38,7 @@ export default {
           },
         },
         {
-          "@media (min-width: 1280px) ": {
+          "@media (min-width: 1536px) ": {
             ".container": {
               paddingLeft: "5.625rem",
               paddingRight: "5.625rem",

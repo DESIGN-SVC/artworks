@@ -3,5 +3,6 @@ export * from "./useCookieData";
 export * from "./useLogout";
 export * from "./useProfileQuery";
 
-export { SessionProvider } from "./Session/SessionProvider";
-export { useSession } from "./Session/useSession";
+export { Provider } from "./context";
+export { useSession } from "./context/Session/useSession";
+export { useTheme } from "./context/Theme/useTheme";

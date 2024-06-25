@@ -38,12 +38,13 @@ export const Home = () => {
   ];
 
   useEffect(() => {
+    document.title = "Home | Artworks";
     if (accessToken && isSuccess) setUser(profile.user);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess, accessToken]);
-  console.log(user.role?.name);
 
   if (isLoading) return <Loading />;
+
   return (
     <main
       className={cx([

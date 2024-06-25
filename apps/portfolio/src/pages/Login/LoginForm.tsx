@@ -51,7 +51,7 @@ export const LoginForm = () => {
           {...register("email")}
           error={email?.message}
         />
-        <div className="space-y-2.5 text-end">
+        <div className="text-end">
           <Input.Password
             label="Password"
             placeholder="Password"
@@ -61,7 +61,7 @@ export const LoginForm = () => {
           <Link
             to={"password/reset"}
             onClick={(e) => e.preventDefault()}
-            className="text-gray-500 cursor-not-allowed"
+            className="text-gray-500 cursor-not-allowed mt-2 block"
             /* className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors " */
           >
             Forgot your password?

@@ -6,7 +6,7 @@ const twButton = cva(
   [
     "flex items-center justify-center w-full",
     "py-2.5 font-medium bg-violet-500-600",
-    "relative overflow-hidden z-10",
+    "relative overflow-hidden z-0",
     "disabled:cursor-not-allowed disabled:bg-gray-200 disabled:hover:shadow-none disabled:text-gray-300",
     "disabled:border-gray-300",
     "transition-all duration-500 ease-in-out",

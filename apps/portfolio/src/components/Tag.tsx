@@ -11,7 +11,7 @@ export const Description = ({ text, ...props }: DescriptionProps) => {
     <h5
       className={cx(
         "w-fit px-5 py-1 rounded-md leading-none",
-        "bg-selago-950 text-violet-50 text-[0.75rem]"
+        "bg-selago-950 text-violet-50 text-[0.75rem]",
       )}
       {...props}
     >
@@ -31,7 +31,7 @@ export const Episode = ({ icon, text, ...props }: EpisodeProps) => {
       className={cx(
         "flex flex-row items-center rounded-md",
         "px-2 py-1.5 gap-1 w-fit",
-        "text-[0.625rem] text-white bg-[rgba(0,0,0,0.70)]"
+        "text-[0.625rem] text-white bg-[rgba(0,0,0,0.70)]",
       )}
       {...props}
     >
@@ -73,13 +73,17 @@ export const Production = ({
         {
           "animate-openProdCast": deleting && !deletingState,
           "animate-closeProdCast": deletingState,
-        }
+        },
       )}
       {...props}
     >
       <div className="flex flex-col gap-1">
-        <p className="text-sm leading-[0.875rem] text-selago-800 dark:text-selago-50">{personName}</p>
-        <p className="text-xs leading-[0.875rem] text-selago-600 dark:text-selago-400">{personFunction}</p>
+        <p className="text-sm leading-[0.875rem] text-selago-800 dark:text-selago-50">
+          {personName}
+        </p>
+        <p className="text-xs leading-[0.875rem] text-selago-600 dark:text-selago-400">
+          {personFunction}
+        </p>
       </div>
       {deleting && (
         <button onClick={handleDeleteButton}>
@@ -120,7 +124,7 @@ export const Cast = ({
         {
           "animate-openProdCast": deleting && !deletingState,
           "animate-closeProdCast": deletingState,
-        }
+        },
       )}
       {...props}
     >
@@ -155,7 +159,7 @@ const twSearch = cva(
     defaultVariants: {
       current: false,
     },
-  }
+  },
 );
 
 type SearchProps = {

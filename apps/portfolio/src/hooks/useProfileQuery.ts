@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSession } from "./Session/useSession";
+import { useSession } from "./context/Session/useSession";
 import { api } from "~/services";
 
 export function useProfileQuery() {

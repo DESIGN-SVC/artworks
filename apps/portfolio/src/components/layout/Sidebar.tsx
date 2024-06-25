@@ -2,6 +2,7 @@ import { CaretRight } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
 import { Link, LinkProps } from "react-router-dom";
+import UserNotFound from "~/assets/image/user-not-found.jpg";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => {
   return (
@@ -45,28 +46,27 @@ export const Linkpage = ({
 );
 
 type ProfileProps = {
-  imgSrc: string;
+  img: string;
   name: string;
   email: string;
-} & ComponentPropsWithRef<"a">;
+} & LinkProps;
 
-export const Profile = ({ imgSrc, name, email, ...props }: ProfileProps) => (
-  <a
+export const Profile = ({ img, name, email, ...props }: ProfileProps) => (
+  <Link
     className={cx([
-      "flex flex-row w-full rounded-xl p-1",
-      "break-all text-white gap-2.5 items-top",
-      "hover:transition-all hover:duration-500",
-      "hover:bg-selago-50 hover:shadow-sm",
-      "dark:hover:bg-violet-1000 dark:hover:shadow-lg",
+      "flex w-fit p-1 gap-2.5",
+      "break-all rounded-xl",
+      "transition-all duration-500 ease-in-out",
+      "hover:shadow-lg hover:scale-105",
     ])}
     {...props}
   >
     <img
-      src={imgSrc}
-      className="w-9 h-9 rounded-full"
+      src={img ?? UserNotFound}
+      className="w-9 h-9 rounded-full object-center"
       alt={"Profile picture of" + name}
     />
-    <article className="w-full">
+    <article className="w-full flex flex-col gap-1">
       <h6
         className={cx([
           "font-medium text-selago-950 text-sm",
@@ -75,12 +75,12 @@ export const Profile = ({ imgSrc, name, email, ...props }: ProfileProps) => (
       >
         <p>{name}</p>
       </h6>
-      <h6 className="text-selago-700 text-xs">{email}</h6>
+      <p className="text-selago-700 text-xs">{email}</p>
     </article>
     <CaretRight
       size={14}
       className="text-selago-200 min-w-fit dark:text-selago-500"
       weight="bold"
     />
-  </a>
+  </Link>
 );

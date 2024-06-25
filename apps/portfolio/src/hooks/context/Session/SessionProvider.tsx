@@ -1,20 +1,12 @@
 import { decodeJwt, type JWTPayload } from "jose";
 import { useEffect, useState, type ReactNode } from "react";
 
-import { SessionContext } from "./SessionContext";
-import { useCookieData } from "../useCookieData";
+import { SessionContext, User } from "./SessionContext";
+import { useCookieData } from "../../useCookieData";
 
 type AccessTokenPayload = Required<JWTPayload> & {
   authorized: boolean;
   name: string;
-};
-type User = {
-  name?: string | undefined;
-  id?: string | undefined;
-  email?: string | undefined;
-  role?: string | undefined;
-  avatar?: string | undefined;
-  isAdmin?: boolean | undefined;
 };
 
 export const SessionProvider = ({ children }: { children: ReactNode }) => {
