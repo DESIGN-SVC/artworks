@@ -5,14 +5,17 @@ import camera3d from "~/assets/image/camera-3D.png";
 import palette from "~/assets/image/palette.png";
 import monitor from "~/assets/image/monitor.png";
 import cameraPhotos from "~/assets/image/camera-to-take-photos.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Carousel, Loading } from "~/components";
-import { useProfileQuery, useSession } from "~/hooks";
+import { useLogout, useProfileQuery, useSession, useTheme } from "~/hooks";
 import { useEffect } from "react";
 
 export const Home = () => {
   const { user, setUser, accessToken } = useSession();
-  const { data: profile, isSuccess, isLoading } = useProfileQuery();
+  const { data: profile, isSuccess, isLoading, isError } = useProfileQuery();
+  const { setTheme } = useTheme();
+  const navigate = useNavigate();
+  const logout = useLogout();
 
   const linkProjects = [
     {
@@ -39,9 +42,16 @@ export const Home = () => {
 
   useEffect(() => {
     document.title = "Home | Artworks";
-    if (accessToken && isSuccess) setUser(profile.user);
+    if (accessToken && isSuccess) {
+      setUser(profile.user);
+      setTheme(profile.user.theme);
+    }
+    if (isError) {
+      navigate("/");
+      logout(false);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, accessToken]);
+  }, [isSuccess, accessToken, isError]);
 
   if (isLoading) return <Loading />;
 
@@ -54,10 +64,15 @@ export const Home = () => {
         "dark:bg-violet-1000",
       ])}
     >
-      <User name={user.name as string} />
-      <ul className="flex flex-col items-center gap-3">
+      <User name={user.name as string} avatar={user.avatar} />
+      <ul
+        className={cx([
+          "flex flex-col items-center gap-3",
+          "xl:flex-row xl:gap-5",
+        ])}
+      >
         {linkProjects.map(({ title, description, icon }) => (
-          <li key={title} className="w-full">
+          <li key={title} className="w-full xl:w-fit">
             <Link
               to={title}
               className={cx(
@@ -67,6 +82,8 @@ export const Home = () => {
                   "transition-all duration-500 ease-in-out",
                   "rounded-xl overflow-hidden relative",
                   "hover:scale-105 hover:shadow-xl",
+                  "xl:h-52 xl:mx-0 xl:flex-none xl:justify-end",
+                  "xl:w-60",
                 ],
                 {
                   "bg-gradient-btn-audiovisual": title === "Audiovisual",

@@ -10,3 +10,4 @@ export * as Select from "./Select";
 export * as Carousel from "./carousel";
 export * from "./FormPageContainer";
 export * as NavHeader from "./NavHeader";
+export * from "./Dialog";

@@ -236,6 +236,10 @@ export default {
         from: { transform: "translateX(0)" },
         to: { transform: "translateX(-300%)" },
       },
+      contentShow: {
+        from: { opacity: "0", transform: "translate(-50%, -48%) scale(0.50)" },
+        to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
+      },
     },
     animation: {
       shake: "shake 200ms",
@@ -249,6 +253,7 @@ export default {
       "open-menu-mobile": "open-menu-mobile 500ms cubic-bezier(0.4, 0, 0.2, 1)",
       "closed-menu-mobile":
         "closed-menu-mobile 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+      contentShow: "contentShow 500ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
     backgroundImage: {
       hero: "url('/images/bg-login.png')",

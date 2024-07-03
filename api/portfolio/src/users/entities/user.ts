@@ -28,7 +28,13 @@ export class User {
     isAdmin: boolean
 
     @Column()
-    avatar?: string
+    avatar_url?: string
+
+    @Column()
+    theme?: string
+
+    @Column()
+    team: string
 
     @ManyToOne(() => Role, {
         cascade: true,
@@ -40,8 +46,8 @@ export class User {
 
     @Expose({ name: 'avatar_url' })
     getAvatarUrl(): string | null {
-        if (!this.avatar) return null
-        return `${process.env.API_URL}/files/${this.avatar}`
+        if (!this.avatar_url) return null        
+        return `${process.env.API_URL}/files/${this.avatar_url}`
     }
 
     constructor() {

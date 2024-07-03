@@ -2,7 +2,6 @@ import { CaretRight } from "@phosphor-icons/react";
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
 import { Link, LinkProps } from "react-router-dom";
-import UserNotFound from "~/assets/image/user-not-found.jpg";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"section">) => {
   return (
@@ -62,7 +61,7 @@ export const Profile = ({ img, name, email, ...props }: ProfileProps) => (
     {...props}
   >
     <img
-      src={img ?? UserNotFound}
+      src={img}
       className="w-9 h-9 rounded-full object-center"
       alt={"Profile picture of" + name}
     />

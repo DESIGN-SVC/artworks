@@ -10,7 +10,7 @@ export class ShowProfileController {
         const { sub } = decode(req.header('authorization'))
         
         const user = await showProfileUseCase.execute({ user_id: sub as string})
-
+        
         return res.status(201).json(instanceToInstance({ user }))
     }
 }

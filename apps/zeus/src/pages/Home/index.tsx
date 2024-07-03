@@ -621,7 +621,7 @@ export const HomePage = () => {
     },
   ];
 
-  console.log("Home Page"); // teste de deploy vercel
+   // teste de deploy vercel
   return (
     <div className="flex-1">
       <Hero

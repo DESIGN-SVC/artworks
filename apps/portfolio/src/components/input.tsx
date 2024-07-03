@@ -32,7 +32,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 
             "placeholder:opacity-0 focus-visible:placeholder:opacity-100 placeholder:text-selago-500",
 
-            "dark:border-transparent dark:bg-violet-950 dark:text-selago-300 dark:placeholder:text-selago-300",
+            "dark:border-transparent dark:bg-violet-900 dark:text-selago-300 dark:placeholder:text-selago-300",
 
             "group-hover:border-selago-300 dark:group-hover:border-transparent",
             {
@@ -120,9 +120,9 @@ export const Password = forwardRef<HTMLInputElement, InputProps>(
             "duration-300 ease-out",
             "flex items-center justify-between",
             "group-hover:border-selago-300 dark:group-hover:border-transparent",
-            "dark:border-transparent dark:bg-violet-950 dark:text-selago-300",
+            "dark:border-transparent dark:bg-violet-900 dark:text-selago-50 dark:placeholder:text-selago-600",
             {
-              "!border-red-700 !bg-red-100 !text-red-700 placeholder:!text-red-700 animate-shake":
+              "!border-red-700 !bg-red-100 !text-red-700 placeholder:!text-red-700 animate-shake ":
                 !!error,
             },
           ])}
@@ -144,7 +144,7 @@ export const Password = forwardRef<HTMLInputElement, InputProps>(
           <button
             type="button"
             onClick={handleTogglePassword}
-            className="text-selago-950"
+            className="text-selago-950 dark:text-selago-50"
           >
             {type === "password" ? <EyeSlash size={20} /> : <Eye size={20} />}
           </button>

@@ -25,9 +25,18 @@ export class CreateUsersTable1712331678814 implements MigrationInterface {
                         type: 'string',
                     },
                     {
-                        name: 'avatar',
+                        name: 'avatar_url',
                         type: 'string',
                         isNullable: true,
+                    },
+                    {
+                        name: 'theme',
+                        type: 'string',
+                        isNullable: true,
+                    },
+                    {
+                        name: 'team',
+                        type: 'string',
                     },
                     {
                         name: 'isAdmin',

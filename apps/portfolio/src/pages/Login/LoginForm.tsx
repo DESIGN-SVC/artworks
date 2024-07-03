@@ -51,7 +51,7 @@ export const LoginForm = () => {
           {...register("email")}
           error={email?.message}
         />
-        <div className="text-end">
+        <fieldset className="text-end">
           <Input.Password
             label="Password"
             placeholder="Password"
@@ -66,7 +66,7 @@ export const LoginForm = () => {
           >
             Forgot your password?
           </Link>
-        </div>
+        </fieldset>
         <Button appearance="tertiary" size="lg">
           Continue
         </Button>

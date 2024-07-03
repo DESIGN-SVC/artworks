@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { SessionContext, User } from "./SessionContext";
 import { useCookieData } from "../../useCookieData";
 
+import UserNotFound from "~/assets/image/user-not-found.jpg";
 type AccessTokenPayload = Required<JWTPayload> & {
   authorized: boolean;
   name: string;
@@ -39,7 +40,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     setAccessTokenState(accessToken);
   };
   const setUserState = (user: User) => {
-    setUser(user);
+    setUser({ ...user, avatar: user.avatar ? user.avatar : UserNotFound });
   };
 
   useEffect(() => {

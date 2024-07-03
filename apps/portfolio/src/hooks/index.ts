@@ -2,6 +2,7 @@ export * from "./useLoginMutation";
 export * from "./useCookieData";
 export * from "./useLogout";
 export * from "./useProfileQuery";
+export * from "./useThemeMutation";
 
 export { Provider } from "./context";
 export { useSession } from "./context/Session/useSession";
