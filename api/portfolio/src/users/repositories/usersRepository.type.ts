@@ -6,7 +6,7 @@ export type CreateUserDTO = {
   email: string
   password: string
   isAdmin: boolean
-  avatar_url?: string
+  avatar?: string
   role: Role
   team: string
   theme: 'light' | 'dark'
@@ -30,7 +30,7 @@ export interface IUsersRepository {
     email,
     password,
     isAdmin,
-    avatar_url,
+    avatar,
     role,
     team,
     theme

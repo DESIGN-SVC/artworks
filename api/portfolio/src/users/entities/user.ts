@@ -28,7 +28,7 @@ export class User {
     isAdmin: boolean
 
     @Column()
-    avatar_url?: string
+    avatar?: string
 
     @Column()
     theme?: string
@@ -46,8 +46,8 @@ export class User {
 
     @Expose({ name: 'avatar_url' })
     getAvatarUrl(): string | null {
-        if (!this.avatar_url) return null        
-        return `${process.env.API_URL}/files/${this.avatar_url}`
+        if (!this.avatar) return null        
+        return `${process.env.API_URL}/files/${this.avatar}`
     }
 
     constructor() {

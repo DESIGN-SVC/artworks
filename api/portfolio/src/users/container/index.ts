@@ -6,7 +6,8 @@ import {
     ShowProfileController,
     UpdatePasswordController,
     UpdateUserController,
-    UpdateThemeController
+    UpdateThemeController,
+    UpdateAvatarController
 } from '@users/useCases'
 import { container } from 'tsyringe'
 
@@ -22,3 +23,4 @@ container.registerSingleton('ShowProfileController', ShowProfileController)
 container.registerSingleton('UpdateThemeController', UpdateThemeController)
 container.registerSingleton('UpdateUserController', UpdateUserController)
 container.registerSingleton('UpdatePasswordController', UpdatePasswordController)
+container.registerSingleton('UpdateAvatarController', UpdateAvatarController)

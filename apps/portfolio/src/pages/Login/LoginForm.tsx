@@ -73,10 +73,8 @@ export const LoginForm = () => {
         <p className="text-selago-700 text-center w-full">
           Don't have on account yet?{" "}
           <Link
-            onClick={(e) => e.preventDefault()}
             to={"/signup"}
-            /* className="text-violet-600 font-semibold hover:text-violet-500 transition-colors" */
-            className="text-gray-500 cursor-not-allowed"
+            className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
           >
             Sign up
           </Link>

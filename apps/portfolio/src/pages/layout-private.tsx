@@ -1,18 +1,23 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Loading } from "~/components";
-import { useProfileQuery, useSession } from "~/hooks";
+import { useLogout, useProfileQuery, useSession } from "~/hooks";
 
 export function PrivateLayout() {
   const navigate = useNavigate();
+  const logout = useLogout();
   const { setUser, authorized } = useSession();
-  const { data: profile, isSuccess, isLoading } = useProfileQuery();
+  const { data: profile, isSuccess, isLoading, isError } = useProfileQuery();
 
   useEffect(() => {
     if (!authorized) navigate("/", { replace: true });
     if (authorized && isSuccess) setUser(profile.user);
+    if (isError) {
+      navigate("/");
+      logout(false);
+    }
     //eslint-disable-next-line
-  }, [authorized, isSuccess]);
+  }, [authorized, isSuccess, isError]);
 
   if (isLoading) return <Loading />;
 

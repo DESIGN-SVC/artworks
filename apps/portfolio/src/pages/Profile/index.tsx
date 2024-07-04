@@ -39,7 +39,7 @@ export const Profile = () => {
         >
           <Container className="lg:flex-row lg:p-8 lg:items-center lg:justify-start">
             <img
-              src={user.avatar}
+              src={user.avatar_url}
               alt={"Profile picture of " + user.name}
               className={cx([
                 "w-full max-w-32 aspect-square mx-auto",

@@ -1,9 +1,9 @@
 import { FormDialog } from "./FormDialog";
 import { Camera, PencilSimple, Trash } from "@phosphor-icons/react";
-import { useSession, useTheme } from "~/hooks";
+import { useAvatarMutation, useSession, useTheme } from "~/hooks";
 import { cx } from "cva";
-import { Button } from "~/components";
-import { useRef, useState } from "react";
+import { Button, Loading } from "~/components";
+import { useEffect, useRef, useState } from "react";
 import AvatarEditor from "react-avatar-editor";
 
 type FormEditPhotoProps = {
@@ -19,10 +19,20 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
     editPhoto: false,
   });
   const cropRef = useRef<AvatarEditor>(null);
+  const {
+    mutate: updateAvatar,
+    isPending,
+    isSuccess,
+    data,
+  } = useAvatarMutation();
 
   const handleUploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    const formData = new FormData();
+
     if (file) {
+      formData.append("avatar", file);
+      updateAvatar({ avatar: formData });
       setUser({ ...user, avatar: URL.createObjectURL(file) });
     }
   };
@@ -40,6 +50,13 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
     onClose(true);
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      setUser(data);
+    }
+  }, [isSuccess]);
+
+  if (isPending) return <Loading />;
   return (
     <>
       <FormDialog.Root

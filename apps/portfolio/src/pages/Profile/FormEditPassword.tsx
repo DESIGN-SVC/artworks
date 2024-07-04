@@ -34,7 +34,6 @@ export const FormEditPassword = ({ onClose, open }: FormEditPasswordProps) => {
 
   const onSubmit = handleSubmit(async ({ currentPassword, newPassword }) => {
     updatePassword({ oldPassword: currentPassword, password: newPassword });
-    reset();
   });
 
   const passwordErrors = [
@@ -57,6 +56,7 @@ export const FormEditPassword = ({ onClose, open }: FormEditPasswordProps) => {
       title: "At least 1 number (0...9)",
     },
   ];
+
   useEffect(() => {
     if (isSuccess) {
       onClose(false);

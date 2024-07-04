@@ -1,3 +1,4 @@
+import { decryptPassword } from 'src/utils/decryptPassword';
 import { injectable, inject } from 'tsyringe'
 import { hash } from 'bcryptjs'
 import { AppError } from '@shared/errors/appError'
@@ -41,7 +42,7 @@ export class CreateUserUseCase {
             throw new AppError('Role not found')
         }
 
-        const hashedPassword = await hash(password, 10)
+        const hashedPassword = await hash(decryptPassword(password), 10)
 
         return this.usersRepository.create({
             name,

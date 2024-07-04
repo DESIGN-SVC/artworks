@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { cx } from "cva";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
-import { Button, Form, Input } from "~/components";
+import { Button, Form, Input, Loading } from "~/components";
+import { useCreateUserMutation } from "~/hooks";
 
 type Pathname = "personal-info" | "password" | "finish";
 
@@ -21,11 +22,12 @@ export const SignUpForm = () => {
   } = useForm<SignUpFields>({
     resolver: zodResolver(SignUpSchema),
   });
+  const { mutate: createUser, isSuccess, isPending } = useCreateUserMutation();
 
   const onSubmit = handleSubmit(
-    async (fields) => {
-      console.log(fields);
-      setCurrentStep("finish");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async ({ confirmPassword, ...rest }) => {
+      createUser({ ...rest });
     },
     (error) => {
       if (
@@ -39,6 +41,14 @@ export const SignUpForm = () => {
       }
     },
   );
+
+  useEffect(() => {
+    if (isSuccess) {
+      setCurrentStep("finish");
+    }
+  }, [isSuccess]);
+
+  if (isPending) return <Loading />;
 
   return (
     <Form.Root>

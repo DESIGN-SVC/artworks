@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 
 import { api } from "~/services";
 import { useSession } from "./context/Session/useSession";
+import { encryptPassword } from "~/utils";
 
 type Password = {
   password: string;
@@ -16,8 +17,8 @@ export function useUpdatePasswordMutation() {
       const { data, error, response } = await api.PUT("/users/password", {
         headers: { Authorization: `${accessToken}` } as Record<string, string>,
         body: {
-          password,
-          oldPassword,
+          password: encryptPassword(password),
+          oldPassword: encryptPassword(oldPassword),
         },
       });
 

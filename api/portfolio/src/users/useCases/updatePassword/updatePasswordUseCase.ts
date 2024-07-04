@@ -1,3 +1,4 @@
+import { decryptPassword } from 'src/utils/decryptPassword';
 import { AppError } from "@shared/errors/appError";
 import { User } from "@users/entities/user";
 import { IUsersRepository } from "@users/repositories/usersRepository.type";
@@ -21,11 +22,13 @@ export class UpdatePasswordUseCase {
         }
 
         if (password && oldPassword) {
-            const passwordMatch = await compare(oldPassword, user.password)
+            const passwordMatch = await compare(decryptPassword(oldPassword), user.password)
+
             if (!passwordMatch) throw new AppError('Old password does not match')
 
-            user.password = await hash(password, 10)
+            user.password = await hash(decryptPassword(password), 10)
         }
+
         this.usersRepository.update(user)
 
         return 
