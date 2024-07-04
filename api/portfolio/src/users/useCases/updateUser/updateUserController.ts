@@ -7,7 +7,7 @@ import { z } from "zod";
 
 export class UpdateUserController {
     async handle(req: Request, res: Response): Promise<Response> {
-        const updateUserUseCaseUseCase = container.resolve(UpdateUserUseCase)
+        const updateUserUseCase = container.resolve(UpdateUserUseCase)
 
         let id: string | (() => string) = ''
         if (!req.header('authorization')) {
@@ -29,8 +29,8 @@ export class UpdateUserController {
         const { name, team } = updateUserUserBody.parse(
             req.body,
         )
-        const user = await updateUserUseCaseUseCase.execute({ user_id: id as string, name, team })
+        const user = await updateUserUseCase.execute({ user_id: id as string, name, team })
 
-        return res.status(201).json(instanceToInstance(user))
+        return res.json(instanceToInstance(user))
     }
 }

@@ -21,7 +21,7 @@ export const User = ({ name, avatar }: UserProps) => (
 
     <div>
       <h1 className="text-2xl font-semibold text-selago-950 dark:text-white">
-        Hello, {name}
+        Hello, {name?.split(" ")?.[0]}
       </h1>
       <p className="text-selago-700 dark:text-white">
         Welcome to the Artworks Portfolio.

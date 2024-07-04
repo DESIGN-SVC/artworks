@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, WarningOctagon } from "@phosphor-icons/react";
 import { cx } from "cva";
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button, Input } from "~/components";
+import { Button, Input, Loading } from "~/components";
 import { FormDialog } from "./FormDialog";
-import { useTheme } from "~/hooks";
+import { useTheme, useUpdatePasswordMutation } from "~/hooks";
 
 type FormEditPasswordProps = {
   open: boolean;
@@ -26,8 +26,14 @@ export const FormEditPassword = ({ onClose, open }: FormEditPasswordProps) => {
     resolver: zodResolver(EditPasswordSchema),
   });
   const { theme } = useTheme();
+  const {
+    mutate: updatePassword,
+    isSuccess,
+    isPending,
+  } = useUpdatePasswordMutation();
 
-  const onSubmit = handleSubmit(async () => {
+  const onSubmit = handleSubmit(async ({ currentPassword, newPassword }) => {
+    updatePassword({ oldPassword: currentPassword, password: newPassword });
     reset();
   });
 
@@ -51,6 +57,13 @@ export const FormEditPassword = ({ onClose, open }: FormEditPasswordProps) => {
       title: "At least 1 number (0...9)",
     },
   ];
+  useEffect(() => {
+    if (isSuccess) {
+      onClose(false);
+    }
+  }, [isSuccess]);
+
+  if (isPending) return <Loading />;
 
   return (
     <FormDialog.Root

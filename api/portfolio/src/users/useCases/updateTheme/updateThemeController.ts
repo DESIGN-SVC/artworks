@@ -7,7 +7,7 @@ import { z } from "zod";
 
 export class UpdateThemeController {
     async handle(req: Request, res: Response): Promise<Response> {
-        const updateThemeUseCaseUseCase = container.resolve(UpdateThemeUseCase)
+        const updateThemeUseCase = container.resolve(UpdateThemeUseCase)
         
         let id: string | (() => string) = ''
         if (!req.header('authorization')) {
@@ -29,8 +29,8 @@ export class UpdateThemeController {
         const { theme } = updateThemeUserBody.parse(
             req.body,
         )
-         await updateThemeUseCaseUseCase.execute({ user_id: id as string, theme })
+         await updateThemeUseCase.execute({ user_id: id as string, theme })
 
-        return res.status(201).json(instanceToInstance({ theme }))
+        return res.json(instanceToInstance({ theme }))
     }
 }

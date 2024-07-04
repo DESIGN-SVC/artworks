@@ -72,7 +72,7 @@ export const Profile = ({ img, name, email, ...props }: ProfileProps) => (
           "leading-none dark:text-selago-100",
         ])}
       >
-        <p>{name}</p>
+        <p>{name?.split(" ")?.[0]}</p>
       </h6>
       <p className="text-selago-700 text-xs">{email}</p>
     </article>

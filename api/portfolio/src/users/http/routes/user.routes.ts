@@ -1,4 +1,11 @@
-import { CreateLoginController, CreateUserController, ShowProfileController,UpdateUserController, UpdateThemeController } from "@users/useCases";
+import {
+    CreateLoginController,
+    CreateUserController,
+    ShowProfileController,
+    UpdateUserController,
+    UpdateThemeController,
+    UpdatePasswordController
+} from "@users/useCases";
 import { Router } from "express";
 import { container } from "tsyringe";
 
@@ -9,6 +16,7 @@ const createLoginController = container.resolve(CreateLoginController)
 const showProfileController = container.resolve(ShowProfileController)
 const updateThemeController = container.resolve(UpdateThemeController)
 const updateUserController = container.resolve(UpdateUserController)
+const updatePasswordController = container.resolve(UpdatePasswordController)
 
 usersRouter.post('/', (req, res) => {
     return createUserController.handle(req, res)
@@ -24,4 +32,7 @@ usersRouter.put('/theme', (req, res) => {
 })
 usersRouter.put('/profile', (req, res) => {
     return updateUserController.handle(req, res)
+})
+usersRouter.put('/password', (req, res) => {
+    return updatePasswordController.handle(req, res)
 })

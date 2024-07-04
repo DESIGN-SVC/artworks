@@ -2,9 +2,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button, Input } from "~/components";
+import { Button, Input, Loading } from "~/components";
 import { FormDialog } from "./FormDialog";
-import { useTheme } from "~/hooks";
+import { useSession, useTheme, useUserMutation } from "~/hooks";
+import { useEffect } from "react";
 
 type FormEditProfileProps = {
   open: boolean;
@@ -13,6 +14,8 @@ type FormEditProfileProps = {
 
 export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
   const { theme } = useTheme();
+  const { mutate: updateUser, data, isSuccess, isPending } = useUserMutation();
+  const { setUser } = useSession();
   const {
     register,
     handleSubmit,
@@ -24,9 +27,20 @@ export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
     resolver: zodResolver(EditProfileSchema),
   });
 
-  const onSubmit = handleSubmit(async () => {
+  const onSubmit = handleSubmit(async ({ name, team }) => {
+    updateUser({ name, team });
     reset();
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      onClose(false);
+      setUser(data);
+    }
+  }, [isSuccess]);
+
+  if (isPending) return <Loading />;
+
   return (
     <FormDialog.Root
       open={open}
