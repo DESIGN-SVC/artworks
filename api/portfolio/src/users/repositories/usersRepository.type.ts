@@ -10,6 +10,8 @@ export type CreateUserDTO = {
   role: Role
   team: string
   theme: 'light' | 'dark'
+  verificationToken: string,
+  isVerified: boolean
 }
 
 export type PaginateParams = {
@@ -33,7 +35,9 @@ export interface IUsersRepository {
     avatar,
     role,
     team,
-    theme
+    theme,
+    verificationToken,
+    isVerified
   }: CreateUserDTO): Promise<User>
   update(user: User): Promise<User>
   delete(user: User): Promise<void>

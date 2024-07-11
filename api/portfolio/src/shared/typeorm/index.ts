@@ -9,6 +9,10 @@ export const dataSource = new DataSource({
   type: 'sqlite',
   database: './db.sqlite',
   entities: [Role, User],
-  migrations: [CreateRolesTable1710368510696, CreateUsersTable1712331678814, AddRoleIDToUsersTable1708460936493],
+  migrations: [
+    CreateRolesTable1710368510696,
+    CreateUsersTable1712331678814,
+    AddRoleIDToUsersTable1708460936493
+  ],
   logging: ['query', 'error'],
 })

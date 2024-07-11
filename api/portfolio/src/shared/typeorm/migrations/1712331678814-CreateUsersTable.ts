@@ -44,6 +44,16 @@ export class CreateUsersTable1712331678814 implements MigrationInterface {
                         default: false,
                     },
                     {
+                        name: 'isVerified',
+                        type: 'boolean',
+                        default: false,
+                    },
+                    {
+                        name: 'verificationToken',
+                        type: 'string',
+                        isNullable: true,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',

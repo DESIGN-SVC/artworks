@@ -34,3 +34,17 @@ export const Success = ({ description, title }: SuccessProps) => (
     </div>
   </div>
 );
+
+type ErrorProps = {
+  title: string;
+  description: string;
+};
+export const Error = ({ description, title }: ErrorProps) => (
+  <div className="flex flex-col gap-8">
+    <GreenCheck className="w-20" />
+    <div className="space-y-2">
+      <h2 className="text-2xl font-semibold text-selago-950">{title}</h2>
+      <p className="text-selago-700">{description}</p>
+    </div>
+  </div>
+);

@@ -1,10 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import { IndexPage } from "./pages";
 import { RootLayout } from "./pages/layout-root";
-import { Signup } from "./pages/signup";
+import { SignUp } from "./pages/signup";
 import { PasswordReset } from "./pages/PasswordReset";
 import { PrivateLayout } from "./pages/layout-private";
 import { Profile } from "./pages/Profile";
+import { Confirmation } from "./pages/Confirmation";
 
 export const router = createBrowserRouter([
   {
@@ -12,8 +13,9 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <IndexPage /> },
-      { path: "/signup", element: <Signup /> },
+      { path: "/signup", element: <SignUp /> },
       { path: "/password/reset", element: <PasswordReset /> },
+      { path: "/confirmation/:token", element: <Confirmation /> },
       {
         element: <PrivateLayout />,
         children: [{ path: "/profile/:id", element: <Profile /> }],

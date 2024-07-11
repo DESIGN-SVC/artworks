@@ -2,13 +2,12 @@ import { cx } from "cva";
 import { Suspense, useEffect } from "react";
 import { Outlet, ScrollRestoration, useNavigate } from "react-router-dom";
 import { Loading, Menu } from "~/components";
-import { useCookieData, useLogout, useSession, useTheme } from "~/hooks";
+import { useLogout, useSession, useTheme } from "~/hooks";
 import { HoverAnimation } from "~/utils";
 
 export const RootLayout = () => {
-  const { retrieveData } = useCookieData();
   const { authorized, user } = useSession();
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   const navigate = useNavigate();
   const logout = useLogout();
 
@@ -23,7 +22,7 @@ export const RootLayout = () => {
 
   useEffect(() => {
     HoverAnimation();
-    if (retrieveData("theme") === "dark") {
+    if (theme === "dark") {
       document.querySelector("html")?.classList.add("dark");
       setTheme("dark");
     } else {
@@ -33,7 +32,7 @@ export const RootLayout = () => {
     if (!authorized) onLogout();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [retrieveData, authorized]);
+  }, [theme, authorized]);
 
   return (
     <div
@@ -54,7 +53,7 @@ export const RootLayout = () => {
           onLogout={onLogout}
           role={user.role?.name as "admin" | "user" | "editor"}
           email={user.email as string}
-          img={user.avatar as string}
+          img={user.avatar_url as string}
           name={user.name as string}
           linkToProfile={`/profile/${user.id}`}
         />

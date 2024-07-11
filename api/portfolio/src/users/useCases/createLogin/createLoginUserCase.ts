@@ -1,3 +1,4 @@
+import { decryptPassword } from 'src/utils/decryptPassword';
 import { inject, injectable } from "tsyringe";
 import { compare } from "bcryptjs";
 import { AppError } from "@shared/errors/appError";
@@ -22,22 +23,25 @@ export class CreateLoginUserCase {
 
     constructor(
         @inject('UsersRepository') private usersRepository: IUsersRepository,
-      ) {}
+    ) { }
     async execute({ email, password }: CreateLoginDTO): Promise<IResponse> {
         const user = await this.usersRepository.findByEmail(email)
 
         if (!user) {
             throw new AppError('Email or password incorrect', 401)
         }
-        
-        const passwordMatch = await compare(password, user.password)
+        if(!user.isVerified) {
+            throw new AppError('Email not verified', 401)
+        }
+
+        const passwordMatch = await compare(decryptPassword(password), user.password)
         if (!passwordMatch) {
             throw new AppError('Email or password incorrect', 401)
         }
-        
+
         const accessToken = sign({}, jwtConfig.jwt.secret, {
             subject: user.id,
-            expiresIn: jwtConfig.jwt.expiresIn,              
+            expiresIn: jwtConfig.jwt.expiresIn,
         })
 
         /* const expires = new Date(Date.now()+ jwtConfig.refreshToken.duration)

@@ -3,6 +3,8 @@ import { useMutation } from "@tanstack/react-query";
 import { api } from "~/services";
 import { useSession } from "./context/Session/useSession";
 import { LoginFields } from "~/pages/Login/LoginForm";
+import { useTheme } from "./context/Theme/useTheme";
+import { encryptPassword } from "~/utils";
 
 interface ApiError {
   code: number;
@@ -14,13 +16,14 @@ interface ApiError {
 
 export function useLoginMutation() {
   const { setAccessToken, setUser } = useSession();
+  const { setTheme } = useTheme();
 
   const mutation = useMutation({
     mutationFn: async ({ email, password }: LoginFields) => {
       const { data, error, response } = await api.POST("/users/login", {
         body: {
           email,
-          password,
+          password: encryptPassword(password),
         },
       });
 
@@ -31,9 +34,10 @@ export function useLoginMutation() {
     onSuccess: (data) => {
       setAccessToken(data.accessToken);
       setUser(data.user);
+      setTheme(data.user.theme);
     },
     onError: (error: ApiError) => {
-      console.log(error);
+      console.error(error);
     },
   });
 

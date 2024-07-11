@@ -7,7 +7,8 @@ import {
     UpdatePasswordController,
     UpdateUserController,
     UpdateThemeController,
-    UpdateAvatarController
+    UpdateAvatarController,
+    DeleteAvatarController
 } from '@users/useCases'
 import { container } from 'tsyringe'
 
@@ -24,3 +25,4 @@ container.registerSingleton('UpdateThemeController', UpdateThemeController)
 container.registerSingleton('UpdateUserController', UpdateUserController)
 container.registerSingleton('UpdatePasswordController', UpdatePasswordController)
 container.registerSingleton('UpdateAvatarController', UpdateAvatarController)
+container.registerSingleton('DeleteAvatarController', DeleteAvatarController)

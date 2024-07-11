@@ -15,7 +15,7 @@ export class CreateUserController {
                 .email('This is not a valid email')
                 .refine(
                     (value) => {
-                        const validDomains = ['webhelp', 'concentrix']
+                        const validDomains = ['webhelp', 'concentrix', 'hotmail', 'gmail']
                         const domain = value.split('@').at(1)
                         const dotIndex = domain.indexOf('.')
 
@@ -41,13 +41,31 @@ export class CreateUserController {
                 }),
             team: z.string().min(6, { message: 'Team is required' }),
             theme: z.enum(['light', 'dark']).default('light'),
-            isAdmin: z.boolean().default(false)
+            isAdmin: z.boolean().default(false),
+            isVerified: z.boolean().default(false),
         })
 
-        const { name, email, isAdmin, password, team, theme } = createUserBody.parse(req.body)
+        const {
+            name,
+            email,
+            isAdmin,
+            password,
+            team,
+            theme,
+            isVerified
+        } = createUserBody.parse(req.body)
+        
+        await createUserUseCase.execute({
+            name,
+            email,
+            isAdmin,
+            password,
+            team,
+            theme,
+            isVerified
+        })
 
-        const user = await createUserUseCase.execute({ name, email, isAdmin, password,team,theme })
 
-        return res.status(201).json(instanceToInstance(user))
+        return res.status(201).send({ message: 'User registered. Please verify your email.' })
     }
 }

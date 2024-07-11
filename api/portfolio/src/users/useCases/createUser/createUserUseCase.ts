@@ -6,6 +6,11 @@ import { User } from '@users/entities/user'
 import { IUsersRepository } from '@users/repositories/usersRepository.type'
 import { IRolesRepository } from '@roles/repositories/rolesRepository.type'
 
+import { sendVerificationEmail } from 'src/utils/sendVerificationEmail';
+import { sign } from "jsonwebtoken";
+import jwtConfig from '@config/auth'
+
+
 
 type CreateUserDTO = {
     name: string
@@ -14,6 +19,8 @@ type CreateUserDTO = {
     isAdmin: boolean
     team: string
     theme: 'light' | 'dark'
+    isVerified: boolean
+
 }
 
 @injectable()
@@ -29,7 +36,8 @@ export class CreateUserUseCase {
         password,
         isAdmin,
         team,
-        theme
+        theme,
+        isVerified
     }: CreateUserDTO): Promise<User> {
         const emailAlreadyExists = await this.usersRepository.findByEmail(email)
         const roleName = await this.rolesRepository.findByName('user')
@@ -38,11 +46,18 @@ export class CreateUserUseCase {
             throw new AppError('Email already exists')
         }
 
-        if(!roleName) {
+        if (!roleName) {
             throw new AppError('Role not found')
         }
-
+    
         const hashedPassword = await hash(decryptPassword(password), 10)
+        const hashVerificationToken = sign(
+            { email: email },
+            jwtConfig.emailToken.secret,
+            { expiresIn: jwtConfig.emailToken.expiresIn }
+        );
+
+        await sendVerificationEmail({ email, token: hashVerificationToken, name })
 
         return this.usersRepository.create({
             name,
@@ -51,7 +66,9 @@ export class CreateUserUseCase {
             isAdmin,
             role: roleName,
             team,
-            theme
+            theme,
+            verificationToken: hashVerificationToken,
+            isVerified
         })
     }
 }

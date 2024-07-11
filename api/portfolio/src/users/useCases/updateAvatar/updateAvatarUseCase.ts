@@ -26,10 +26,12 @@ export class UpdateAvatarUseCase {
       const userAvatarFilePath = path.join(uploadConfig.directory, user.avatar)
 
       const userAvatarFileExists = await fs.promises.stat(userAvatarFilePath)
+      console.log('userAvatarFileExists',userAvatarFileExists);
       if (userAvatarFileExists) {
         await fs.promises.unlink(userAvatarFilePath)
       }
     }
+
     user.avatar = avatarFilename.replace(/\s/g, '')
     return this.usersRepository.update(user)
   }

@@ -40,7 +40,10 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     setAccessTokenState(accessToken);
   };
   const setUserState = (user: User) => {
-    setUser({ ...user, avatar: user.avatar ? user.avatar : UserNotFound });
+    setUser({
+      ...user,
+      avatar_url: user.avatar_url ? user.avatar_url : UserNotFound,
+    });
   };
 
   useEffect(() => {

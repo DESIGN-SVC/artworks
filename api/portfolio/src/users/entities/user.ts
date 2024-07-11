@@ -28,6 +28,14 @@ export class User {
     isAdmin: boolean
 
     @Column()
+    isVerified: boolean
+
+    @Column({
+        nullable: true,
+    })
+    verificationToken: string
+
+    @Column()
     avatar?: string
 
     @Column()
@@ -46,7 +54,7 @@ export class User {
 
     @Expose({ name: 'avatar_url' })
     getAvatarUrl(): string | null {
-        if (!this.avatar) return null        
+        if (!this.avatar) return null
         return `${process.env.API_URL}/files/${this.avatar}`
     }
 

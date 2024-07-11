@@ -1,10 +1,17 @@
-import { FormDialog } from "./FormDialog";
+import { FormDialog } from ".././FormDialog";
 import { Camera, PencilSimple, Trash } from "@phosphor-icons/react";
-import { useAvatarMutation, useSession, useTheme } from "~/hooks";
+import {
+  useAvatarMutation,
+  useDeleteAvatarMutation,
+  useSession,
+  useTheme,
+} from "~/hooks";
 import { cx } from "cva";
 import { Button, Loading } from "~/components";
 import { useEffect, useRef, useState } from "react";
 import AvatarEditor from "react-avatar-editor";
+import { EditPhoto } from "./EditPhoto";
+import { DeletePhoto } from "./DeletePhoto";
 
 type FormEditPhotoProps = {
   open: boolean;
@@ -13,6 +20,11 @@ type FormEditPhotoProps = {
 
 export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
   const { user, setUser } = useSession();
+  const {
+    mutate: deleteAvatar,
+    isPending: isPendingDelete,
+    isSuccess: isSuccessDelete,
+  } = useDeleteAvatarMutation();
   const { theme } = useTheme();
   const [openModal, setOpenModal] = useState({
     deletePhoto: false,
@@ -21,9 +33,9 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
   const cropRef = useRef<AvatarEditor>(null);
   const {
     mutate: updateAvatar,
-    isPending,
-    isSuccess,
-    data,
+    isPending: isPendingUpdate,
+    isSuccess: isSuccessUpdate,
+    data: dataUpdate,
   } = useAvatarMutation();
 
   const handleUploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,25 +50,35 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
   };
 
   const handleDeletePhoto = () => {
-    setUser({ ...user, avatar: undefined });
+    deleteAvatar();
+    setUser({ ...user, avatar_url: undefined });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    const formData = new FormData();
     if (cropRef.current) {
-      const canvas = cropRef.current.getImageScaledToCanvas().toDataURL();
-      setUser({ ...user, avatar: canvas });
+      const canvas = cropRef.current.getImageScaledToCanvas();
+      canvas.toBlob(async (result) => {
+        if (result) formData.append("avatar", result, "avatar.png");
+        console.log(formData.get("avatar"));
+        updateAvatar({ avatar: formData });
+        setUser({ ...user, avatar_url: canvas.toDataURL() });
+      });
     }
     setOpenModal({ ...openModal, editPhoto: false });
     onClose(true);
   };
 
   useEffect(() => {
-    if (isSuccess) {
-      setUser(data);
+    if (isSuccessUpdate) {
+      setUser(dataUpdate);
     }
-  }, [isSuccess]);
+    if (isSuccessDelete) {
+      setUser({ ...user, avatar_url: undefined });
+    }
+  }, [isSuccessUpdate, isSuccessDelete]);
 
-  if (isPending) return <Loading />;
+  if (isPendingUpdate || isPendingDelete) return <Loading />;
   return (
     <>
       <FormDialog.Root
@@ -70,12 +92,13 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
           <FormDialog.Content title="Profile photo">
             <div className="relative">
               <img
-                src={user.avatar}
+                src={user.avatar_url}
                 alt={"Profile picture of " + user.name}
                 className={cx([
                   "w-full max-w-48 aspect-square mx-auto object-cover object-center",
                   "rounded-full border-2 border-violet-50",
                 ])}
+                crossOrigin="anonymous"
               />
               <input
                 type="file"
@@ -158,7 +181,7 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
         children={
           <AvatarEditor
             ref={cropRef}
-            image={user.avatar as string}
+            image={user.avatar_url as string}
             scale={1}
             className={cx([
               "mx-auto !w-[200px] !h-[200px]",
@@ -168,98 +191,10 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
             disableCanvasRotation
             disableHiDPIScaling
             disableBoundaryChecks
+            crossOrigin="anonymous"
           />
         }
       />
     </>
-  );
-};
-type DeletePhotoProps = {
-  theme?: "light" | "dark";
-  onCancel: () => void;
-  onDelete: () => void;
-} & FormEditPhotoProps;
-
-const DeletePhoto = ({
-  onClose,
-  onCancel,
-  onDelete,
-  open,
-  theme,
-}: DeletePhotoProps) => {
-  return (
-    <FormDialog.Root
-      open={open}
-      onOpenChange={(e) => {
-        onClose(e);
-      }}
-      asChild
-    >
-      <div>
-        <FormDialog.Content title="Profile photo">
-          <p className="text-xl dark:text-selago-50 text-selago-950">
-            Are you sure you want to delete your photo?
-          </p>
-        </FormDialog.Content>
-        <FormDialog.Footer>
-          <FormDialog.Close asChild>
-            <Button
-              onClick={onCancel}
-              appearance={theme === "dark" ? "ghost" : "secondary"}
-              type="button"
-            >
-              Cancel
-            </Button>
-          </FormDialog.Close>
-
-          <Button appearance="tertiary" onClick={onDelete}>
-            Delete
-          </Button>
-        </FormDialog.Footer>
-      </div>
-    </FormDialog.Root>
-  );
-};
-type EditPhotoProps = {
-  theme?: "light" | "dark";
-  onCancel: () => void;
-  onSave: () => void;
-  children: React.ReactNode;
-} & FormEditPhotoProps;
-const EditPhoto = ({
-  onClose,
-  onCancel,
-  onSave,
-  open,
-  theme,
-  children,
-}: EditPhotoProps) => {
-  return (
-    <FormDialog.Root
-      open={open}
-      onOpenChange={(e) => {
-        onClose(e);
-      }}
-      asChild
-    >
-      <div>
-        <FormDialog.Content title="Edit photo">{children}</FormDialog.Content>
-        <FormDialog.Footer>
-          <FormDialog.Close asChild>
-            <Button
-              onClick={onCancel}
-              appearance={theme === "dark" ? "ghost" : "secondary"}
-              type="button"
-            >
-              Cancel
-            </Button>
-          </FormDialog.Close>
-
-          <Button appearance="tertiary" onClick={onSave}>
-            Save picture
-          </Button>
-        </FormDialog.Footer>
-      </div>
-    </FormDialog.Root>
   );
 };

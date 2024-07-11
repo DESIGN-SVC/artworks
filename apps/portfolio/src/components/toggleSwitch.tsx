@@ -1,13 +1,12 @@
 import { Moon, SunDim } from "@phosphor-icons/react";
 import { cx } from "cva";
-import { ComponentPropsWithRef, useEffect } from "react";
-import { useCookieData, useTheme, useThemeMutation } from "~/hooks";
+import { ComponentPropsWithRef } from "react";
+import { useTheme, useThemeMutation } from "~/hooks";
 
 export type ToggleSwitchProps = ComponentPropsWithRef<"button">;
 export const ToggleSwitch = ({ ...props }: ToggleSwitchProps) => {
-  const { saveData } = useCookieData();
   const { setTheme } = useTheme();
-  const { mutate: theme, data, isSuccess } = useThemeMutation();
+  const { mutate: theme } = useThemeMutation();
   const handleToggleDark = () => {
     if (document.querySelector("html")?.classList.contains("dark")) {
       document.querySelector("html")?.classList.remove("dark");
@@ -20,10 +19,6 @@ export const ToggleSwitch = ({ ...props }: ToggleSwitchProps) => {
       theme({ theme: "dark" });
     }
   };
-
-  useEffect(() => {
-    if (isSuccess) saveData("theme", data.theme);
-  }, [isSuccess]);
 
   return (
     <button onClick={handleToggleDark} {...props}>

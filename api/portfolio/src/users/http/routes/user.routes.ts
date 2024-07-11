@@ -10,7 +10,8 @@ import {
     UpdateUserController,
     UpdateThemeController,
     UpdatePasswordController,
-    UpdateAvatarController
+    UpdateAvatarController,
+    DeleteAvatarController
 } from "@users/useCases";
 
 export const usersRouter = Router()
@@ -24,6 +25,7 @@ const updateThemeController = container.resolve(UpdateThemeController)
 const updateUserController = container.resolve(UpdateUserController)
 const updatePasswordController = container.resolve(UpdatePasswordController)
 const updateAvatarController = container.resolve(UpdateAvatarController)
+const deleteAvatarController = container.resolve(DeleteAvatarController)
 
 usersRouter.post('/', (req, res) => {
     return createUserController.handle(req, res)
@@ -47,6 +49,13 @@ usersRouter.patch(
     '/avatar',
     upload.single('avatar'),
     (req, res) => {
-      return updateAvatarController.handle(req, res)
+        return updateAvatarController.handle(req, res)
     },
-  )
+)
+
+usersRouter.delete(
+    '/avatar',
+    (req, res) => {
+        return deleteAvatarController.handle(req, res)
+    },
+)

@@ -9,6 +9,7 @@ export type User = {
     id?: string | undefined;
   };
   avatar?: string | undefined;
+  avatar_url?: string | undefined;
   isAdmin?: boolean | undefined;
 };
 

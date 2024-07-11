@@ -7,6 +7,7 @@ export * from "./useUserMutation";
 export * from "./UseUpdatePasswordMutation";
 export * from "./UseUpdateAvatarMutation";
 export * from "./useCreateUserMutation";
+export * from "./UseDeleteAvatarMutation";
 
 export { Provider } from "./context";
 export { useSession } from "./context/Session/useSession";

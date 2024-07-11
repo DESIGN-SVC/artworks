@@ -265,6 +265,7 @@ export default {
         "linear-gradient(0deg, #6B11D2 0.23%, #F3469D 0.24%, #FFC30D 99.55%)",
       "gradient-btn-apps":
         "linear-gradient(359deg, #0180FD 1.14%, #0ED6FA 99.53%)",
+      "hero-dark": "linear-gradient(180deg, #4A1979 0%, #200837 100%)",
     },
   },
 } satisfies Config;

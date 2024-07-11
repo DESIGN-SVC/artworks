@@ -41,9 +41,10 @@ export const Home = () => {
   ];
 
   useEffect(() => {
-    document.title = "Home | Artworks";
+    document.title = "Artworks | home";
     if (accessToken && isSuccess) {
       setUser(profile.user);
+      console.log(profile.user.theme);
       setTheme(profile.user.theme);
     }
     if (isError) {
@@ -64,7 +65,7 @@ export const Home = () => {
         "dark:bg-violet-1000",
       ])}
     >
-      <User name={user.name as string} avatar={user.avatar} />
+      <User name={user.name as string} avatar={user.avatar_url} />
       <ul
         className={cx([
           "flex flex-col items-center gap-3",

@@ -1,4 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { WarningOctagon } from "@phosphor-icons/react";
+import { cx } from "cva";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -8,7 +10,13 @@ import { useLoginMutation } from "~/hooks";
 
 export const LoginForm = () => {
   const navigate = useNavigate();
-  const { mutate: login, isPending, isSuccess } = useLoginMutation();
+  const {
+    mutate: login,
+    isPending,
+    isSuccess,
+    isError,
+    error,
+  } = useLoginMutation();
   const {
     register,
     handleSubmit,
@@ -25,16 +33,16 @@ export const LoginForm = () => {
       email,
       password,
     });
-    reset();
   });
 
   useEffect(() => {
     if (isSuccess) {
       navigate("/home");
+      reset();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
-
+  console.log(error?.error.message);
   if (isPending) return <Loading />;
 
   return (
@@ -67,6 +75,19 @@ export const LoginForm = () => {
             Forgot your password?
           </Link>
         </fieldset>
+        {isError && (
+          <div
+            className={cx([
+              "flex items-center gap-2.5",
+              "p-2.5",
+              "text-red-500 text-sm",
+              "bg-red-50 rounded-lg",
+            ])}
+          >
+            <WarningOctagon size={20} />
+            <p>{error?.error.message}</p>
+          </div>
+        )}
         <Button appearance="tertiary" size="lg">
           Continue
         </Button>

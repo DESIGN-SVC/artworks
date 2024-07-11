@@ -18,7 +18,7 @@ export const Profile = () => {
   });
 
   useEffect(() => {
-    document.title = "Profile | Artworks";
+    document.title = "Artworks | Profile";
   }, []);
 
   return (

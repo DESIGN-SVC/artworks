@@ -15,7 +15,7 @@ type FormEditProfileProps = {
 export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
   const { theme } = useTheme();
   const { mutate: updateUser, data, isSuccess, isPending } = useUserMutation();
-  const { setUser } = useSession();
+  const { setUser, user } = useSession();
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
 
   const onSubmit = handleSubmit(async ({ name, team }) => {
     updateUser({ name, team });
-    reset();
+    reset({ name, team });
   });
 
   useEffect(() => {
@@ -58,12 +58,14 @@ export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
               placeholder="Name"
               {...register("name")}
               error={name?.message}
+              defaultValue={user?.name}
             />
             <Input.Input
               label="Team"
               placeholder="Team"
               {...register("team")}
               error={team?.message}
+              defaultValue={user?.team}
             />
           </fieldset>
         </div>
