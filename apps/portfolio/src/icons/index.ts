@@ -3,6 +3,7 @@ export { GreenCheck } from "./GreenCheck";
 export { Monitor } from "./Monitor";
 export { Paint3d } from "./Paint3d";
 export { PurpleCamera } from "./PurpleCamera";
-export { LogoConcentrixWebhelp } from "./LogoConcentrixWebhelp";
+export { LogoConcentrix } from "./LogoConcentrix";
 export { LogoArtworks } from "./LogoArtworks";
 export { Paint } from "./Paint";
+export { RedClose } from "./RedClose";

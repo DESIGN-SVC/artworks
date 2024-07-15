@@ -16,6 +16,7 @@ export const IsAuthenticated = (
       code: 'token.invalid',
     })
   }
+
   const token = authorization.split(' ')[1]
 
   if (!token) {
@@ -29,6 +30,7 @@ export const IsAuthenticated = (
   try {
     const { sub } = verify(token, authConfig.jwt.secret as Secret)
     req.user = { id: sub as string }
+    
     return next()
   } catch (error) {
     return res.status(401).json({

@@ -37,7 +37,7 @@ export function animationUpElements(baseClass: string, suffix: string) {
 
 export function animationElements() {
     const  elements = document.querySelectorAll<HTMLElement>('[data-animation]')
-    console.log(elements)
+    
     const windowTopOnLoad = window.scrollY + (window.innerHeight * 4) / 4
     if (elements) {
         elements.forEach((el) => {

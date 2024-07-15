@@ -28,7 +28,21 @@ export class User {
     isAdmin: boolean
 
     @Column()
+    isVerified: boolean
+
+    @Column({
+        nullable: true,
+    })
+    verificationToken: string
+
+    @Column()
     avatar?: string
+
+    @Column()
+    theme?: string
+
+    @Column()
+    team: string
 
     @ManyToOne(() => Role, {
         cascade: true,

@@ -1,3 +1,4 @@
+import { decryptPassword } from 'src/utils/decryptPassword';
 import { injectable, inject } from 'tsyringe'
 import { hash } from 'bcryptjs'
 import { AppError } from '@shared/errors/appError'
@@ -5,13 +6,21 @@ import { User } from '@users/entities/user'
 import { IUsersRepository } from '@users/repositories/usersRepository.type'
 import { IRolesRepository } from '@roles/repositories/rolesRepository.type'
 
+import { sendVerificationEmail } from 'src/utils/sendVerificationEmail';
+import { sign } from "jsonwebtoken";
+import jwtConfig from '@config/auth'
+
+
 
 type CreateUserDTO = {
     name: string
     email: string
     password: string
     isAdmin: boolean
-    roleId: string
+    team: string
+    theme: 'light' | 'dark'
+    isVerified: boolean
+
 }
 
 @injectable()
@@ -26,27 +35,40 @@ export class CreateUserUseCase {
         email,
         password,
         isAdmin,
-        roleId,
+        team,
+        theme,
+        isVerified
     }: CreateUserDTO): Promise<User> {
         const emailAlreadyExists = await this.usersRepository.findByEmail(email)
+        const roleName = await this.rolesRepository.findByName('user')
 
         if (emailAlreadyExists) {
             throw new AppError('Email already exists')
         }
 
-        const role = await this.rolesRepository.findById(roleId)
-        if (!role) {
-            throw new AppError('Role not found', 404)
+        if (!roleName) {
+            throw new AppError('Role not found')
         }
+    
+        const hashedPassword = await hash(decryptPassword(password), 10)
+        const hashVerificationToken = sign(
+            { email: email },
+            jwtConfig.emailToken.secret,
+            { expiresIn: jwtConfig.emailToken.expiresIn }
+        );
 
-        const hashedPassword = await hash(password, 10)
+        await sendVerificationEmail({ email, token: hashVerificationToken, name })
 
         return this.usersRepository.create({
             name,
             email,
             password: hashedPassword,
             isAdmin,
-            role,
+            role: roleName,
+            team,
+            theme,
+            verificationToken: hashVerificationToken,
+            isVerified
         })
     }
 }

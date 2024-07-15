@@ -1,45 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Root, PreLoginFormsContainer } from "./pages";
-import { AccountForms } from "./forms";
+import { IndexPage } from "./pages";
+import { RootLayout } from "./pages/layout-root";
+import { SignUp } from "./pages/signup";
+import { PasswordReset } from "./pages/PasswordReset";
+import { PrivateLayout } from "./pages/layout-private";
+import { Profile } from "./pages/Profile";
+import { ConfirmationTokenEmail } from "./pages/ConfirmationTokenEmail";
+import { ResendTokenEmail } from "./pages/ResendTokenEmail";
 
 export const router = createBrowserRouter([
   {
-    id: "root",
     path: "/",
-    element: <Root />,
+    element: <RootLayout />,
     children: [
+      { index: true, element: <IndexPage /> },
+      { path: "/signup", element: <SignUp /> },
+      { path: "/password/reset", element: <PasswordReset /> },
+      { path: "/confirmation/:token", element: <ConfirmationTokenEmail /> },
+      { path: "/resend-token", element: <ResendTokenEmail /> },
       {
-        index: true,
-        id: "login",
-        path: "/",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.Login />
-          </PreLoginFormsContainer>
-        ),
-      },
-      {
-        id: "signup",
-        path: "/accounts/signup",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.SignUp />
-          </PreLoginFormsContainer>
-        ),
-      },
-      {
-        id: "password-reset",
-        path: "/accounts/password/reset",
-        element: (
-          <PreLoginFormsContainer>
-            <AccountForms.PasswordReset />
-          </PreLoginFormsContainer>
-        ),
-      },
-      {
-        id: "home",
-        path: "/home",
-        element: <Home />,
+        element: <PrivateLayout />,
+        children: [{ path: "/profile/:id", element: <Profile /> }],
       },
     ],
   },

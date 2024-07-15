@@ -30,9 +30,28 @@ export class CreateUsersTable1712331678814 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: 'theme',
+                        type: 'string',
+                        isNullable: true,
+                    },
+                    {
+                        name: 'team',
+                        type: 'string',
+                    },
+                    {
                         name: 'isAdmin',
                         type: 'boolean',
                         default: false,
+                    },
+                    {
+                        name: 'isVerified',
+                        type: 'boolean',
+                        default: false,
+                    },
+                    {
+                        name: 'verificationToken',
+                        type: 'string',
+                        isNullable: true,
                     },
                     {
                         name: 'created_at',

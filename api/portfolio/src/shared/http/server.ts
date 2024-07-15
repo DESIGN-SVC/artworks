@@ -1,5 +1,7 @@
+import 'dotenv/config'
 import { dataSource } from '@shared/typeorm'
 import { app } from './app'
+import 'reflect-metadata'
 
 const PORT = process.env.PORT
 

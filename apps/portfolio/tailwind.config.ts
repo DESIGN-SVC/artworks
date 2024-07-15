@@ -29,8 +29,8 @@ export default {
             cursor: "pointer",
           },
           ".container": {
-            paddingLeft: "2rem",
-            paddingRight: "2rem",
+            paddingLeft: "1.25rem",
+            paddingRight: "1.25rem",
             marginLeft: "auto",
             marginRight: "auto",
             width: "100%",
@@ -38,7 +38,7 @@ export default {
           },
         },
         {
-          "@media (min-width: 1280px) ": {
+          "@media (min-width: 1536px) ": {
             ".container": {
               paddingLeft: "5.625rem",
               paddingRight: "5.625rem",
@@ -47,12 +47,46 @@ export default {
         },
       ]);
     }),
+    function groupPeer({ addVariant }) {
+      const pseudoVariants = [
+        // ... Any other pseudo variants you want to support.
+        // See https://github.com/tailwindlabs/tailwindcss/blob/6729524185b48c9e25af62fc2372911d66e7d1f0/src/corePlugins.js#L78
+        "checked",
+      ].map((variant) =>
+        Array.isArray(variant) ? variant : [variant, `&:${variant}`],
+      );
+
+      for (const [variantName, state] of pseudoVariants) {
+        addVariant(`group-peer-${variantName}`, (ctx) => {
+          const result = typeof state === "function" ? state(ctx) : state;
+          return result.replace(/&(\S+)/, ":merge(.peer)$1 ~ .group &");
+        });
+      }
+    },
   ],
 
   darkMode: "class",
 
   theme: {
-    extend: {},
+    extend: {
+      data: {
+        active: "state=active",
+        inactive: "state=inactive",
+
+        open: "state=open",
+        closed: "state=closed",
+
+        "swipe-up": "swipe-direction=up",
+        "swipe-down": "swipe-direction=down",
+        "swipe-left": "swipe-direction=left",
+        "swipe-right": "swipe-direction=right",
+
+        "swipe-start": "swipe=start",
+        "swipe-move": "swipe=move",
+        "swipe-cancel": "swipe=cancel",
+        "swipe-end": "swipe=end",
+      },
+    },
     colors: {
       white: "#ffffff",
       black: "#000000",
@@ -186,14 +220,25 @@ export default {
         from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
         to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
       },
-      'openProdCast': {
+      openProdCast: {
         from: { transform: "translateY(12%)", opacity: "0" },
-        to: { transform: "translateY(0)", opacity: "1", }
-
+        to: { transform: "translateY(0)", opacity: "1" },
       },
-      'closeProdCast': {
+      closeProdCast: {
         from: { transform: "translateY(0)", opacity: "1" },
-        to: { transform: "translateY(12%)", opacity: "0", }
+        to: { transform: "translateY(12%)", opacity: "0" },
+      },
+      "open-menu-mobile": {
+        from: { transform: "translateX(-300%)" },
+        to: { transform: "translateX(0)" },
+      },
+      "closed-menu-mobile": {
+        from: { transform: "translateX(0)" },
+        to: { transform: "translateX(-300%)" },
+      },
+      contentShow: {
+        from: { opacity: "0", transform: "translate(-50%, -48%) scale(0.50)" },
+        to: { opacity: "1", transform: "translate(-50%, -50%) scale(1)" },
       },
     },
     animation: {
@@ -205,10 +250,22 @@ export default {
       swipeOutRight: "swipeOutRight 100ms ease-out",
       openProdCast: "openProdCast 500ms ease-in-out",
       closeProdCast: "closeProdCast 500ms ease-in-out",
+      "open-menu-mobile": "open-menu-mobile 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+      "closed-menu-mobile":
+        "closed-menu-mobile 1000ms cubic-bezier(0.4, 0, 0.2, 1)",
+      contentShow: "contentShow 500ms cubic-bezier(0.16, 1, 0.3, 1)",
     },
     backgroundImage: {
       hero: "url('/images/bg-login.png')",
+      "gradient-btn-audiovisual":
+        "linear-gradient(0deg, #6B11D2 0.23%, #B64ADF 99.55%)",
+      "gradient-btn-branding":
+        "linear-gradient(1deg, #DF008A 0.48%, #C7007B 0.49%, #FF59C0 99.17%)",
+      "gradient-btn-photography":
+        "linear-gradient(0deg, #6B11D2 0.23%, #F3469D 0.24%, #FFC30D 99.55%)",
+      "gradient-btn-apps":
+        "linear-gradient(359deg, #0180FD 1.14%, #0ED6FA 99.53%)",
+      "hero-dark": "linear-gradient(180deg, #4A1979 0%, #200837 100%)",
     },
   },
-  
 } satisfies Config;

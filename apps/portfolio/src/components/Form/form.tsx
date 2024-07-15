@@ -1,6 +1,6 @@
 import { cx } from "cva";
 import { ComponentPropsWithRef } from "react";
-import { GreenCheck } from "~/icons";
+import { GreenCheck, RedClose } from "~/icons";
 
 export const Root = ({ ...props }: ComponentPropsWithRef<"div">) => (
   <div
@@ -28,6 +28,20 @@ type SuccessProps = {
 export const Success = ({ description, title }: SuccessProps) => (
   <div className="flex flex-col gap-8">
     <GreenCheck className="w-20" />
+    <div className="space-y-2">
+      <h2 className="text-2xl font-semibold text-selago-950">{title}</h2>
+      <p className="text-selago-700">{description}</p>
+    </div>
+  </div>
+);
+
+type ErrorProps = {
+  title: string;
+  description: string;
+};
+export const Error = ({ description, title }: ErrorProps) => (
+  <div className="flex flex-col gap-8">
+    <RedClose className="w-20" />
     <div className="space-y-2">
       <h2 className="text-2xl font-semibold text-selago-950">{title}</h2>
       <p className="text-selago-700">{description}</p>
