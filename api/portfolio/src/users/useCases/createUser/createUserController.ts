@@ -63,7 +63,7 @@ export class CreateUserController {
             team,
             theme,
             isVerified
-        })
+        }).then(instanceToInstance)
 
 
         return res.status(201).send({ message: 'User registered. Please verify your email.' })

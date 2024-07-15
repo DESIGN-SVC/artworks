@@ -42,7 +42,7 @@ export const LoginForm = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccess]);
-  console.log(error?.error.message);
+
   if (isPending) return <Loading />;
 
   return (
@@ -85,7 +85,7 @@ export const LoginForm = () => {
             ])}
           >
             <WarningOctagon size={20} />
-            <p>{error?.error.message}</p>
+            <p>{error?.error?.message}</p>
           </div>
         )}
         <Button appearance="tertiary" size="lg">

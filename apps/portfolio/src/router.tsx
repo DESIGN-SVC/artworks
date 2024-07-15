@@ -5,7 +5,8 @@ import { SignUp } from "./pages/signup";
 import { PasswordReset } from "./pages/PasswordReset";
 import { PrivateLayout } from "./pages/layout-private";
 import { Profile } from "./pages/Profile";
-import { Confirmation } from "./pages/Confirmation";
+import { ConfirmationTokenEmail } from "./pages/ConfirmationTokenEmail";
+import { ResendTokenEmail } from "./pages/ResendTokenEmail";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,8 @@ export const router = createBrowserRouter([
       { index: true, element: <IndexPage /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/password/reset", element: <PasswordReset /> },
-      { path: "/confirmation/:token", element: <Confirmation /> },
+      { path: "/confirmation/:token", element: <ConfirmationTokenEmail /> },
+      { path: "/resend-token", element: <ResendTokenEmail /> },
       {
         element: <PrivateLayout />,
         children: [{ path: "/profile/:id", element: <Profile /> }],

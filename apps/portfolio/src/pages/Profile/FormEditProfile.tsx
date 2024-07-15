@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button, Input, Loading } from "~/components";
 import { FormDialog } from "./FormDialog";
-import { useSession, useTheme, useUserMutation } from "~/hooks";
+import { useSession, useTheme, useProfileMutation } from "~/hooks";
 import { useEffect } from "react";
 
 type FormEditProfileProps = {
@@ -14,7 +14,12 @@ type FormEditProfileProps = {
 
 export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
   const { theme } = useTheme();
-  const { mutate: updateUser, data, isSuccess, isPending } = useUserMutation();
+  const {
+    mutate: updateUser,
+    data,
+    isSuccess,
+    isPending,
+  } = useProfileMutation();
   const { setUser, user } = useSession();
   const {
     register,

@@ -32,9 +32,10 @@ export function useLoginMutation() {
       throw { error, code: response.status };
     },
     onSuccess: (data) => {
-      setAccessToken(data.accessToken);
+      if (!data.accessToken || !data.user) return;
+      setAccessToken(data.accessToken as string);
       setUser(data.user);
-      setTheme(data.user.theme);
+      setTheme(data.user.theme as "light" | "dark");
     },
     onError: (error: ApiError) => {
       console.error(error);

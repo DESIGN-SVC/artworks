@@ -4,7 +4,7 @@ import { useSession } from "./context/Session/useSession";
 import { api } from "~/services";
 
 export function useDeleteAvatarMutation() {
-  const { setUser, accessToken } = useSession();
+  const { accessToken } = useSession();
 
   const mutation = useMutation({
     mutationFn: async () => {
@@ -15,9 +15,6 @@ export function useDeleteAvatarMutation() {
       if (data) return data;
 
       throw { error, code: response.status };
-    },
-    onSuccess: (data) => {
-      setUser(data.user);
     },
   });
 

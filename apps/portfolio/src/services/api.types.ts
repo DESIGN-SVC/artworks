@@ -146,6 +146,284 @@ export interface paths {
       };
     };
   };
+  "/users": {
+    /**
+     * Create a user
+     * @description Create a new user
+     */
+    post: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            name?: string;
+            email?: string;
+            password?: string;
+            team?: string;
+            theme?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description User created */
+        201: {
+          content: {
+            "application/json": {
+              /** @example User registered. Please verify your email */
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/login": {
+    /**
+     * Login a user
+     * @description Login a user
+     */
+    post: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            email?: string;
+            password?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description User logged */
+        200: {
+          content: {
+            "application/json": {
+              accessToken?: string;
+              user?: {
+                id?: string;
+                name?: string;
+                email?: string;
+                team?: string;
+                theme?: string;
+                role?: {
+                  id?: string;
+                  name?: string;
+                };
+                isAdmin?: boolean;
+                isVerified?: boolean;
+                created_at?: string;
+                avatar_url?: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/resend-token": {
+    /**
+     * Resent a token
+     * @description Resent a token
+     */
+    post: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            email?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Resent a token */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/profile": {
+    /**
+     * Get user profile
+     * @description Get user profile
+     */
+    get: {
+      responses: {
+        /** @description Get user profile */
+        200: {
+          content: {
+            "application/json": {
+              user?: {
+                id?: string;
+                name?: string;
+                email?: string;
+                team?: string;
+                theme?: string;
+                role?: {
+                  id?: string;
+                  name?: string;
+                };
+                isAdmin?: boolean;
+                isVerified?: boolean;
+                created_at?: string;
+                avatar_url?: string;
+              };
+            };
+          };
+        };
+      };
+    };
+    /**
+     * Update user profile
+     * @description Update user profile
+     */
+    patch: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            name?: string;
+            team?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Get user profile */
+        200: {
+          content: {
+            "application/json": {
+              user?: {
+                id?: string;
+                name?: string;
+                email?: string;
+                team?: string;
+                theme?: string;
+                role?: string;
+                isAdmin?: boolean;
+                isVerified?: boolean;
+                created_at?: string;
+                avatar_url?: string;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/confirmation-token": {
+    /**
+     * Get confirmation token
+     * @description Get confirmation token
+     */
+    get: {
+      parameters: {
+        query: {
+          token: string;
+        };
+      };
+      responses: {
+        /** @description Get confirmation token */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/theme": {
+    /**
+     * Update user theme
+     * @description Update user theme
+     */
+    patch: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            theme?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Get user theme */
+        200: {
+          content: {
+            "application/json": {
+              theme?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/password": {
+    /**
+     * Update user password
+     * @description Update user password
+     */
+    patch: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            password?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Get user password */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/avatar": {
+    /**
+     * Delete user avatar
+     * @description Delete user avatar
+     */
+    delete: {
+      responses: {
+        /** @description Get user avatar */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+    /**
+     * Update user avatar
+     * @description Update user avatar
+     */
+    patch: {
+      requestBody?: {
+        content: {
+          "multipart/form-data": {
+            /** Format: binary */
+            avatar?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Get user avatar */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
 }
 
 export type webhooks = Record<string, never>;

@@ -12,7 +12,7 @@ export function useThemeMutation() {
 
   const mutation = useMutation({
     mutationFn: async ({ theme }: Theme) => {
-      const { data, error, response } = await api.PUT("/users/theme", {
+      const { data, error, response } = await api.PATCH("/users/theme", {
         headers: { Authorization: `${accessToken}` } as Record<string, string>,
         body: {
           theme,

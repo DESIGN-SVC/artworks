@@ -22,8 +22,8 @@ export class DeleteAvatarController {
 
     const user = await updateAvatarUseCase.execute({
       userId: id as string,
-    })
+    }).then(user => instanceToInstance(user))
 
-    return res.json(instanceToInstance(user))
+    return res.send(200)
   }
 }

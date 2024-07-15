@@ -1,254 +1,733 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "Api Documentation",
-    "description": "Api Documentation with all specifications",
-    "version": "1.0.0",
-    "contact": {
-      "email": "moises.macedo@hotmail.com.br",
-      "url": "https://github.com/moises-macedo",
-      "name": "Moises Macedo"
-    }
-  },
-  "paths": {
-    "/roles": {
-      "post": {
-        "tags": ["Role"],
-        "summary": "Create a role",
-        "description": "Create a new role",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Role created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "created_at": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Role already exists",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
+    "openapi": "3.0.3",
+    "info": {
+        "title": "Api Documentation",
+        "description": "Api Documentation with all specifications",
+        "version": "1.0.0",
+        "contact": {
+            "email": "moises.macedo@hotmail.com.br",
+            "url": "https://github.com/moises-macedo",
+            "name": "Moises Macedo"
         }
-      },
-      "get": {
-        "tags": ["Role"],
-        "summary": "List all roles",
-        "description": "Returns all roles paginated",
-        "parameters": [
-          {
-            "name": "page",
-            "in": "query",
-            "description": "Page number",
-            "schema": {
-              "type": "number",
-              "example": "page=1",
-              "default": 1
-            },
-            "required": false
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Items per page",
-            "schema": {
-              "type": "number",
-              "example": "limit=10",
-              "default": 10
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of roles",
-            "content": {
-              "application/json": {
-                "example": {
-                  "per_page": 10,
-                  "total": 1,
-                  "current_page": 1,
-                  "data": [
-                    {
-                      "id": "1",
-                      "name": "admin",
-                      "created_at": "2022-01-01T00:00:00.000Z"
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
     },
-    "/roles/{id}": {
-      "get": {
-        "tags": ["Role"],
-        "summary": "Get specific role",
-        "description": "Get specific role",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Role id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Role",
-            "content": {
-              "application/json": {
-                "example": {
-                  "id": "1",
-                  "name": "admin",
-                  "created_at": "2022-01-01T00:00:00.000Z"
+    "paths": {
+        "/roles": {
+            "post": {
+                "tags": ["Role"],
+                "summary": "Create a role",
+                "description": "Create a new role",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Role created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Role already exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          },
-          "404": {
-            "description": "Role not found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Role not found"
+            },
+            "get": {
+                "tags": ["Role"],
+                "summary": "List all roles",
+                "description": "Returns all roles paginated",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "schema": {
+                            "type": "number",
+                            "example": "page=1",
+                            "default": 1
+                        },
+                        "required": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Items per page",
+                        "schema": {
+                            "type": "number",
+                            "example": "limit=10",
+                            "default": 10
+                        },
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of roles",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "per_page": 10,
+                                    "total": 1,
+                                    "current_page": 1,
+                                    "data": [
+                                        {
+                                            "id": "1",
+                                            "name": "admin",
+                                            "created_at": "2022-01-01T00:00:00.000Z"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
-        }
-      },
-      "put": {
-        "tags": ["Role"],
-        "summary": "Update a role",
-        "description": "Update a role",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Role id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
-          }
         },
-        "responses": {
-          "200": {
-            "description": "Role updated",
-            "content": {
-              "application/json": {
-                "example": {
-                  "id": "1",
-                  "name": "admin",
-                  "created_at": "2022-01-01T00:00:00.000Z"
+        "/roles/{id}": {
+            "get": {
+                "tags": ["Role"],
+                "summary": "Get specific role",
+                "description": "Get specific role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Role",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": "1",
+                                    "name": "admin",
+                                    "created_at": "2022-01-01T00:00:00.000Z"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Role not found",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Role not found"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
-            }
-          },
-          "404": {
-            "description": "Role not found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Role not found"
+            },
+            "put": {
+                "tags": ["Role"],
+                "summary": "Update a role",
+                "description": "Update a role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Role updated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "id": "1",
+                                    "name": "admin",
+                                    "created_at": "2022-01-01T00:00:00.000Z"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Role not found",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Role not found"
+                                }
+                            }
+                        }
+                    }
                 }
-              }
+            },
+            "delete": {
+                "tags": ["Role"],
+                "summary": "Delete a role",
+                "description": "Delete a role",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Role id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Role deleted"
+                    },
+                    "404": {
+                        "description": "Role not found",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Role not found"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
+        },
+        "/users": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Create a user",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "type": "string"
+                                    },
+                                    "theme": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User registered. Please verify your email"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Login a user",
+                "description": "Login a user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User logged",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "accessToken": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "team": {
+                                                    "type": "string"
+                                                },
+                                                "theme": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "isAdmin": {
+                                                    "type": "boolean"
+                                                },
+                                                "isVerified": {
+                                                    "type": "boolean"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "avatar_url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/resend-token": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Resent a token",
+                "description": "Resent a token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Resent a token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/profile": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get user profile",
+                "description": "Get user profile",
+                "responses": {
+                    "200": {
+                        "description": "Get user profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "team": {
+                                                    "type": "string"
+                                                },
+                                                "theme": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "name": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "isAdmin": {
+                                                    "type": "boolean"
+                                                },
+                                                "isVerified": {
+                                                    "type": "boolean"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "avatar_url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user profile",
+                "description": "Update user profile",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "team": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get user profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "string"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "email": {
+                                                    "type": "string"
+                                                },
+                                                "team": {
+                                                    "type": "string"
+                                                },
+                                                "theme": {
+                                                    "type": "string"
+                                                },
+                                                "role": {
+                                                    "type": "string"
+                                                },
+                                                "isAdmin": {
+                                                    "type": "boolean"
+                                                },
+                                                "isVerified": {
+                                                    "type": "boolean"
+                                                },
+                                                "created_at": {
+                                                    "type": "string"
+                                                },
+                                                "avatar_url": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/confirmation-token": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get confirmation token",
+                "description": "Get confirmation token",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get confirmation token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/theme": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user theme",
+                "description": "Update user theme",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "theme": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get user theme",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "theme": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/password": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user password",
+                "description": "Update user password",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get user password",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/avatar": {
+            "patch": {
+                "tags": ["User"],
+                "summary": "Update user avatar",
+                "description": "Update user avatar",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Get user avatar",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["User"],
+                "summary": "Delete user avatar",
+                "description": "Delete user avatar",
+                "responses": {
+                    "200": {
+                        "description": "Get user avatar",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-      },
-      "delete": {
-        "tags": ["Role"],
-        "summary": "Delete a role",
-        "description": "Delete a role",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Role id",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "example": "1"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Role deleted"
-          },
-          "404": {
-            "description": "Role not found",
-            "content": {
-              "application/json": {
-                "example": {
-                  "message": "Role not found"
-                }
-              }
-            }
-          }
-        }
-      }
     }
-  }
 }

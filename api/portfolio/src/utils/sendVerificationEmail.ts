@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/appError';
 import 'dotenv/config'
 import nodemailer from 'nodemailer';
 
@@ -29,5 +30,6 @@ export const sendVerificationEmail = async ({ email, token, name }: SendVerifica
         await transporter.sendMail(mailOptions);
     } catch (error) {
         console.error('Error sending email: ', error);
+        throw new AppError('Error sending email', 401)
     }
 }

@@ -2,23 +2,22 @@ import { useMutation } from "@tanstack/react-query";
 
 import { api } from "~/services";
 import { useSession } from "./context/Session/useSession";
-import { encryptPassword } from "~/utils";
 
-type Password = {
-  password: string;
-  oldPassword: string;
+type User = {
+  name: string;
+  team: string;
 };
 
-export function useUpdatePasswordMutation() {
+export function useProfileMutation() {
   const { accessToken } = useSession();
 
   const mutation = useMutation({
-    mutationFn: async ({ oldPassword, password }: Password) => {
-      const { data, error, response } = await api.PUT("/users/password", {
+    mutationFn: async ({ name, team }: User) => {
+      const { data, error, response } = await api.PATCH("/users/profile", {
         headers: { Authorization: `${accessToken}` } as Record<string, string>,
         body: {
-          password: encryptPassword(password),
-          oldPassword: encryptPassword(oldPassword),
+          name,
+          team,
         },
       });
 
