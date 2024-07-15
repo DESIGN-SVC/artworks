@@ -24,6 +24,6 @@ export class DeleteAvatarController {
       userId: id as string,
     }).then(user => instanceToInstance(user))
 
-    return res.send(200)
+    return res.status(200).json(user)
   }
 }
