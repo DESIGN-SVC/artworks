@@ -3,6 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form, Loading } from "~/components";
 import { useConfirmationTokenEmailQuery } from "~/hooks";
 
+interface ApiError {
+  code: number;
+  error: {
+    code: string;
+    message: string;
+  };
+}
+
 export const FormConfirmation = () => {
   const { pathname } = useLocation();
   const token = pathname.split("/").pop();
@@ -18,7 +26,6 @@ export const FormConfirmation = () => {
     });
 
   if (isLoading) return <Loading />;
-  console.log(error);
 
   return (
     <Form.Root>
@@ -42,7 +49,8 @@ export const FormConfirmation = () => {
       )}
       {isError && (
         <>
-          {error?.error?.message === "Token expired" ? (
+          {(error as unknown as ApiError)?.error?.message ===
+          "Token expired" ? (
             <>
               <Form.Error
                 title="Confirmation failed"
@@ -54,11 +62,13 @@ export const FormConfirmation = () => {
                   to="/resend-token"
                   className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
                 >
+                  {" "}
                   token
                 </Link>
               </p>
             </>
-          ) : error?.error?.message === "User already verified" ? (
+          ) : (error as unknown as ApiError)?.error?.message ===
+            "User already verified" ? (
             <>
               <Form.Error
                 title="Confirmation failed"

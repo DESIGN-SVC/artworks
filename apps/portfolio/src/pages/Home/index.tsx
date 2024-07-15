@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Carousel, Loading } from "~/components";
 import { useLogout, useProfileQuery, useSession, useTheme } from "~/hooks";
 import { useEffect } from "react";
+import { User as UserType } from "~/hooks/context/Session/SessionContext";
 
 export const Home = () => {
   const { user, setUser, accessToken } = useSession();
@@ -43,9 +44,9 @@ export const Home = () => {
   useEffect(() => {
     document.title = "Artworks | home";
     if (accessToken && isSuccess) {
-      setUser(profile.user);
-      console.log(profile.user.theme);
-      setTheme(profile.user.theme);
+      if (!profile?.user) return;
+      setUser(profile.user as UserType);
+      setTheme(profile.user.theme as "light" | "dark");
     }
     if (isError) {
       navigate("/");

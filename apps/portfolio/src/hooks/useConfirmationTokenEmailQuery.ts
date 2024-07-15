@@ -17,10 +17,16 @@ export const useConfirmationTokenEmailQuery = ({
 }: ConfirmationTokenEmail) => {
   const query = useQuery({
     queryKey: ["confirmationTokenEmail", token],
-
     queryFn: async () => {
       const { data, error, response } = await api.GET(
-        `/users/confirmation-token?token=${token}`,
+        `/users/confirmation-token`,
+        {
+          params: {
+            query: {
+              token,
+            },
+          },
+        },
       );
 
       if (response.status === 200) {

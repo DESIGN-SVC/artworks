@@ -13,8 +13,9 @@ export function PrivateLayout() {
   useEffect(() => {
     if (!authorized) navigate("/", { replace: true });
     if (authorized && isSuccess) {
+      if (!profile?.user) return;
       setUser(profile.user);
-      setTheme(profile.user?.theme);
+      setTheme(profile.user?.theme as "light" | "dark");
     }
     if (isError) {
       navigate("/");

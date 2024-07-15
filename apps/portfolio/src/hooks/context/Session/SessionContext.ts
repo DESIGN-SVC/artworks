@@ -11,6 +11,7 @@ export type User = {
   avatar?: string | undefined;
   avatar_url?: string | undefined;
   isAdmin?: boolean | undefined;
+  team?: string;
 };
 
 type SessionContextType = {

@@ -6,6 +6,7 @@ import { Button, Input, Loading } from "~/components";
 import { FormDialog } from "./FormDialog";
 import { useSession, useTheme, useProfileMutation } from "~/hooks";
 import { useEffect } from "react";
+import { User } from "~/hooks/context/Session/SessionContext";
 
 type FormEditProfileProps = {
   open: boolean;
@@ -40,7 +41,7 @@ export const FormEditProfile = ({ onClose, open }: FormEditProfileProps) => {
   useEffect(() => {
     if (isSuccess) {
       onClose(false);
-      setUser(data);
+      setUser(data as User);
     }
   }, [isSuccess]);
 
