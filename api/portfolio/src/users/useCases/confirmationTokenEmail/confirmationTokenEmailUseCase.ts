@@ -1,7 +1,7 @@
 
 import { IUsersRepository } from '@users/repositories/usersRepository.type';
 import 'dotenv/config'
-import { verify, TokenExpiredError } from 'jsonwebtoken';
+import { verify, TokenExpiredError, JsonWebTokenError } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import jwtConfig from '@config/auth'
 import { AppError } from '@shared/errors/appError';
@@ -12,9 +12,6 @@ interface ConfirmationTokenEmailProps {
     token: string,
 }
 
-interface IResponse {
-    message: string
-}
 @injectable()
 export class ConfirmationTokenEmailUseCase {
     constructor(
@@ -28,6 +25,7 @@ export class ConfirmationTokenEmailUseCase {
             if (!token) {
                 throw new AppError('Token not found', 401)
             }
+
             if (!user) {
                 throw new AppError('User not found')
             }
@@ -50,6 +48,9 @@ export class ConfirmationTokenEmailUseCase {
             return user
         }
         catch (error) {
+            if(error instanceof JsonWebTokenError){
+                throw new AppError('Invalid token', 401)
+            }
             if(error instanceof AppError){
                 throw error
             }

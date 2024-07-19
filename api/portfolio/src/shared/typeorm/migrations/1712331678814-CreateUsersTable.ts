@@ -54,6 +54,11 @@ export class CreateUsersTable1712331678814 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: 'resetPasswordToken',
+                        type: 'string',
+                        isNullable: true,
+                    },
+                    {
                         name: 'created_at',
                         type: 'timestamp',
                         default: 'CURRENT_TIMESTAMP',

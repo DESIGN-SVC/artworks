@@ -68,9 +68,7 @@ export const LoginForm = () => {
           />
           <Link
             to={"password/reset"}
-            onClick={(e) => e.preventDefault()}
-            className="text-gray-500 cursor-not-allowed mt-2 block"
-            /* className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors " */
+            className="ml-auto w-fit text-xs text-violet-600 hover:text-violet-500 font-semibold transition-colors "
           >
             Forgot your password?
           </Link>

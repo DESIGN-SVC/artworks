@@ -3,27 +3,27 @@ import 'dotenv/config'
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.sendgrid.net',
-    port: 587,
-    auth: {
-        user: 'apikey',
-        pass: process.env.SENDGRID_API_KEY,
-    },
+  host: 'smtp.sendgrid.net',
+  port: 587,
+  auth: {
+    user: 'apikey',
+    pass: process.env.SENDGRID_API_KEY,
+  },
 });
 
-interface SendVerificationEmailProps {
-    email: string
-    token: string,
-    name: string
+interface SendResetPasswordProps {
+  email: string
+  token: string,
+  name: string
 }
 
-export const sendVerificationEmail = async ({ email, token, name }: SendVerificationEmailProps) => {
-const url = `${process.env.APP_URL}/token/confirmation/${token}`
-    const mailOptions = {
-        from: process.env.MAIL_USER,
-        to: email,
-        subject: 'Email Verification - Artworks',
-        html: `<html
+export const sendResetPassword = async ({ email, token, name }: SendResetPasswordProps) => {
+  const url = `${process.env.APP_URL}/password/reset/${token}`
+  const mailOptions = {
+    from: process.env.MAIL_USER,
+    to: email,
+    subject: 'Password Reset - Artworks',
+    html: `<html
   style="width: 600px; margin-left: auto; margin-right: auto"
   dir="ltr"
   lang="en"
@@ -90,6 +90,19 @@ const url = `${process.env.APP_URL}/token/confirmation/${token}`
               <tbody>
                 <tr>
                   <td>
+                    <img
+                      alt="Exclamação"
+                      src="https://storage.googleapis.com/gs-multimidia-assets/mail-content/portfolio/2024/julho/login-emails/exclamation.png"
+                      style="
+                        display: block;
+                        outline: none;
+                        border: none;
+                        text-decoration: none;
+                        margin-left: 192px;
+                        margin-right: 192px;
+                        padding-bottom: 30px;
+                      "
+                    />
                     <p
                       style="
                         font-size: 26px;
@@ -132,11 +145,11 @@ const url = `${process.env.APP_URL}/token/confirmation/${token}`
                         text-align: center;
                       "
                     >
-                      Welcome to the Artworks Producer&#x27;s portfolio! It is
-                      with immense pleasure that we welcome you to the platform
-                      that houses the talent and creativity of the Artworks
-                      Producer from Concentrix. Access the link to continue your
-                      registration:
+                      You have requested a password recovery for your Artworks
+                      account. To ensure the security of your account, we have
+                      generated an exclusive link for you to reset your
+                      password. Click on the following link to initiate the
+                      password recovery process:
                     </p>
                   </td>
                 </tr>
@@ -149,7 +162,11 @@ const url = `${process.env.APP_URL}/token/confirmation/${token}`
               cellpadding="0"
               cellspacing="0"
               role="presentation"
-              style="padding-left: 40px; padding-right: 40px"
+              style="
+                padding-left: 40px;
+                padding-right: 40px;
+                padding-bottom: 80px;
+              "
             >
               <tbody>
                 <tr>
@@ -187,44 +204,6 @@ const url = `${process.env.APP_URL}/token/confirmation/${token}`
                 </tr>
               </tbody>
             </table>
-            <table
-              align="center"
-              width="100%"
-              border="0"
-              cellpadding="0"
-              cellspacing="0"
-              role="presentation"
-              style="
-                padding-left: 40px;
-                padding-right: 40px;
-                padding-top: 30px;
-                padding-bottom: 80px;
-              "
-            >
-              <tbody>
-                <tr>
-                  <td>
-                    <p
-                      style="
-                        font-size: 18px;
-                        line-height: 24px;
-                        margin: 0px;
-                        color: rgb(231, 214, 254);
-                        text-align: center;
-                      "
-                    >
-                      Here, we showcase the diversity of work produced by our
-                      team in various areas: Audiovisual, Photography, Digital
-                      Design, and Front-end Development.<br /><br />We take
-                      pride in providing this platform as an extension of your
-                      creative studio. We wish you an inspiring and productive
-                      time on our platform.<br /><br />Best regards, The
-                      Artworks Team from Concentrix.
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
             <img
               alt="Footer"
               src="https://storage.cloud.google.com/gs-multimidia-assets/mail-content/portfolio/2024/julho/login-emails/footer.png"
@@ -242,12 +221,12 @@ const url = `${process.env.APP_URL}/token/confirmation/${token}`
     </table>
   </body>
 </html>`
-    };
+  };
 
-    try {
-        await transporter.sendMail(mailOptions);
-    } catch (error) {
-        console.error('Error sending email: ', error);
-        throw new AppError('Error sending email', 401)
-    }
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Error sending email: ', error);
+    throw new AppError('Error sending email', 401)
+  }
 }

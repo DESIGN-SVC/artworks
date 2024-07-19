@@ -1,6 +1,11 @@
 import { cx } from "cva";
 import { Suspense, useEffect } from "react";
-import { Outlet, ScrollRestoration, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  ScrollRestoration,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { Loading, Menu } from "~/components";
 import { useLogout, useSession, useTheme } from "~/hooks";
 import { HoverAnimation } from "~/utils";
@@ -10,6 +15,7 @@ export const RootLayout = () => {
   const { setTheme, theme } = useTheme();
   const navigate = useNavigate();
   const logout = useLogout();
+  const { pathname } = useLocation();
 
   const onLogout = () => {
     document.querySelector("html")?.classList.remove("dark");
@@ -32,7 +38,7 @@ export const RootLayout = () => {
     if (!authorized) onLogout();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme, authorized]);
+  }, [theme, authorized, pathname]);
 
   return (
     <div

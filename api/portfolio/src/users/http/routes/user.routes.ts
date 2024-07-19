@@ -13,7 +13,8 @@ import {
     UpdateAvatarController,
     DeleteAvatarController,
     ConfirmationTokenEmailController,
-    ResendTokenEmailController
+    ResendTokenEmailController,
+    ResetPasswordController
 } from "@users/useCases";
 
 export const usersRouter = Router()
@@ -30,6 +31,7 @@ const updateAvatarController = container.resolve(UpdateAvatarController)
 const deleteAvatarController = container.resolve(DeleteAvatarController)
 const confirmationTokenEmailController = container.resolve(ConfirmationTokenEmailController)
 const resendTokenEmailController = container.resolve(ResendTokenEmailController)
+const resetPasswordController = container.resolve(ResetPasswordController)
 
 usersRouter.post('/', (req, res) => {
     return createUserController.handle(req, res)
@@ -39,6 +41,9 @@ usersRouter.post('/login', (req, res) => {
 })
 usersRouter.post('/resend-token', (req, res) => {
     return resendTokenEmailController.handle(req, res)
+})
+usersRouter.post('/reset-password', (req, res) => {
+    return resetPasswordController.handle(req, res)
 })
 
 

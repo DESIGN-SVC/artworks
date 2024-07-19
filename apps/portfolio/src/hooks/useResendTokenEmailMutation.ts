@@ -6,7 +6,7 @@ import { ResendTokenEmailFields } from "~/pages/ResendTokenEmail/FormResendToken
 interface ApiError {
   code: number;
   error: {
-    code: string;
+    error: string;
     message: string;
   };
 }

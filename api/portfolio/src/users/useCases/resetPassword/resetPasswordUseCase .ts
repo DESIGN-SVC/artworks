@@ -5,19 +5,19 @@ import {  sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
 import jwtConfig from '@config/auth'
 import { AppError } from '@shared/errors/appError';
-import { sendVerificationEmail } from 'src/utils/sendVerificationEmail';
+import { sendResetPassword } from 'src/utils/sendResetPassword';
 
 
-interface ResendTokenEmailProps {
+interface ResetPasswordProps {
     email: string,
 }
 
 @injectable()
-export class ResendTokenEmailUseCase {
+export class ResetPasswordUseCase {
     constructor(
         @inject('UsersRepository') private usersRepository: IUsersRepository,
     ) { }
-    async execute({ email }: ResendTokenEmailProps): Promise<void> {
+    async execute({ email }: ResetPasswordProps): Promise<void> {
         try {
             const user = await this.usersRepository.findByEmail(email)
 
@@ -25,18 +25,18 @@ export class ResendTokenEmailUseCase {
                 throw new AppError('User not found', 401)
             }
     
-            if (user.isVerified) {
-                throw new AppError('Email already verified', 401)
+            if (!user.isVerified) {
+                throw new AppError('Email not verified', 401)
             }
-            const hashVerificationToken = sign(
+            const hashResetPasswordToken = sign(
                 { email: email },
-                jwtConfig.emailToken.secret,
+                jwtConfig.passwordToken.secret,
                 { expiresIn: jwtConfig.emailToken.expiresIn }
             );
     
-            await sendVerificationEmail({ email, token: hashVerificationToken, name: user.name })
+            await sendResetPassword({ email, token: hashResetPasswordToken, name: user.name })
     
-            user.verificationToken = hashVerificationToken
+            user.resetPasswordToken = hashResetPasswordToken
     
             await this.usersRepository.update(user)
         }

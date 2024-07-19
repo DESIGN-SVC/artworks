@@ -33,7 +33,12 @@ export class User {
     @Column({
         nullable: true,
     })
-    verificationToken: string
+    verificationToken?: string
+
+    @Column({
+        nullable: true,
+    })
+    resetPasswordToken?: string
 
     @Column()
     avatar?: string

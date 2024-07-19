@@ -60,7 +60,6 @@ export const FormEditPhoto = ({ onClose, open }: FormEditPhotoProps) => {
       const canvas = cropRef.current.getImageScaledToCanvas();
       canvas.toBlob(async (result) => {
         if (result) formData.append("avatar", result, "avatar.png");
-        console.log(formData.get("avatar"));
         updateAvatar({ avatar: formData });
         setUser({ ...user, avatar_url: canvas.toDataURL() });
       });

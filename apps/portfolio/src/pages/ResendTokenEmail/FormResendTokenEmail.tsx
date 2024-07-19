@@ -1,16 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { z } from "zod";
 import { Button, Form, Input, Loading } from "~/components";
 import { useResendTokenEmailMutation } from "~/hooks";
 
 export const FormResendTokenEmail = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const eligible = state?.eligible;
   const {
     mutate: resendTokenEmail,
     isPending,
     isSuccess,
+    isError,
+    error,
+    reset: reset,
   } = useResendTokenEmailMutation();
 
   const {
@@ -19,7 +26,7 @@ export const FormResendTokenEmail = () => {
     formState: {
       errors: { email },
     },
-    reset,
+    reset: resetForm,
   } = useForm<ResendTokenEmailFields>({
     resolver: zodResolver(ResendTokenEmailSchema),
   });
@@ -27,48 +34,69 @@ export const FormResendTokenEmail = () => {
   const onSubmit = handleSubmit(async ({ email }) => {
     resendTokenEmail({ email });
   });
-
   useEffect(() => {
-    if (isSuccess) {
-      reset();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
-
-  console.log(isSuccess);
+    if (!eligible) navigate("/", { replace: true });
+    //eslint-disable-next-line
+  }, [eligible]);
 
   if (isPending) return <Loading />;
 
   return (
     <Form.Root>
-      <div className="space-y-1">
-        <Form.Title>Recover access</Form.Title>
-        <Form.SubTitle>Enter your e-mail</Form.SubTitle>
-      </div>
       <form className="space-y-5" onSubmit={onSubmit}>
-        <Input.Input
-          label="E-mail"
-          placeholder="E-mail"
-          type="text"
-          {...register("email")}
-          error={email?.message}
-        />
-        {/* {isError && (
-          <div
-            className={cx([
-              "flex items-center gap-2.5",
-              "p-2.5",
-              "text-red-500 text-sm",
-              "bg-red-50 rounded-lg",
-            ])}
-          >
-            <WarningOctagon size={20} />
-            <p>{error?.error.message}</p>
-          </div>
-        )} */}
-        <Button appearance="tertiary" size="lg">
-          Continue
-        </Button>
+        {!isSuccess && !isError && (
+          <>
+            <div className="space-y-1">
+              <Form.Title>Recover access</Form.Title>
+              <Form.SubTitle>Enter your e-mail</Form.SubTitle>
+            </div>
+            <Input.Input
+              label="E-mail"
+              placeholder="E-mail"
+              type="text"
+              {...register("email")}
+              error={email?.message}
+            />
+            <Button appearance="tertiary" size="lg">
+              Continue
+            </Button>
+          </>
+        )}
+        {isSuccess && (
+          <Form.Success
+            title="Request completed"
+            description="We have sent a link to your email."
+          />
+        )}
+        {isError && (
+          <>
+            <Form.Error
+              title="Request failed"
+              description={
+                error?.error?.error === "User not found"
+                  ? "We couldn't find a user with this email."
+                  : "We couldn't send a link to your email."
+              }
+            />
+            {error?.error?.error === "User not found" ? (
+              <Button
+                appearance="tertiary"
+                size="lg"
+                type="button"
+                onClick={() => {
+                  reset();
+                  resetForm();
+                }}
+              >
+                resend email
+              </Button>
+            ) : (
+              <Button appearance="tertiary" size="lg">
+                try again
+              </Button>
+            )}
+          </>
+        )}
       </form>
     </Form.Root>
   );

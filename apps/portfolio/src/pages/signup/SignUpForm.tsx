@@ -22,7 +22,13 @@ export const SignUpForm = () => {
   } = useForm<SignUpFields>({
     resolver: zodResolver(SignUpSchema),
   });
-  const { mutate: createUser, isSuccess, isPending } = useCreateUserMutation();
+  const {
+    mutate: createUser,
+    isSuccess,
+    isPending,
+    isError,
+    error,
+  } = useCreateUserMutation();
 
   const onSubmit = handleSubmit(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -38,6 +44,9 @@ export const SignUpForm = () => {
       ) {
         setCurrentStep("password");
         clearErrors(["password", "confirmPassword"]);
+        setTimeout(() => {
+          document.getElementsByName("password")[0]?.focus();
+        }, 0);
       }
     },
   );
@@ -52,7 +61,50 @@ export const SignUpForm = () => {
 
   return (
     <Form.Root>
-      {currentStep !== "finish" ? (
+      {isSuccess && (
+        <>
+          <Form.Success
+            title="Registration completed"
+            description="You will soon receive an access confirmation email."
+          />
+
+          <p className="text-selago-700 text-center w-full">
+            Already have an account?
+            <Link
+              to="/"
+              className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
+            >
+              {" "}
+              Login
+            </Link>
+          </p>
+        </>
+      )}
+      {isError && (
+        <>
+          <Form.Error
+            title="Request failed"
+            description={
+              error?.error?.message === "Email already exists"
+                ? "Email already exists"
+                : "Something went wrong. Please try again."
+            }
+          />
+          {error?.error?.message !== "Email already exists" ? (
+            <Button appearance="tertiary" size="lg">
+              try again
+            </Button>
+          ) : (
+            <Link
+              to="/"
+              className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
+            >
+              Login
+            </Link>
+          )}
+        </>
+      )}
+      {!isSuccess && !isError && (
         <>
           <Form.Title>Register</Form.Title>
           <nav className="flex gap-10">
@@ -117,24 +169,6 @@ export const SignUpForm = () => {
               Continue
             </Button>
           </form>
-        </>
-      ) : (
-        <>
-          <Form.Success
-            title="Registration completed"
-            description="You will soon receive an access confirmation email."
-          />
-
-          <p className="text-selago-700 text-center w-full">
-            Already have an account?
-            <Link
-              to="/"
-              className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
-            >
-              {" "}
-              Login
-            </Link>
-          </p>
         </>
       )}
     </Form.Root>

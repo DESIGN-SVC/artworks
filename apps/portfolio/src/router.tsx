@@ -14,10 +14,13 @@ export const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { index: true, element: <IndexPage /> },
-      { path: "/signup", element: <SignUp /> },
-      { path: "/password/reset", element: <PasswordReset /> },
-      { path: "/confirmation/:token", element: <ConfirmationTokenEmail /> },
-      { path: "/resend-token", element: <ResendTokenEmail /> },
+      { path: "signup", element: <SignUp /> },
+      { path: "password/reset", element: <PasswordReset /> },
+      {
+        path: "token/confirmation/:token",
+        element: <ConfirmationTokenEmail />,
+      },
+      { path: "token/resend", element: <ResendTokenEmail /> },
       {
         element: <PrivateLayout />,
         children: [{ path: "/profile/:id", element: <Profile /> }],

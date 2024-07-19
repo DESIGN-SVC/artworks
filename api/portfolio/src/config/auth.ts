@@ -12,4 +12,8 @@ export default {
     secret: process.env.EMAIL_TOKEN_SECRET,
     expiresIn: process.env.EMAIL_TOKEN_EXPIRES_IN,
   },
+  passwordToken: {
+    secret: process.env.PASSWORD_TOKEN_SECRET,
+    expiresIn: process.env.PASSWORD_TOKEN_EXPIRES_IN,
+  },
 }

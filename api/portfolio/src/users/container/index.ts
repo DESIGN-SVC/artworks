@@ -11,6 +11,7 @@ import {
     DeleteAvatarController,
     ConfirmationTokenEmailController,
     ResendTokenEmailController,
+    ResetPasswordController
 } from '@users/useCases'
 import { container } from 'tsyringe'
 
@@ -30,3 +31,4 @@ container.registerSingleton('UpdateAvatarController', UpdateAvatarController)
 container.registerSingleton('DeleteAvatarController', DeleteAvatarController)
 container.registerSingleton('ConfirmationTokenEmailController', ConfirmationTokenEmailController)
 container.registerSingleton('ResendTokenEmailController', ResendTokenEmailController)
+container.registerSingleton('ResetPasswordController', ResetPasswordController)

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form, Loading } from "~/components";
 import { useConfirmationTokenEmailQuery } from "~/hooks";
+import { useJwt } from "react-jwt";
 
 interface ApiError {
   code: number;
@@ -15,15 +16,17 @@ export const FormConfirmation = () => {
   const { pathname } = useLocation();
   const token = pathname.split("/").pop();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!token) navigate("/", { replace: true });
-  }, []);
+  const { isExpired } = useJwt(token as string);
 
   const { isLoading, isSuccess, isError, error } =
     useConfirmationTokenEmailQuery({
       token: token as string,
     });
+
+  useEffect(() => {
+    if (!token || isExpired) navigate("/", { replace: true });
+    //eslint-disable-next-line
+  }, [token, isExpired]);
 
   if (isLoading) return <Loading />;
 
@@ -49,8 +52,8 @@ export const FormConfirmation = () => {
       )}
       {isError && (
         <>
-          {(error as unknown as ApiError)?.error?.message ===
-          "Token expired" ? (
+          {(error as unknown as ApiError)?.error?.message === "Token expired" ||
+          (error as unknown as ApiError)?.error?.message === "Invalid token" ? (
             <>
               <Form.Error
                 title="Confirmation failed"
@@ -58,13 +61,19 @@ export const FormConfirmation = () => {
               />
               <p className="text-selago-700 w-full mt-28">
                 Request another
-                <Link
-                  to="/resend-token"
-                  className="text-violet-600 font-semibold hover:text-violet-500 transition-colors"
+                <button
+                  className="text-violet-600 font-semibold hover:text-violet-500 transition-colors ml-1"
+                  onClick={() =>
+                    navigate("/resend-token", {
+                      replace: true,
+                      state: {
+                        eligible: true,
+                      },
+                    })
+                  }
                 >
-                  {" "}
                   token
-                </Link>
+                </button>
               </p>
             </>
           ) : (error as unknown as ApiError)?.error?.message ===
@@ -84,7 +93,23 @@ export const FormConfirmation = () => {
                 </button>
               </p>
             </>
-          ) : null}
+          ) : (
+            <>
+              <Form.Error
+                title="Confirmation failed"
+                description="An error has occurred"
+              />
+              <p className="text-selago-700 w-full mt-28">
+                Access your account
+                <button
+                  onClick={() => navigate("/", { replace: true })}
+                  className="text-violet-600 ml-1 font-semibold hover:text-violet-500 transition-colors"
+                >
+                  Login
+                </button>
+              </p>
+            </>
+          )}
         </>
       )}
     </Form.Root>

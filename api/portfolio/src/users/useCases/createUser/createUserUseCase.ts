@@ -20,7 +20,6 @@ type CreateUserDTO = {
     team: string
     theme: 'light' | 'dark'
     isVerified: boolean
-
 }
 
 @injectable()

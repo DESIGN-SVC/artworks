@@ -3,8 +3,7 @@ import { ConfirmationTokenEmailUseCase } from './confirmationTokenEmailUseCase'
 import { z } from 'zod'
 import { container } from 'tsyringe'
 import { instanceToInstance } from 'class-transformer'
-import { TokenExpiredError } from 'jsonwebtoken'
-import { AppError } from '@shared/errors/appError'
+
 export class ConfirmationTokenEmailController {
     async handle(req: Request, res: Response): Promise<Response> {
         const confirmationTokenEmailUseCase = container.resolve(ConfirmationTokenEmailUseCase)

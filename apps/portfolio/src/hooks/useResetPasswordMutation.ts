@@ -1,15 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
+import { PasswordResetFields } from "~/pages/PasswordReset/PasswordResetForm";
 
 import { api } from "~/services";
-
-import { encryptPassword } from "~/utils";
-
-type Password = {
-  name: string;
-  email: string;
-  password: string;
-  team: string;
-};
 
 interface ApiError {
   code: number;
@@ -19,15 +11,17 @@ interface ApiError {
   };
 }
 
-export function useCreateUserMutation() {
+export function useResetPasswordMutation() {
   const mutation = useMutation({
-    mutationFn: async ({ password, ...user }: Password) => {
-      const { data, error, response } = await api.POST("/users", {
-        body: {
-          ...user,
-          password: encryptPassword(password),
+    mutationFn: async ({ email }: PasswordResetFields) => {
+      const { data, error, response } = await api.POST(
+        "/users/reset-password",
+        {
+          body: {
+            email,
+          },
         },
-      });
+      );
 
       if (data) return data;
 
