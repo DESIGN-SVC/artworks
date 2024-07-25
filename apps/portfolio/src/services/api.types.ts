@@ -242,6 +242,57 @@ export interface paths {
       };
     };
   };
+  "/users/sending-token-password": {
+    /**
+     * Resent a token
+     * @description Resent a token
+     */
+    post: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            email?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Resent a token */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/reset-password": {
+    /**
+     * Resent a token
+     * @description Resent a token
+     */
+    post: {
+      requestBody?: {
+        content: {
+          "application/json": {
+            email?: string;
+            password?: string;
+          };
+        };
+      };
+      responses: {
+        /** @description Resent a token */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
   "/users/profile": {
     /**
      * Get user profile
@@ -309,7 +360,30 @@ export interface paths {
       };
     };
   };
-  "/users/confirmation-token": {
+  "/users/confirmation/token-email": {
+    /**
+     * Get confirmation token
+     * @description Get confirmation token
+     */
+    get: {
+      parameters: {
+        query: {
+          token: string;
+        };
+      };
+      responses: {
+        /** @description Get confirmation token */
+        200: {
+          content: {
+            "application/json": {
+              message?: string;
+            };
+          };
+        };
+      };
+    };
+  };
+  "/users/confirmation/token-password": {
     /**
      * Get confirmation token
      * @description Get confirmation token

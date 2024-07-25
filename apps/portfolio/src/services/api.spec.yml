@@ -423,6 +423,85 @@
                 }
             }
         },
+        "/users/sending-token-password": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Resent a token",
+                "description": "Resent a token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Resent a token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }           
+                }
+            }
+        },
+        "/users/reset-password": {
+            "post": {
+                "tags": ["User"],
+                "summary": "Resent a token",
+                "description": "Resent a token",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Resent a token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }           
+                }
+            }   
+        },
         "/users/profile": {
             "get": {
                 "tags": ["User"],
@@ -558,7 +637,41 @@
                 }
             }
         },
-        "/users/confirmation-token": {
+        "/users/confirmation/token-email": {
+            "get": {
+                "tags": ["User"],
+                "summary": "Get confirmation token",
+                "description": "Get confirmation token",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get confirmation token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/confirmation/token-password": {
             "get": {
                 "tags": ["User"],
                 "summary": "Get confirmation token",

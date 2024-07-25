@@ -18,7 +18,7 @@ interface SendResetPasswordProps {
 }
 
 export const sendResetPassword = async ({ email, token, name }: SendResetPasswordProps) => {
-  const url = `${process.env.APP_URL}/password/reset/${token}`
+  const url = `${process.env.APP_URL}/password/confirmation/${token}`
   const mailOptions = {
     from: process.env.MAIL_USER,
     to: email,

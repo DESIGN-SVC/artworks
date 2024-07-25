@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/services";
 
-type ConfirmationTokenEmail = {
+type ConfirmationTokenPassword = {
   token: string;
 };
 interface ApiError {
@@ -12,14 +12,14 @@ interface ApiError {
   };
 }
 
-export const useConfirmationTokenEmailQuery = ({
+export const useConfirmationTokenPasswordQuery = ({
   token,
-}: ConfirmationTokenEmail) => {
+}: ConfirmationTokenPassword) => {
   const query = useQuery({
-    queryKey: ["confirmationTokenEmail", token],
+    queryKey: ["confirmationTokenPassword", token],
     queryFn: async () => {
       const { data, error, response } = await api.GET(
-        `/users/confirmation/token-email`,
+        `/users/confirmation/token-password`,
         {
           params: {
             query: {

@@ -8,16 +8,16 @@ import { AppError } from '@shared/errors/appError';
 import { sendResetPassword } from 'src/utils/sendResetPassword';
 
 
-interface ResetPasswordProps {
+interface SendingTokenPasswordResetProps {
     email: string,
 }
 
 @injectable()
-export class ResetPasswordUseCase {
+export class SendingTokenPasswordResetUseCase {
     constructor(
         @inject('UsersRepository') private usersRepository: IUsersRepository,
     ) { }
-    async execute({ email }: ResetPasswordProps): Promise<void> {
+    async execute({ email }: SendingTokenPasswordResetProps): Promise<void> {
         try {
             const user = await this.usersRepository.findByEmail(email)
 
@@ -41,7 +41,7 @@ export class ResetPasswordUseCase {
             await this.usersRepository.update(user)
         }
         catch (error) {
-            console.log(error)
+
             throw new AppError(error.message, 401)
         }
     }

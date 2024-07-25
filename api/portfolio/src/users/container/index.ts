@@ -11,10 +11,11 @@ import {
     DeleteAvatarController,
     ConfirmationTokenEmailController,
     ResendTokenEmailController,
+    SendingTokenPasswordResetController,
+    ConfirmationTokenPasswordController,
     ResetPasswordController
 } from '@users/useCases'
 import { container } from 'tsyringe'
-
 
 container.registerSingleton<IUsersRepository>(
     'UsersRepository',
@@ -31,4 +32,6 @@ container.registerSingleton('UpdateAvatarController', UpdateAvatarController)
 container.registerSingleton('DeleteAvatarController', DeleteAvatarController)
 container.registerSingleton('ConfirmationTokenEmailController', ConfirmationTokenEmailController)
 container.registerSingleton('ResendTokenEmailController', ResendTokenEmailController)
+container.registerSingleton('SendingTokenPasswordResetController', SendingTokenPasswordResetController)
+container.registerSingleton('ConfirmationTokenPasswordController', ConfirmationTokenPasswordController)
 container.registerSingleton('ResetPasswordController', ResetPasswordController)

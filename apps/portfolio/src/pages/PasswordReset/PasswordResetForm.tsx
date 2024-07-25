@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
 import { Button, Form, Input, Loading } from "~/components";
-import { useResetPasswordMutation } from "~/hooks";
+import { useSendingTokenPasswordMutation } from "~/hooks";
 
 export const PasswordResetForm = () => {
   const {
@@ -13,7 +13,7 @@ export const PasswordResetForm = () => {
     isError,
     error,
     isPending,
-  } = useResetPasswordMutation();
+  } = useSendingTokenPasswordMutation();
 
   const {
     register,

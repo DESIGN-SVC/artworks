@@ -6,7 +6,7 @@ export const Root = ({ ...props }: ComponentPropsWithRef<"div">) => (
   <div
     className={cx([
       "flex flex-col gap-5",
-      "w-full max-w-md p-8 rounded-2xl bg-white",
+      "w-full max-w-md p-8 rounded-xl bg-white",
       "lg:p-[3.125rem]",
     ])}
     {...props}

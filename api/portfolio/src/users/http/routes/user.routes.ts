@@ -14,6 +14,8 @@ import {
     DeleteAvatarController,
     ConfirmationTokenEmailController,
     ResendTokenEmailController,
+    SendingTokenPasswordResetController,
+    ConfirmationTokenPasswordController,
     ResetPasswordController
 } from "@users/useCases";
 
@@ -31,6 +33,8 @@ const updateAvatarController = container.resolve(UpdateAvatarController)
 const deleteAvatarController = container.resolve(DeleteAvatarController)
 const confirmationTokenEmailController = container.resolve(ConfirmationTokenEmailController)
 const resendTokenEmailController = container.resolve(ResendTokenEmailController)
+const sendingTokenPasswordResetController = container.resolve(SendingTokenPasswordResetController)
+const confirmationTokenPasswordController = container.resolve(ConfirmationTokenPasswordController)
 const resetPasswordController = container.resolve(ResetPasswordController)
 
 usersRouter.post('/', (req, res) => {
@@ -42,6 +46,9 @@ usersRouter.post('/login', (req, res) => {
 usersRouter.post('/resend-token', (req, res) => {
     return resendTokenEmailController.handle(req, res)
 })
+usersRouter.post('/sending-token-password', (req, res) => {
+    return sendingTokenPasswordResetController.handle(req, res)
+})
 usersRouter.post('/reset-password', (req, res) => {
     return resetPasswordController.handle(req, res)
 })
@@ -50,9 +57,13 @@ usersRouter.post('/reset-password', (req, res) => {
 usersRouter.get('/profile', (req, res) => {
     return showProfileController.handle(req, res)
 })
-usersRouter.get('/confirmation-token', (req, res) => {
+usersRouter.get('/confirmation/token-email', (req, res) => {
     return confirmationTokenEmailController.handle(req, res)
 })
+usersRouter.get('/confirmation/token-password', (req, res) => {
+    return confirmationTokenPasswordController.handle(req, res)
+})
+
 
 usersRouter.patch('/theme', (req, res) => {
     return updateThemeController.handle(req, res)

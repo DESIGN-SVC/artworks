@@ -10,6 +10,8 @@ export * from "./useCreateUserMutation";
 export * from "./UseDeleteAvatarMutation";
 export * from "./useConfirmationTokenEmailQuery";
 export * from "./useResendTokenEmailMutation";
+export * from "./useSendingTokenPasswordMutation";
+export * from "./useConfirmationTokenPasswordQuery";
 export * from "./useResetPasswordMutation";
 
 export { Provider } from "./context";
