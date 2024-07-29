@@ -37,7 +37,7 @@ export const RootLayout = () => {
 
     if (!authorized) onLogout();
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [theme, authorized, pathname]);
 
   return (
