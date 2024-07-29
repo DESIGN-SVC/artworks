@@ -10,7 +10,7 @@ import uploadConfig from '@config/upload';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:4200', 'https://meusite.com'];
+const allowedOrigins = ['http://localhost:4200',  process.env.APP_URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -20,7 +20,7 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true, 
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
