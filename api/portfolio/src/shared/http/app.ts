@@ -10,7 +10,7 @@ import uploadConfig from '@config/upload';
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:4200',  process.env.APP_URL];
+const allowedOrigins = ['http://localhost:4200',  'https://homologportfolio.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
