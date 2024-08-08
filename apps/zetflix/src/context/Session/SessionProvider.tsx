@@ -4,7 +4,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { SessionContext, User } from "./SessionContext";
 import { useCookieData } from "~/hooks";
 
-import UserNotFound from "~/assets/image/user-not-found.jpg";
 type AccessTokenPayload = Required<JWTPayload> & {
   authorized: boolean;
   name: string;
@@ -27,8 +26,6 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
   const decode = (jwt: string) => decodeJwt(jwt) as AccessTokenPayload;
 
   const authorized = accessToken ? Boolean(decode(accessToken).sub) : false;
-
-  const guest = !accessToken;
 
   const setAccessToken = (accessToken: string) => {
     saveData("expires", {
