@@ -8,8 +8,8 @@ export default {
       addComponents([
         {
           ".container": {
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
             marginLeft: "auto",
             marginRight: "auto",
             width: "100%",
@@ -19,15 +19,15 @@ export default {
         {
           "@media (min-width: 1024px) ": {
             ".container": {
-              paddingLeft: "8.75rem",
-              paddingRight: "8.75rem",
+              paddingLeft: "3.625rem",
+              paddingRight: "3.625rem",
             },
           },
         },
       ]);
     }),
   ],
-  // Definição de tamanho - alterar na finalização
+  // Definição de tamanho - alterar na finalização de refatoração
   // presets: [require("./public/tailwindcss/sizing.ts")],
 
   theme: {
@@ -81,6 +81,9 @@ export default {
         50: "#FFDE57",
         100: "#FFCD01",
         200: "#EEBF00",
+      },
+      red: {
+        200: "#f12626",
       },
     },
   },

@@ -25,7 +25,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
 
   const decode = (jwt: string) => decodeJwt(jwt) as AccessTokenPayload;
 
-  const authorized = accessToken ? Boolean(decode(accessToken).sub) : false;
+  const authorized = accessToken ? true : false;
 
   const setAccessToken = (accessToken: string) => {
     saveData("expires", {
