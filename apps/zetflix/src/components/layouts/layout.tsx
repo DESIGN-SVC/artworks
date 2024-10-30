@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { useMatches } from "react-router-dom";
-import { Footer, Header } from "./ui";
+import { Footer, Header } from "~/components";
 
 type LayoutProps = {
   children: ReactNode;

@@ -1,26 +1,26 @@
 import {
-DownloadSimple,
-FileArrowDown,
-FileAudio,
-MonitorPlay,
-Pause,
-Play,
-ShareFat,
-SpeakerHigh,
-SpeakerX,
+  DownloadSimple,
+  FileArrowDown,
+  FileAudio,
+  MonitorPlay,
+  Pause,
+  Play,
+  ShareFat,
+  SpeakerHigh,
+  SpeakerX,
 } from "@phosphor-icons/react";
 import * as Slider from "@radix-ui/react-slider";
-import { cva,cx } from "cva";
-import React,{ useEffect,useRef,useState } from "react";
+import { cva, cx } from "cva";
+import React, { useEffect, useRef, useState } from "react";
 import {
-Link,
-LoaderFunctionArgs,
-json,
-redirect,
-useLoaderData,
+  Link,
+  LoaderFunctionArgs,
+  json,
+  redirect,
+  useLoaderData,
 } from "react-router-dom";
-import { Button,Toast,ToastDescription } from "../components/ui";
-import { apiVideos } from "../services/api";
+import { Button, Toast, ToastDescription } from "~/components";
+import { apiVideos } from "~/services";
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const video = Object.values(params).at(0);
@@ -34,7 +34,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return json({ filteredVideo });
 }
 
-export const Player = () => {
+function PlayerPage() {
   const { filteredVideo }: any = useLoaderData();
   const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -92,7 +92,7 @@ export const Player = () => {
     }
   };
   const checkShareSupport = () => {
-   const share =  window.navigator
+    const share = window.navigator;
 
     if (share) {
       setShareSupport(true);
@@ -206,8 +206,8 @@ export const Player = () => {
       <section className="flex flex-col items-center gap-8 px-2 pt-6">
         <div
           className={`relative flex justify-center overflow-hidden px-4
-                      before:absolute before:inset-0 before:mx-4 before:rounded-[1.25rem] before:bg-[linear-gradient(180deg,rgba(0,0,0,0.13)_0%,rgba(0,0,0,0.79)_100%)] before:content-['']
-                      ${playVideo ? "before:hidden" : "before:visible"}`}
+                          before:absolute before:inset-0 before:mx-4 before:rounded-[1.25rem] before:bg-[linear-gradient(180deg,rgba(0,0,0,0.13)_0%,rgba(0,0,0,0.79)_100%)] before:content-['']
+                          ${playVideo ? "before:hidden" : "before:visible"}`}
         >
           <video
             ref={videoRef}
@@ -379,7 +379,7 @@ export const Player = () => {
                       )}
                     </button>
                     <Slider.Root
-                      onValueChange={(e:number[]) => handleVolumeChange(e[0])}
+                      onValueChange={(e: number[]) => handleVolumeChange(e[0])}
                       value={[volume]}
                       defaultValue={[100]}
                       className="relative flex h-5 w-full touch-none select-none items-center"
@@ -403,7 +403,7 @@ export const Player = () => {
                 </div>
                 <div className="relative mt-3 overflow-hidden">
                   <Slider.Root
-                    onValueChange={(e:number[]) => showRangeProgress(e[0])}
+                    onValueChange={(e: number[]) => showRangeProgress(e[0])}
                     value={[Math.ceil(progress)]}
                     className="relative flex h-5 w-full touch-none select-none items-center"
                     defaultValue={[0]}
@@ -443,4 +443,6 @@ export const Player = () => {
       />
     </main>
   );
-};
+}
+
+export { PlayerPage as Component };

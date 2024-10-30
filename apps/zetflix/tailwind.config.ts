@@ -1,7 +1,34 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
-  plugins: [],
+  plugins: [
+    plugin(({ addComponents }) => {
+      addComponents([
+        {
+          ".container": {
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+            width: "100%",
+            maxWidth: "1280px",
+          },
+        },
+        {
+          "@media (min-width: 1024px) ": {
+            ".container": {
+              paddingLeft: "3.625rem",
+              paddingRight: "3.625rem",
+            },
+          },
+        },
+      ]);
+    }),
+  ],
+  // Definição de tamanho - alterar na finalização de refatoração
+  // presets: [require("./public/tailwindcss/sizing.ts")],
 
   theme: {
     fontFamily: {
@@ -55,6 +82,9 @@ export default {
         100: "#FFCD01",
         200: "#EEBF00",
       },
+      red: {
+        200: "#f12626",
+      },
     },
   },
-};
+} satisfies Config;

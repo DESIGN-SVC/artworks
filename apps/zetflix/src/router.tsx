@@ -1,37 +1,19 @@
-import { createBrowserRouter } from "react-router-dom"
-import { Home, loader as LoaderHome } from "./routes/Home"
-import { NotFound } from "./routes/NotFound"
-import { loader as LoaderPlayer, Player } from "./routes/Player.$id"
-import { loader as LoaderLogin, Login, action as LoginAction } from "./routes/login"
-import { Root } from "./routes/root"
-import { ServicesChannels } from "./routes/serviceChannels"
+import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
-    {
-        id: "root",
-        path: "/",
-        element: <Root />,
+  {
+    path: "/",
+    lazy: () => import("./pages/layout-root"),
     children: [
-            {
-                index: true,
-                element: <Login />,
-        action: LoginAction,
-                loader: LoaderLogin,
-            },
-            {
-                path: "contato",
-                element: <ServicesChannels />,
-            },
-            {
-                path: "home",
-                element: <Home />,
-        loader: LoaderHome,
-            },
-            { path: "player/:id", element: <Player />, loader: LoaderPlayer },
+      { index: true, lazy: () => import("./pages/index") },
+      { path: "contato", lazy: () => import("./pages/Contact") },
+      { path: "*", lazy: () => import("./pages/NotFound") },
       {
-                path: "*",
-                element: <NotFound />,
-            },
+        lazy: () => import("./pages/layout-private"),
+        children: [
+          { path: "player/:id", lazy: () => import("./pages/Player") },
         ],
-    },
-])
+      },
+    ],
+  },
+]);
